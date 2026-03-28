@@ -5,7 +5,7 @@ interface HeadingProps {
 }
 
 export function Heading({ children, className = '', level = 1 }: HeadingProps) {
-  const Tag = `h${level}` as keyof JSX.IntrinsicElements;
+  const Tag = `h${level}` as keyof React.JSX.IntrinsicElements;
 
   const sizeStyles = {
     1: 'text-[var(--text-hero)] leading-[0.95]',

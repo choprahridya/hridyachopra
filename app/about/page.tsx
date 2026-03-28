@@ -132,7 +132,7 @@ export default function AboutPage() {
             {/* CV Download */}
             <RevealText delay={0.6}>
               <div>
-                <Button href="/cv.pdf" arrow download>
+                <Button href="/cv.pdf" arrow>
                   Download CV
                 </Button>
               </div>

@@ -24,7 +24,7 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
 
   const discRef = useRef<HTMLDivElement>(null);
   const lastMouseY = useRef(0);
-  const animationFrame = useRef<number>();
+  const animationFrame = useRef<number | undefined>(undefined);
 
   const discRadius = 210; // Half of 420px disc
   const thumbnailOrbitRadius = 155; // Distance from center
