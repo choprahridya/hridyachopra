@@ -35,11 +35,12 @@ export const metadata: Metadata = {
     title: "hridyachopra — UI/UX & Brand Designer",
     description: "UI/UX & brand designer crafting considered digital experiences",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
