@@ -4,37 +4,50 @@
 
 :root {
   /* Backgrounds */
-  --color-bg-primary: #0D1B2A;
-  --color-bg-secondary: #1B2A3B;
-  --color-bg-light: #EBEBEB;
+  --color-bg-primary: #0A1628;
+  --color-bg-secondary: #152238;
+  --color-bg-tertiary: #1F2F45;
+  --color-bg-light: #F5F5F0;
 
   /* Text */
-  --color-text-primary: #F0EBE0;
-  --color-text-secondary: rgba(240, 235, 224, 0.55);
-  --color-text-tertiary: rgba(240, 235, 224, 0.28);
-  --color-text-dark: #0a0a0a;
+  --color-text-primary: #F8F6F1;
+  --color-text-secondary: rgba(248, 246, 241, 0.65);
+  --color-text-tertiary: rgba(248, 246, 241, 0.35);
+  --color-text-dark: #1a1a1a;
 
   /* Accents */
-  --color-accent-primary: #C9A96E;
-  --color-accent-highlight: #E8E0D5;
+  --color-accent-primary: #D4AF6A;
+  --color-accent-secondary: #8B7355;
+  --color-accent-highlight: #F0E8D8;
+  --color-accent-glow: rgba(212, 175, 106, 0.15);
 
   /* Borders */
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-strong: rgba(255, 255, 255, 0.18);
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-strong: rgba(255, 255, 255, 0.15);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #0A1628 0%, #1F2F45 100%);
+  --gradient-accent: linear-gradient(135deg, #D4AF6A 0%, #C9A96E 100%);
+  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(212, 175, 106, 0.08), transparent 70%);
 
   /* Typography */
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
 
-  /* Type scale */
+  /* Type scale - Enhanced */
   --text-xs: 11px;
-  --text-sm: 13px;
+  --text-sm: 14px;
   --text-base: 16px;
   --text-lg: 20px;
   --text-xl: 32px;
-  --text-2xl: 48px;
-  --text-3xl: 72px;
-  --text-hero: clamp(56px, 8vw, 120px);
+  --text-2xl: 52px;
+  --text-3xl: 76px;
+  --text-hero: clamp(64px, 10vw, 140px);
+
+  /* Letter spacing */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.02em;
 
   /* Spacing */
   --space-1: 8px;
@@ -54,13 +67,16 @@
 }
 
 html.light {
-  --color-bg-primary: #EBEBEB;
-  --color-bg-secondary: #F4F4F4;
-  --color-text-primary: #0a0a0a;
-  --color-text-secondary: rgba(10, 10, 10, 0.55);
-  --color-text-tertiary: rgba(10, 10, 10, 0.35);
-  --color-border: rgba(0, 0, 0, 0.1);
-  --color-border-strong: rgba(0, 0, 0, 0.2);
+  --color-bg-primary: #F5F5F0;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-tertiary: #FAFAF8;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: rgba(26, 26, 26, 0.65);
+  --color-text-tertiary: rgba(26, 26, 26, 0.4);
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-strong: rgba(0, 0, 0, 0.15);
+  --gradient-primary: linear-gradient(135deg, #F5F5F0 0%, #FAFAF8 100%);
+  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(212, 175, 106, 0.06), transparent 70%);
 }
 
 @layer base {
@@ -83,5 +99,38 @@ html.light {
     * {
       cursor: auto !important;
     }
+  }
+}
+
+@layer utilities {
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .bg-gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .text-gradient {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 40px var(--color-accent-glow);
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+  }
+
+  .glass-light {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
   }
 }

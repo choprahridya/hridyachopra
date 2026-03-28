@@ -14,10 +14,13 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen relative overflow-hidden">
+    <main className="min-h-screen relative overflow-hidden bg-gradient-primary">
+      {/* Gradient glow overlay */}
+      <div className="absolute inset-0 bg-[var(--gradient-glow)] pointer-events-none" />
+
       {/* Hero Section */}
       <motion.div
-        className="min-h-screen flex flex-col justify-center px-8 md:px-16 relative"
+        className="min-h-screen flex flex-col justify-center px-8 md:px-16 relative z-10"
         style={{ opacity: Math.max(0, 1 - scrollY / 400) }}
       >
         <div className="max-w-7xl mx-auto w-full relative">
@@ -47,7 +50,7 @@ export default function Home() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="mb-8"
           >
-            <Heading level={1} className="relative inline-block">
+            <Heading level={1} className="relative inline-block text-gradient glow-accent">
               hridyachopra
             </Heading>
           </motion.div>

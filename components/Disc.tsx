@@ -156,16 +156,26 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
         height="420"
         viewBox="0 0 420 420"
         style={{ rotate: rotation }}
-        className="absolute inset-0"
+        className="absolute inset-0 drop-shadow-2xl"
       >
-        {/* Outer disc */}
+        {/* Outer disc with gradient */}
+        <defs>
+          <radialGradient id="discGradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#1F2F45" />
+            <stop offset="100%" stopColor="#0A1628" />
+          </radialGradient>
+          <filter id="discShadow">
+            <feDropShadow dx="0" dy="10" stdDeviation="20" floodOpacity="0.3"/>
+          </filter>
+        </defs>
         <circle
           cx="210"
           cy="210"
           r="210"
-          fill="var(--color-bg-secondary)"
+          fill="url(#discGradient)"
           stroke="var(--color-border-strong)"
           strokeWidth="1"
+          filter="url(#discShadow)"
         />
 
         {/* Grooves - concentric circles */}
@@ -217,8 +227,10 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
             transition={{ type: 'spring', damping: 20, stiffness: 300 }}
           >
             <div
-              className={`w-full h-full rounded-[14px] overflow-hidden transition-all ${
-                isActive ? 'ring-2 ring-white shadow-lg' : 'ring-1 ring-border opacity-70'
+              className={`w-full h-full rounded-[14px] overflow-hidden transition-all duration-300 ${
+                isActive
+                  ? 'ring-2 ring-accent-primary shadow-2xl shadow-accent-primary/20 scale-105'
+                  : 'ring-1 ring-border/50 opacity-60 hover:opacity-80'
               }`}
             >
               {/* Placeholder with color */}
