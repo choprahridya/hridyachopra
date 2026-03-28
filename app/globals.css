@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Backgrounds */
+  --color-bg-primary: #0D1B2A;
+  --color-bg-secondary: #1B2A3B;
+  --color-bg-light: #EBEBEB;
+
+  /* Text */
+  --color-text-primary: #F0EBE0;
+  --color-text-secondary: rgba(240, 235, 224, 0.55);
+  --color-text-tertiary: rgba(240, 235, 224, 0.28);
+  --color-text-dark: #0a0a0a;
+
+  /* Accents */
+  --color-accent-primary: #C9A96E;
+  --color-accent-highlight: #E8E0D5;
+
+  /* Borders */
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.18);
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  /* Type scale */
+  --text-xs: 11px;
+  --text-sm: 13px;
+  --text-base: 16px;
+  --text-lg: 20px;
+  --text-xl: 32px;
+  --text-2xl: 48px;
+  --text-3xl: 72px;
+  --text-hero: clamp(56px, 8vw, 120px);
+
+  /* Spacing */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 40px;
+  --space-5: 64px;
+  --space-6: 96px;
+  --space-7: 128px;
+
+  /* Border radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --radius-disc: 50%;
+}
+
+html.light {
+  --color-bg-primary: #EBEBEB;
+  --color-bg-secondary: #F4F4F4;
+  --color-text-primary: #0a0a0a;
+  --color-text-secondary: rgba(10, 10, 10, 0.55);
+  --color-text-tertiary: rgba(10, 10, 10, 0.35);
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-border-strong: rgba(0, 0, 0, 0.2);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+}
