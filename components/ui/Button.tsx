@@ -4,6 +4,7 @@ interface ButtonProps {
   children: React.ReactNode;
   href?: string;
   onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
   variant?: 'primary' | 'secondary' | 'ghost';
   className?: string;
   arrow?: boolean;
@@ -13,6 +14,7 @@ export function Button({
   children,
   href,
   onClick,
+  type = 'button',
   variant = 'primary',
   className = '',
   arrow = false
@@ -46,7 +48,7 @@ export function Button({
   }
 
   return (
-    <button onClick={onClick} className={styles}>
+    <button type={type} onClick={onClick} className={styles}>
       {content}
     </button>
   );
