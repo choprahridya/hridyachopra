@@ -1,25 +1,36 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Cormorant_Garamond, DM_Serif_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { CustomCursor } from "@/components/CustomCursor";
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-script",
+  display: "swap",
+  weight: ["300", "400"],
+  style: ["normal", "italic"],
+});
+
+const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
   variable: "--font-serif",
   display: "swap",
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
+  weight: ["300", "400", "500"],
 });
 
 export const metadata: Metadata = {
   title: "hridyachopra — UI/UX & Brand Designer",
   description: "UI/UX & brand designer crafting considered digital experiences. Portfolio showcasing brand identity, user experience design, and digital strategy work.",
-  keywords: ["UI/UX Designer", "Brand Designer", "Portfolio", "User Experience", "Visual Design", "Design Systems"],
+  keywords: ["UI/UX Designer", "Brand Designer", "Portfolio", "User Experience", "Visual Design"],
   authors: [{ name: "Hridya Chopra" }],
   creator: "Hridya Chopra",
   openGraph: {
@@ -49,8 +60,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="font-sans antialiased bg-bg-primary text-text-primary">
+    <html lang="en" className={`${cormorant.variable} ${dmSerifDisplay.variable} ${dmSans.variable}`}>
+      <body className="antialiased bg-bg text-text-primary">
         <CustomCursor />
         <Nav />
         {children}
