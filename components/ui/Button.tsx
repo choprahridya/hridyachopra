@@ -5,9 +5,9 @@ interface ButtonProps {
   href?: string;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: 'primary' | 'secondary';
   className?: string;
-  arrow?: boolean;
+  external?: boolean;
 }
 
 export function Button({
@@ -17,39 +17,43 @@ export function Button({
   type = 'button',
   variant = 'primary',
   className = '',
-  arrow = false
+  external = false,
 }: ButtonProps) {
-  const baseStyles = 'inline-flex items-center gap-2 px-6 py-3 rounded-pill text-sm tracking-wide font-medium transition-all duration-300 relative overflow-hidden group hover:shadow-lg hover:scale-105';
+  const primaryStyles = `
+    inline-flex items-center gap-2 px-7 py-3
+    border border-text-primary rounded-pill
+    text-[13px] font-medium text-text-primary
+    tracking-[0.04em] bg-transparent
+    transition-colors duration-[--transition-normal]
+    hover:bg-text-primary hover:text-bg
+  `;
 
-  const variantStyles = {
-    primary: 'border border-text-primary text-text-primary hover:bg-text-primary hover:text-bg-primary hover:shadow-text-primary/20',
-    secondary: 'border-2 border-accent-primary text-accent-primary hover:bg-accent-primary hover:text-bg-primary hover:shadow-accent-primary/30',
-    ghost: 'text-text-secondary hover:text-text-primary'
-  };
+  const secondaryStyles = `
+    inline-flex items-center gap-2
+    text-[13px] text-text-secondary
+    transition-colors duration-[--transition-normal]
+    hover:text-text-primary border-b border-transparent
+    hover:border-text-secondary pb-px
+  `;
 
-  const content = (
-    <>
-      <span className="relative z-10">{children}</span>
-      {arrow && <span className="relative z-10 transition-transform group-hover:translate-x-1">↗</span>}
-      {variant !== 'ghost' && (
-        <span className="absolute inset-0 bg-current transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out opacity-10" />
-      )}
-    </>
-  );
-
-  const styles = `${baseStyles} ${variantStyles[variant]} ${className}`;
+  const styles = `${variant === 'primary' ? primaryStyles : secondaryStyles} ${className}`;
 
   if (href) {
     return (
-      <Link href={href} className={styles}>
-        {content}
+      <Link
+        href={href}
+        className={styles}
+        target={external ? '_blank' : undefined}
+        rel={external ? 'noopener noreferrer' : undefined}
+      >
+        {children}
       </Link>
     );
   }
 
   return (
     <button type={type} onClick={onClick} className={styles}>
-      {content}
+      {children}
     </button>
   );
 }

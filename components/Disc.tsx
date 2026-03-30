@@ -2,13 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 export interface Project {
   id: string;
   title: string;
   thumbnail: string;
-  color: string; // Placeholder color
+  color: string;
 }
 
 interface DiscProps {
@@ -26,56 +25,39 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
   const lastMouseY = useRef(0);
   const animationFrame = useRef<number | undefined>(undefined);
 
-  const discRadius = 210; // Half of 420px disc
-  const thumbnailOrbitRadius = 155; // Distance from center
-  const thumbnailSize = 88; // Active thumbnail size
-  const thumbnailSizeInactive = 62; // Inactive thumbnail size
+  const discRadius = 210;
+  const thumbnailOrbitRadius = 155;
+  const thumbnailSize = 88;
+  const thumbnailSizeInactive = 62;
 
-  // Apply momentum physics
   useEffect(() => {
     const animate = () => {
       if (!isDragging && Math.abs(velocity) > 0.2) {
         setRotation((prev) => prev + velocity);
-        setVelocity((prev) => prev * 0.93); // Momentum decay
+        setVelocity((prev) => prev * 0.93);
       }
       animationFrame.current = requestAnimationFrame(animate);
     };
-
     animationFrame.current = requestAnimationFrame(animate);
-    return () => {
-      if (animationFrame.current) {
-        cancelAnimationFrame(animationFrame.current);
-      }
-    };
+    return () => { if (animationFrame.current) cancelAnimationFrame(animationFrame.current); };
   }, [velocity, isDragging]);
 
-  // Detect active thumbnail (closest to 270° / top position)
   useEffect(() => {
     const anglePerProject = 360 / projects.length;
     const normalizedRotation = ((rotation % 360) + 360) % 360;
-
-    // Find which thumbnail is closest to 270° (top)
     let closestIndex = 0;
     let minDiff = 360;
-
     projects.forEach((_, index) => {
       const thumbnailAngle = (index * anglePerProject - normalizedRotation + 360) % 360;
-      const diff = Math.abs(thumbnailAngle - 270);
-      const wrappedDiff = Math.min(diff, 360 - diff);
-
-      if (wrappedDiff < minDiff) {
-        minDiff = wrappedDiff;
-        closestIndex = index;
-      }
+      const diff = Math.min(Math.abs(thumbnailAngle - 270), 360 - Math.abs(thumbnailAngle - 270));
+      if (diff < minDiff) { minDiff = diff; closestIndex = index; }
     });
-
     if (closestIndex !== activeIndex) {
       setActiveIndex(closestIndex);
       onActiveProjectChange?.(projects[closestIndex]);
     }
   }, [rotation, projects, activeIndex, onActiveProjectChange]);
 
-  // Mouse wheel handler
   const handleWheel = (e: WheelEvent) => {
     e.preventDefault();
     const delta = e.deltaY * 0.3;
@@ -83,7 +65,6 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
     setVelocity(delta);
   };
 
-  // Mouse drag handlers
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
     lastMouseY.current = e.clientY;
@@ -92,18 +73,14 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
 
   const handleMouseMove = (e: MouseEvent) => {
     if (!isDragging) return;
-
     const delta = (lastMouseY.current - e.clientY) * 0.5;
     setRotation((prev) => prev + delta);
     setVelocity(delta);
     lastMouseY.current = e.clientY;
   };
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
+  const handleMouseUp = () => setIsDragging(false);
 
-  // Touch handlers
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsDragging(true);
     lastMouseY.current = e.touches[0].clientY;
@@ -112,27 +89,22 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
 
   const handleTouchMove = (e: TouchEvent) => {
     if (!isDragging) return;
-
     const delta = (lastMouseY.current - e.touches[0].clientY) * 0.5;
     setRotation((prev) => prev + delta);
     setVelocity(delta);
     lastMouseY.current = e.touches[0].clientY;
   };
 
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
+  const handleTouchEnd = () => setIsDragging(false);
 
   useEffect(() => {
     const disc = discRef.current;
     if (!disc) return;
-
     disc.addEventListener('wheel', handleWheel, { passive: false });
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseup', handleMouseUp);
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
     window.addEventListener('touchend', handleTouchEnd);
-
     return () => {
       disc.removeEventListener('wheel', handleWheel);
       window.removeEventListener('mousemove', handleMouseMove);
@@ -150,35 +122,25 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
       onTouchStart={handleTouchStart}
       style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
     >
-      {/* SVG Disc */}
+      {/* SVG disc — cream/ink palette */}
       <motion.svg
         width="420"
         height="420"
         viewBox="0 0 420 420"
         style={{ rotate: rotation }}
-        className="absolute inset-0 drop-shadow-2xl"
+        className="absolute inset-0 drop-shadow-lg"
       >
-        {/* Outer disc with gradient */}
         <defs>
           <radialGradient id="discGradient" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#1F2F45" />
-            <stop offset="100%" stopColor="#0A1628" />
+            <stop offset="0%" stopColor="#EFECEA" />
+            <stop offset="100%" stopColor="#E2DED7" />
           </radialGradient>
-          <filter id="discShadow">
-            <feDropShadow dx="0" dy="10" stdDeviation="20" floodOpacity="0.3"/>
-          </filter>
         </defs>
-        <circle
-          cx="210"
-          cy="210"
-          r="210"
-          fill="url(#discGradient)"
-          stroke="var(--color-border-strong)"
-          strokeWidth="1"
-          filter="url(#discShadow)"
-        />
 
-        {/* Grooves - concentric circles */}
+        {/* Disc body */}
+        <circle cx="210" cy="210" r="210" fill="url(#discGradient)" stroke="#D4D0C9" strokeWidth="1" />
+
+        {/* Grooves */}
         {Array.from({ length: 30 }).map((_, i) => (
           <circle
             key={i}
@@ -186,20 +148,13 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
             cy="210"
             r={190 - i * 5}
             fill="none"
-            stroke="rgba(255, 255, 255, 0.04)"
+            stroke="rgba(17,17,17,0.05)"
             strokeWidth="0.5"
           />
         ))}
 
         {/* Center hole */}
-        <circle
-          cx="210"
-          cy="210"
-          r="16"
-          fill="var(--color-bg-primary)"
-          stroke="var(--color-border)"
-          strokeWidth="1"
-        />
+        <circle cx="210" cy="210" r="16" fill="var(--color-bg)" stroke="var(--color-border)" strokeWidth="1" />
       </motion.svg>
 
       {/* Thumbnails */}
@@ -214,12 +169,7 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
           <motion.div
             key={project.id}
             className="absolute"
-            style={{
-              left: x,
-              top: y,
-              x: '-50%',
-              y: '-50%',
-            }}
+            style={{ left: x, top: y, x: '-50%', y: '-50%' }}
             animate={{
               width: isActive ? thumbnailSize : thumbnailSizeInactive,
               height: isActive ? thumbnailSize : thumbnailSizeInactive,
@@ -227,16 +177,19 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
             transition={{ type: 'spring', damping: 20, stiffness: 300 }}
           >
             <div
-              className={`w-full h-full rounded-[14px] overflow-hidden transition-all duration-300 ${
-                isActive
-                  ? 'ring-2 ring-accent-primary shadow-2xl shadow-accent-primary/20 scale-105'
-                  : 'ring-1 ring-border/50 opacity-60 hover:opacity-80'
+              className={`w-full h-full rounded-xl overflow-hidden transition-all duration-300 ${
+                isActive ? 'scale-105' : 'opacity-60 hover:opacity-80'
               }`}
+              style={{
+                outline: isActive
+                  ? '2px solid var(--color-accent)'
+                  : '1px solid var(--color-border)',
+                boxShadow: isActive ? '0 4px 16px rgba(61,107,79,0.15)' : 'none',
+              }}
             >
-              {/* Placeholder with color */}
               <div
-                className="w-full h-full flex items-center justify-center text-white text-xs font-medium"
-                style={{ backgroundColor: project.color }}
+                className="w-full h-full flex items-center justify-center text-[11px] font-medium text-text-secondary font-sans"
+                style={{ backgroundColor: 'var(--color-bg-overlay)' }}
               >
                 {project.title.slice(0, 2).toUpperCase()}
               </div>

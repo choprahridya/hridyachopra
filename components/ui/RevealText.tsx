@@ -9,29 +9,16 @@ interface RevealTextProps {
   delay?: number;
 }
 
-const revealVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.65,
-      ease: [0.16, 1, 0.3, 1] as any
-    }
-  }
-};
-
 export function RevealText({ children, className = '', delay = 0 }: RevealTextProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
     <motion.div
       ref={ref}
-      initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
-      variants={revealVariants}
-      style={{ transitionDelay: `${delay}s` }}
+      initial={{ opacity: 0, y: 16 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+      transition={{ duration: 0.5, delay, ease: [0.25, 0, 0, 1] }}
       className={className}
     >
       {children}
