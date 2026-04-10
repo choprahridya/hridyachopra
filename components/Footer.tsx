@@ -3,13 +3,11 @@ import Link from 'next/link';
 const footerLinks = [
   { href: '/projects', label: 'Projects' },
   { href: '/about', label: 'About' },
-  { href: '/cv.pdf', label: 'CV', external: true },
+  { href: '/cv.pdf', label: 'Resume', download: true },
 ];
 
 const socialLinks = [
-  { href: 'https://linkedin.com', label: 'LinkedIn' },
-  { href: 'https://dribbble.com', label: 'Dribbble' },
-  { href: 'https://instagram.com', label: 'Instagram' },
+  { href: 'https://www.linkedin.com/in/hridyachopra', label: 'LinkedIn' },
 ];
 
 export function Footer() {
@@ -21,14 +19,22 @@ export function Footer() {
         <ul className="flex flex-wrap gap-6 md:gap-8">
           {footerLinks.map((link) => (
             <li key={link.href}>
-              <Link
-                href={link.href}
-                target={link.external ? '_blank' : undefined}
-                rel={link.external ? 'noopener noreferrer' : undefined}
-                className="text-[12px] uppercase tracking-[0.08em] text-text-muted hover:text-text-primary transition-colors"
-              >
-                {link.label}
-              </Link>
+              {(link as typeof link & { download?: boolean }).download ? (
+                <a
+                  href={link.href}
+                  download
+                  className="text-[12px] uppercase tracking-[0.08em] text-text-muted hover:text-text-primary transition-colors"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  href={link.href}
+                  className="text-[12px] uppercase tracking-[0.08em] text-text-muted hover:text-text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              )}
             </li>
           ))}
           {socialLinks.map((link) => (

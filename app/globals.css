@@ -1,26 +1,40 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  /* ── Colors: Light mode (default) ── */
-  --color-bg:             #F8F6F1;
-  --color-bg-card:        #FFFFFF;
-  --color-bg-overlay:     #EFEDE8;
-  --color-text-primary:   #111111;
-  --color-text-secondary: #555555;
-  --color-text-muted:     #999999;
-  --color-accent:         #3D6B4F;
-  --color-accent-light:   #E6EFE9;
-  --color-border:         #E2DED7;
-  --color-border-dark:    #CCCCCC;
+/* ── Tailwind v4 theme tokens ─────────────────────────────────────────────── */
+/* Values here become both CSS custom properties AND generate utility classes  */
+@theme {
+  /* Colors — light mode defaults */
+  --color-bg:              #EEF3FC;
+  --color-bg-card:         #FFFFFF;
+  --color-bg-overlay:      #E2EDF8;
+  --color-text-primary:    #001E4A;
+  --color-text-secondary:  #1A5BAD;
+  --color-text-muted:      #6B96CC;
+  --color-accent:          #004AAD;
+  --color-accent-light:    #DDEAF8;
+  --color-border:          #BFD3EE;
+  --color-border-dark:     #8AAED8;
 
-  /* ── Fonts ── */
+  /* Font families */
   --font-script: 'Cormorant Garamond', Georgia, serif;
   --font-serif:  'DM Serif Display', Georgia, serif;
   --font-sans:   'DM Sans', 'Helvetica Neue', Arial, sans-serif;
 
-  /* ── Type scale ── */
+  /* Border radius */
+  --radius-pill: 999px;
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+
+  /* Max width */
+  --max-width-site: 1200px;
+  --max-width-text: 720px;
+}
+
+
+/* ── Non-utility CSS variables ───────────────────────────────────────────── */
+:root {
+  /* Type scale */
   --text-wordmark: clamp(64px, 8vw, 96px);
   --text-h1:       clamp(40px, 5vw, 64px);
   --text-h2:       32px;
@@ -30,15 +44,15 @@
   --text-nav:      14px;
   --text-pill:     12px;
 
-  /* ── Line heights ── */
+  /* Line heights */
   --lh-tight:  1.15;
   --lh-normal: 1.6;
   --lh-loose:  1.8;
 
-  /* ── Letter spacing ── */
+  /* Letter spacing */
   --ls-wide: 0.08em;
 
-  /* ── Spacing ── */
+  /* Spacing */
   --space-1:  4px;
   --space-2:  8px;
   --space-3:  12px;
@@ -52,38 +66,30 @@
   --space-11: 160px;
   --space-12: 200px;
 
-  /* ── Layout ── */
-  --max-width:      1200px;
-  --max-width-text: 720px;
-  --page-padding:   clamp(24px, 5vw, 80px);
+  /* Layout */
+  --page-padding: clamp(24px, 5vw, 80px);
 
-  /* ── Border radius ── */
-  --radius-sm:   6px;
-  --radius-md:   12px;
-  --radius-lg:   20px;
-  --radius-pill: 999px;
-
-  /* ── Transitions ── */
+  /* Transitions */
   --transition-fast:   0.15s ease;
   --transition-normal: 0.25s ease;
   --transition-slow:   0.4s ease;
 }
 
-/* ── Dark mode: ink-dark palette ── */
-html.dark {
-  --color-bg:             #1A1814;
-  --color-bg-card:        #2A2520;
-  --color-bg-overlay:     #221F1B;
-  --color-text-primary:   #F0EDD8;
-  --color-text-secondary: #A8A099;
-  --color-text-muted:     #6B655E;
-  --color-accent:         #3D6B4F;
-  --color-accent-light:   #1E2E24;
-  --color-border:         #2E2A25;
-  --color-border-dark:    #3D3830;
-}
-
+/* ── Base layer ──────────────────────────────────────────────────────────── */
 @layer base {
+  /* Dark mode: black + light blue text */
+  html.dark {
+    --color-bg:              #000000;
+    --color-bg-card:         #000000;
+    --color-bg-overlay:      #0a0a0a;
+    --color-text-primary:    #EEF3FC;
+    --color-text-secondary:  #BFD3EE;
+    --color-text-muted:      #7AAAD8;
+    --color-accent:          #EEF3FC;
+    --color-accent-light:    #1a1a1a;
+    --color-border:          #1e1e1e;
+    --color-border-dark:     #2e2e2e;
+  }
   * {
     border-color: var(--color-border);
   }
@@ -108,6 +114,7 @@ html.dark {
   }
 }
 
+/* ── Utility layer ───────────────────────────────────────────────────────── */
 @layer utilities {
   .font-script {
     font-family: var(--font-script);

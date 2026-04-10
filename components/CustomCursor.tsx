@@ -1,14 +1,20 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useSpring } from 'framer-motion';
 
 export function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [rotation, setRotation] = useState(0);
 
-  const cursorX = useSpring(0, { damping: 30, stiffness: 200 });
-  const cursorY = useSpring(0, { damping: 30, stiffness: 200 });
+  // Much stiffer spring = snappier follow
+  const cursorX = useSpring(0, { damping: 15, stiffness: 1200, mass: 0.1 });
+  const cursorY = useSpring(0, { damping: 15, stiffness: 1200, mass: 0.1 });
+
+  const lastPos = useRef({ x: 0, y: 0 });
+  const rotRef = useRef(0);
+  const rafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     setIsMounted(true);
@@ -16,15 +22,27 @@ export function CustomCursor() {
     const updatePosition = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
+
+      // Accumulate rotation based on movement speed
+      const dx = e.clientX - lastPos.current.x;
+      const dy = e.clientY - lastPos.current.y;
+      const speed = Math.sqrt(dx * dx + dy * dy);
+      rotRef.current += speed * 1.2;
+      lastPos.current = { x: e.clientX, y: e.clientY };
     };
+
+    // Smooth the rotation update via rAF
+    const tick = () => {
+      setRotation(rotRef.current);
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
 
     const handleOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest('a') || target.closest('button') || target.dataset.cursor === 'hover') {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+      setIsHovering(
+        !!(target.closest('a') || target.closest('button') || target.dataset.cursor === 'hover')
+      );
     };
 
     window.addEventListener('mousemove', updatePosition);
@@ -33,6 +51,7 @@ export function CustomCursor() {
     return () => {
       window.removeEventListener('mousemove', updatePosition);
       document.removeEventListener('mouseover', handleOver);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [cursorX, cursorY]);
 
@@ -46,10 +65,15 @@ export function CustomCursor() {
       <motion.span
         className="block leading-none text-text-primary font-sans"
         animate={{
-          fontSize: isHovering ? '24px' : '16px',
+          fontSize: isHovering ? '42px' : '28px',
           opacity: isHovering ? 0.9 : 0.55,
+          rotate: rotation,
         }}
-        transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+        transition={{
+          fontSize: { type: 'spring', damping: 20, stiffness: 300 },
+          opacity: { duration: 0.15 },
+          rotate: { type: 'tween', duration: 0, ease: 'linear' },
+        }}
       >
         *
       </motion.span>

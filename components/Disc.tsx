@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 export interface Project {
@@ -13,28 +14,35 @@ export interface Project {
 interface DiscProps {
   projects: Project[];
   onActiveProjectChange?: (project: Project) => void;
+  size?: number; // diameter in px, default 420
 }
 
-export function Disc({ projects, onActiveProjectChange }: DiscProps) {
+export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps) {
   const [rotation, setRotation] = useState(0);
   const [velocity, setVelocity] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  const router = useRouter();
   const discRef = useRef<HTMLDivElement>(null);
   const lastMouseY = useRef(0);
+  const lastTimestamp = useRef(0);
   const animationFrame = useRef<number | undefined>(undefined);
+  const dragDistance = useRef(0);
 
-  const discRadius = 210;
-  const thumbnailOrbitRadius = 155;
-  const thumbnailSize = 88;
-  const thumbnailSizeInactive = 62;
+  const r = size / 2;                           // disc radius
+  const orbitRadius = r * 0.74;                 // thumbnail orbit
+  const thumbSize = Math.round(size * 0.16);    // uniform thumbnail size — no growth on active
+  const thumbActive = thumbSize;
+  const thumbInactive = thumbSize;
 
   useEffect(() => {
     const animate = () => {
-      if (!isDragging && Math.abs(velocity) > 0.2) {
+      if (!isDragging && Math.abs(velocity) > 0.05) {
         setRotation((prev) => prev + velocity);
-        setVelocity((prev) => prev * 0.93);
+        // friction proportional to speed: fast spins coast longer, slow spins stop quickly
+        setVelocity((prev) => prev * 0.88);
       }
       animationFrame.current = requestAnimationFrame(animate);
     };
@@ -44,12 +52,11 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
 
   useEffect(() => {
     const anglePerProject = 360 / projects.length;
-    const normalizedRotation = ((rotation % 360) + 360) % 360;
     let closestIndex = 0;
     let minDiff = 360;
     projects.forEach((_, index) => {
-      const thumbnailAngle = (index * anglePerProject - normalizedRotation + 360) % 360;
-      const diff = Math.min(Math.abs(thumbnailAngle - 270), 360 - Math.abs(thumbnailAngle - 270));
+      const thumbnailAngle = ((index * anglePerProject + rotation) % 360 + 360) % 360;
+      const diff = Math.min(thumbnailAngle, 360 - thumbnailAngle);
       if (diff < minDiff) { minDiff = diff; closestIndex = index; }
     });
     if (closestIndex !== activeIndex) {
@@ -60,23 +67,31 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
 
   const handleWheel = (e: WheelEvent) => {
     e.preventDefault();
-    const delta = e.deltaY * 0.3;
+    const delta = e.deltaY * 0.05;
     setRotation((prev) => prev + delta);
-    setVelocity(delta);
+    setVelocity((prev) => prev + delta * 0.15);
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
     lastMouseY.current = e.clientY;
+    lastTimestamp.current = performance.now();
+    dragDistance.current = 0;
     setVelocity(0);
   };
 
   const handleMouseMove = (e: MouseEvent) => {
     if (!isDragging) return;
-    const delta = (lastMouseY.current - e.clientY) * 0.5;
-    setRotation((prev) => prev + delta);
+    const now = performance.now();
+    const dt = Math.max(now - lastTimestamp.current, 1);
+    const dy = lastMouseY.current - e.clientY;
+    // degrees per frame (at 60fps ≈ 16ms), scaled by actual elapsed time
+    const delta = (dy / dt) * 16 * 0.2;
+    dragDistance.current += Math.abs(dy);
+    setRotation((prev) => prev + dy * 0.15);
     setVelocity(delta);
     lastMouseY.current = e.clientY;
+    lastTimestamp.current = now;
   };
 
   const handleMouseUp = () => setIsDragging(false);
@@ -84,15 +99,20 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsDragging(true);
     lastMouseY.current = e.touches[0].clientY;
+    lastTimestamp.current = performance.now();
     setVelocity(0);
   };
 
   const handleTouchMove = (e: TouchEvent) => {
     if (!isDragging) return;
-    const delta = (lastMouseY.current - e.touches[0].clientY) * 0.5;
-    setRotation((prev) => prev + delta);
+    const now = performance.now();
+    const dt = Math.max(now - lastTimestamp.current, 1);
+    const dy = lastMouseY.current - e.touches[0].clientY;
+    const delta = (dy / dt) * 16 * 0.2;
+    setRotation((prev) => prev + dy * 0.15);
     setVelocity(delta);
     lastMouseY.current = e.touches[0].clientY;
+    lastTimestamp.current = now;
   };
 
   const handleTouchEnd = () => setIsDragging(false);
@@ -117,83 +137,98 @@ export function Disc({ projects, onActiveProjectChange }: DiscProps) {
   return (
     <div
       ref={discRef}
-      className="relative w-[420px] h-[420px] select-none"
+      className="relative select-none"
+      style={{ width: size, height: size, cursor: isDragging ? 'grabbing' : 'grab' }}
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
-      style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
     >
-      {/* SVG disc — cream/ink palette */}
+      {/* SVG disc */}
       <motion.svg
-        width="420"
-        height="420"
-        viewBox="0 0 420 420"
+        width={size}
+        height={size}
+        viewBox={`0 0 ${size} ${size}`}
         style={{ rotate: rotation }}
-        className="absolute inset-0 drop-shadow-lg"
+        className="absolute inset-0 drop-shadow-2xl"
       >
         <defs>
           <radialGradient id="discGradient" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#EFECEA" />
-            <stop offset="100%" stopColor="#E2DED7" />
+            <stop offset="0%" stopColor="#2A2520" />
+            <stop offset="60%" stopColor="#1E1B17" />
+            <stop offset="100%" stopColor="#141210" />
           </radialGradient>
         </defs>
 
         {/* Disc body */}
-        <circle cx="210" cy="210" r="210" fill="url(#discGradient)" stroke="#D4D0C9" strokeWidth="1" />
+        <circle cx={r} cy={r} r={r} fill="url(#discGradient)" stroke="#0A0908" strokeWidth="1" />
 
         {/* Grooves */}
         {Array.from({ length: 30 }).map((_, i) => (
           <circle
             key={i}
-            cx="210"
-            cy="210"
-            r={190 - i * 5}
+            cx={r}
+            cy={r}
+            r={r * 0.9 - i * (r * 0.9 / 30)}
             fill="none"
-            stroke="rgba(17,17,17,0.05)"
+            stroke="rgba(255,255,255,0.04)"
             strokeWidth="0.5"
           />
         ))}
 
         {/* Center hole */}
-        <circle cx="210" cy="210" r="16" fill="var(--color-bg)" stroke="var(--color-border)" strokeWidth="1" />
+        <circle cx={r} cy={r} r={r * 0.075} fill="#0A0908" stroke="#333" strokeWidth="1" />
       </motion.svg>
 
       {/* Thumbnails */}
       {projects.map((project, index) => {
         const anglePerProject = 360 / projects.length;
         const angle = (index * anglePerProject + rotation) * (Math.PI / 180);
-        const x = discRadius + Math.cos(angle) * thumbnailOrbitRadius;
-        const y = discRadius + Math.sin(angle) * thumbnailOrbitRadius;
+        const x = r + Math.cos(angle) * orbitRadius;
+        const y = r + Math.sin(angle) * orbitRadius;
         const isActive = index === activeIndex;
 
         return (
           <motion.div
             key={project.id}
             className="absolute"
-            style={{ left: x, top: y, x: '-50%', y: '-50%' }}
+            style={{ left: x, top: y, x: '-50%', y: '-50%', cursor: isActive ? 'pointer' : 'inherit' }}
             animate={{
-              width: isActive ? thumbnailSize : thumbnailSizeInactive,
-              height: isActive ? thumbnailSize : thumbnailSizeInactive,
+              width: isActive ? thumbActive : thumbInactive,
+              height: isActive ? thumbActive : thumbInactive,
             }}
             transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+            onHoverStart={() => setHoveredIndex(index)}
+            onHoverEnd={() => setHoveredIndex(null)}
+            onClick={() => {
+              if (isActive && dragDistance.current < 6) {
+                router.push(`/projects/${project.id}`);
+              }
+            }}
           >
-            <div
-              className={`w-full h-full rounded-xl overflow-hidden transition-all duration-300 ${
-                isActive ? 'scale-105' : 'opacity-60 hover:opacity-80'
-              }`}
+            <motion.div
+              className="w-full h-full rounded-2xl overflow-hidden"
+              animate={{
+                scale: 1,
+                opacity: isActive ? 1 : hoveredIndex === index ? 0.85 : 0.55,
+              }}
+              transition={{ duration: 0.2 }}
               style={{
                 outline: isActive
                   ? '2px solid var(--color-accent)'
-                  : '1px solid var(--color-border)',
-                boxShadow: isActive ? '0 4px 16px rgba(61,107,79,0.15)' : 'none',
+                  : '1px solid rgba(255,255,255,0.1)',
+                boxShadow: isActive ? '0 4px 20px rgba(61,107,79,0.3)' : 'none',
               }}
             >
               <div
-                className="w-full h-full flex items-center justify-center text-[11px] font-medium text-text-secondary font-sans"
-                style={{ backgroundColor: 'var(--color-bg-overlay)' }}
+                className="w-full h-full flex items-center justify-center font-sans font-medium"
+                style={{
+                  backgroundColor: project.color,
+                  fontSize: project.title.includes("Franklin's") ? Math.max(7, thumbSize * 0.1) : project.title === 'Xchange' ? Math.max(8, thumbSize * 0.12) : project.title === 'Cogniva' ? Math.max(8, thumbSize * 0.12) : Math.max(10, thumbSize * 0.18),
+                  color: '#555',
+                }}
               >
-                {project.title.slice(0, 2).toUpperCase()}
+                {project.title.includes("Franklin's") ? "Franklin's" : project.title === 'Xchange' ? 'Xchange' : project.title === 'Cogniva' ? 'Cogniva' : project.title.slice(0, 2).toUpperCase()}
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         );
       })}

@@ -4,12 +4,11 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Footer } from '@/components/Footer';
 import { DividerMotif, RevealText } from '@/components/ui';
+import { ScatterPuzzle } from '@/components/ScatterPuzzle';
 
 const featuredProjects = [
-  { id: '1', title: 'E-commerce UX Overhaul', category: 'Brand Identity', year: '2024', bg: '#EAE5DD' },
-  { id: '2', title: 'Mobile App Redesign', category: 'UX / UI', year: '2024', bg: '#DDE5EA' },
-  { id: '3', title: 'Enterprise Design System', category: 'Systems', year: '2023', bg: '#E5EADD' },
-  { id: '4', title: 'Visual Identity System', category: 'Brand', year: '2024', bg: '#EAE0DD' },
+  { id: '1', title: 'Xchange', category: 'Brand Identity', year: '2025', bg: '#EAE5DD', thumbnail: '/projects/1/1.png' },
+  { id: '2', title: "Website Redesign: Franklin's", category: 'UX / UI', year: '2024', bg: '#DDE5EA', thumbnail: '/projects/2/cover.png' },
 ];
 
 const fadeUp = {
@@ -21,48 +20,78 @@ const fadeUp = {
   }),
 };
 
+function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; index: number }) {
+  return (
+    <RevealText delay={index * 0.08}>
+      <Link href={`/projects/${project.id}`} className="group block">
+        <div className={`w-full rounded-md overflow-hidden border border-border transition-all duration-300 ${!project.thumbnail ? 'group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]' : ''}`}>
+          <div
+            className="w-full overflow-hidden"
+            style={{ background: project.bg, aspectRatio: '5/2' }}
+          >
+            {project.thumbnail ? (
+              <img
+                src={project.thumbnail}
+                alt={project.title}
+                className="w-full h-full object-contain p-4"
+                loading="lazy"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center font-serif text-text-muted text-sm">
+                {project.title}
+              </div>
+            )}
+          </div>
+
+          <div className="p-5 bg-bg-card">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="pill">{project.category}</span>
+              <span className="text-[12px] text-text-muted">{project.year}</span>
+            </div>
+            <p className="font-serif text-[var(--text-h3)] text-text-primary">{project.title}</p>
+          </div>
+        </div>
+      </Link>
+    </RevealText>
+  );
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col bg-bg">
 
       {/* ── Hero ── */}
       <section className="flex-1 flex flex-col items-center justify-center text-center px-[--page-padding] pt-24 pb-16 min-h-screen">
-        {/* Wordmark + asterisks */}
+
+        {/* Scatter puzzle — button at bottom, pieces fly upward */}
         <motion.div
           custom={0}
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="relative mb-8"
+          className="w-full max-w-2xl mx-auto"
         >
-          <span className="absolute -top-3 -left-6 text-text-muted font-sans text-lg select-none">*</span>
-          <span className="absolute -top-3 -right-6 text-text-muted font-sans text-lg select-none">*</span>
-          <span className="absolute -bottom-3 -left-6 text-text-muted font-sans text-lg select-none">*</span>
-          <span className="absolute -bottom-3 -right-6 text-text-muted font-sans text-lg select-none">*</span>
-
-          <div className="flex items-start gap-3">
-            <h1
-              className="font-script text-text-primary leading-none"
-              style={{ fontSize: 'var(--text-wordmark)' }}
-            >
-              Portfolio
-            </h1>
-            <span className="mt-2 inline-flex items-center px-2.5 py-0.5 rounded-pill border border-border-dark text-[11px] font-sans font-medium text-text-muted tracking-[0.06em]">
-              2025
-            </span>
-          </div>
+          <ScatterPuzzle />
         </motion.div>
 
-        {/* Role */}
-        <motion.p
+        {/* Intro text */}
+        <motion.div
           custom={1}
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="text-[15px] text-text-secondary font-sans mb-10 tracking-[0.04em]"
+          className="mb-8"
         >
-          UI/UX &amp; Brand Designer · Available for work
-        </motion.p>
+          <h1
+            className="font-serif text-text-primary mb-4"
+            style={{ fontSize: '48px', lineHeight: 1.1 }}
+          >
+            Hi, I am Hridya Chopra
+          </h1>
+          <p className="font-sans leading-relaxed max-w-lg mx-auto" style={{ fontSize: '24px', color: 'var(--color-text-secondary)' }}>
+            A UX designer, studying at SCAD who loves to solve problems using design.
+          </p>
+        </motion.div>
 
         {/* CTAs */}
         <motion.div
@@ -80,13 +109,13 @@ export default function Home() {
           </Link>
           <a
             href="/cv.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            download
             className="inline-flex items-center gap-2 text-[13px] text-text-secondary hover:text-text-primary transition-colors border-b border-transparent hover:border-text-secondary pb-px"
           >
-            Download CV →
+            Download Resume →
           </a>
         </motion.div>
+
       </section>
 
       <DividerMotif />
@@ -94,41 +123,26 @@ export default function Home() {
       {/* ── Featured Work ── */}
       <section className="px-[--page-padding] pb-24">
         <div className="max-w-site mx-auto">
-          <RevealText className="flex items-baseline justify-between mb-10">
+          <RevealText className="mb-10">
             <h2 className="font-serif text-[var(--text-h2)] text-text-primary">Featured Work</h2>
-            <Link
-              href="/projects"
-              className="text-[13px] text-text-secondary hover:text-text-primary transition-colors border-b border-transparent hover:border-text-secondary pb-px"
-            >
-              All projects →
-            </Link>
           </RevealText>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
             {featuredProjects.map((project, index) => (
-              <RevealText key={project.id} delay={index * 0.08}>
-                <Link href={`/projects/${project.id}`} className="group block">
-                  <div
-                    className="w-full rounded-md overflow-hidden border border-border transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]"
-                  >
-                    <div
-                      className="w-full flex items-center justify-center font-serif text-text-muted text-sm overflow-hidden transition-transform duration-500 group-hover:scale-[1.04]"
-                      style={{ aspectRatio: '3/2', background: project.bg }}
-                    >
-                      {project.title}
-                    </div>
-                    <div className="p-5 bg-bg-card">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="pill">{project.category}</span>
-                        <span className="text-[12px] text-text-muted">{project.year}</span>
-                      </div>
-                      <p className="font-serif text-[var(--text-h3)] text-text-primary">{project.title}</p>
-                    </div>
-                  </div>
-                </Link>
-              </RevealText>
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </div>
+
+          <RevealText delay={0.2}>
+            <div className="flex justify-center">
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-2 px-8 py-3 border border-text-primary rounded-pill text-[13px] font-medium text-text-primary tracking-[0.04em] transition-colors hover:bg-text-primary hover:text-bg"
+              >
+                View All Projects →
+              </Link>
+            </div>
+          </RevealText>
         </div>
       </section>
 
@@ -152,8 +166,9 @@ export default function Home() {
           <RevealText delay={0.1}>
             <h2 className="font-serif text-[var(--text-h2)] text-text-primary mb-3">Hridya Chopra</h2>
             <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)] mb-6 max-w-prose">
-              UI/UX &amp; brand designer crafting considered digital experiences through strategic
-              thinking and visual refinement. Available for freelance and full-time roles.
+              BFA UX Design student at SCAD, on the Dean's List with a 3.6 GPA. I work across
+              UX design, digital marketing, and visual identity — with a background in Figma,
+              Illustrator, and Photoshop. Always looking for work where design actually matters.
             </p>
             <div className="flex gap-4 flex-wrap">
               <Link
@@ -163,10 +178,10 @@ export default function Home() {
                 About me →
               </Link>
               <a
-                href="mailto:hello@hridyachopra.com"
+                href="mailto:choprahridya@gmail.com"
                 className="inline-flex items-center gap-2 text-[13px] text-text-secondary hover:text-text-primary transition-colors border-b border-transparent hover:border-text-secondary pb-px"
               >
-                hello@hridyachopra.com →
+                choprahridya@gmail.com →
               </a>
             </div>
           </RevealText>

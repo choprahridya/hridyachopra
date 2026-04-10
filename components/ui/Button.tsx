@@ -8,6 +8,7 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary';
   className?: string;
   external?: boolean;
+  download?: boolean;
 }
 
 export function Button({
@@ -18,6 +19,7 @@ export function Button({
   variant = 'primary',
   className = '',
   external = false,
+  download = false,
 }: ButtonProps) {
   const primaryStyles = `
     inline-flex items-center gap-2 px-7 py-3
@@ -39,6 +41,13 @@ export function Button({
   const styles = `${variant === 'primary' ? primaryStyles : secondaryStyles} ${className}`;
 
   if (href) {
+    if (download) {
+      return (
+        <a href={href} download className={styles}>
+          {children}
+        </a>
+      );
+    }
     return (
       <Link
         href={href}

@@ -7,27 +7,40 @@ import { DividerMotif, RevealText, SkillRow, Button } from '@/components/ui';
 const skills = [
   { name: 'Figma', level: 5 as const },
   { name: 'Illustrator', level: 4 as const },
-  { name: 'After Effects', level: 3 as const },
-  { name: 'Protopie', level: 3 as const },
-  { name: 'Framer', level: 4 as const },
+  { name: 'Canva', level: 4 as const },
+  { name: 'Photoshop', level: 3 as const },
+  { name: 'JavaScript', level: 2 as const },
 ];
 
 const expertise = {
-  Design: ['UI/UX Design', 'Brand Identity', 'Design Systems', 'Visual Design', 'Interaction Design'],
-  Strategy: ['User Research', 'Information Architecture', 'Content Strategy', 'Design Thinking'],
-  Technical: ['Prototyping', 'Responsive Design', 'Accessibility', 'Design Ops'],
+  Design: ['UX Design', 'Design Thinking', 'Visual Design', 'Prototyping', 'Interaction Design'],
+  Strategy: ['User Research', 'Digital Marketing', 'Content Strategy', 'Brand Identity', 'SEO'],
+  Technical: ['Figma', 'Adobe Suite', 'Canva', 'JavaScript', 'App Prototyping'],
 };
 
 const experience = [
-  { role: 'Senior Product Designer', company: 'Studio Name', period: '2023 – Present', desc: 'Led end-to-end design for core product and brand.' },
-  { role: 'UX Designer', company: 'Agency Name', period: '2021 – 2023', desc: 'Designed digital products and brand identities for clients across fintech and consumer.' },
-  { role: 'Junior Designer', company: 'First Company', period: '2020 – 2021', desc: 'Supported senior designers on web and brand projects.' },
+  {
+    role: 'Co-Founder',
+    company: 'Xchange: A Book Xchange Movement',
+    period: 'May 2022 – Present',
+    desc: 'Exchanged 25,000+ books, saving $56K+ and 400+ trees. Led end-to-end visual design and UX, crowdfunded $400, and built an app prototype in Figma. Recognised by IIT Kanpur, Plaksha University, Youth Ideathon, and Youth Ki Awaaz.',
+  },
+  {
+    role: 'Social Media Intern',
+    company: 'Social Panga',
+    period: 'Apr – Jun 2025',
+    desc: 'Designed digital creatives for Instagram, Facebook, and X.',
+  },
+  {
+    role: 'BFA UX Design',
+    company: 'SCAD — Savannah College of Art and Design',
+    period: '2025 – 2029',
+    desc: '3.6 GPA · Dean\'s List. Active in FLUX Club, FLUXathon, FigBuild, and SCAD Start-Up (3rd place, $2,000 scholarship).',
+  },
 ];
 
 const socialLinks = [
-  { name: 'LinkedIn', url: 'https://linkedin.com' },
-  { name: 'Dribbble', url: 'https://dribbble.com' },
-  { name: 'Instagram', url: 'https://instagram.com' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/hridyachopra' },
 ];
 
 export default function AboutPage() {
@@ -46,7 +59,7 @@ export default function AboutPage() {
     <main className="min-h-screen flex flex-col bg-bg pt-16">
 
       {/* ── Hero ── */}
-      <section className="px-[--page-padding] pt-20 pb-16">
+      <section className="px-[--page-padding] pt-20 pb-2">
         <div className="max-w-site mx-auto">
           <RevealText>
             <p className="text-[var(--text-small)] uppercase tracking-[var(--ls-wide)] text-text-muted font-sans mb-4">
@@ -56,8 +69,8 @@ export default function AboutPage() {
               className="font-serif text-text-primary mb-6"
               style={{ fontSize: 'var(--text-h1)', lineHeight: 'var(--lh-tight)' }}
             >
-              Designer at the intersection of<br />
-              craft, empathy, and strategy
+              UX designer who makes things<br />
+              that actually matter
             </h1>
           </RevealText>
         </div>
@@ -66,7 +79,7 @@ export default function AboutPage() {
       <DividerMotif />
 
       {/* ── Bio sidebar layout ── */}
-      <section className="px-[--page-padding] pb-24">
+      <section className="px-[--page-padding] pt-4 pb-12">
         <div className="max-w-site mx-auto grid md:grid-cols-[1fr_2fr] gap-16">
 
           {/* Sidebar */}
@@ -80,7 +93,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <p className="font-serif text-[22px] text-text-primary mb-1">Hridya Chopra</p>
-                <p className="text-[13px] text-text-secondary">UI/UX &amp; Brand Designer</p>
+                <p className="text-[13px] text-text-secondary">UX Designer · SCAD '29</p>
               </div>
               <div className="flex flex-col gap-2">
                 {socialLinks.map((link) => (
@@ -95,7 +108,7 @@ export default function AboutPage() {
                   </a>
                 ))}
               </div>
-              <Button href="/cv.pdf" external>Download CV →</Button>
+              <Button href="/cv.pdf" download>Download Resume →</Button>
             </div>
           </RevealText>
 
@@ -103,16 +116,13 @@ export default function AboutPage() {
           <RevealText delay={0.1}>
             <div className="space-y-5 text-[15px] text-text-secondary leading-[var(--lh-loose)]">
               <p>
-                I'm a UI/UX &amp; brand designer who believes great work happens at the intersection
-                of empathy, craft, and strategy.
+                I'm Hridya — a UX designer currently pursuing a BFA in UX Design at SCAD
+                (Savannah College of Art and Design), where I'm on the Dean's List with a 3.6 GPA.
               </p>
               <p>
-                With over 5 years of experience, I've helped startups and established companies
-                create meaningful digital experiences that scale and evolve.
-              </p>
-              <p>
-                When I'm not designing, you'll find me exploring new coffee shops, reading about
-                design history, or experimenting with generative art.
+                I work across UX design, digital marketing, and visual identity. My tools of choice
+                are Figma, Illustrator, and Photoshop. I'm always looking for projects where good
+                design genuinely changes something.
               </p>
             </div>
           </RevealText>
@@ -122,7 +132,7 @@ export default function AboutPage() {
       <DividerMotif />
 
       {/* ── Skills ── */}
-      <section className="px-[--page-padding] pb-24">
+      <section className="px-[--page-padding] pb-12">
         <div className="max-w-site mx-auto">
           <RevealText className="mb-10">
             <p className="text-[var(--text-small)] uppercase tracking-[var(--ls-wide)] text-text-muted font-sans mb-3">
@@ -160,7 +170,7 @@ export default function AboutPage() {
       <DividerMotif />
 
       {/* ── Experience ── */}
-      <section className="px-[--page-padding] pb-24">
+      <section className="px-[--page-padding] pb-12">
         <div className="max-w-site mx-auto">
           <RevealText className="mb-10">
             <h2 className="font-serif text-[var(--text-h2)] text-text-primary">Experience</h2>
@@ -185,7 +195,7 @@ export default function AboutPage() {
       <DividerMotif />
 
       {/* ── Contact ── */}
-      <section id="contact" className="px-[--page-padding] pb-24">
+      <section id="contact" className="px-[--page-padding] pb-12">
         <div className="max-w-text mx-auto text-center">
           <RevealText>
             <p className="text-[var(--text-small)] uppercase tracking-[var(--ls-wide)] text-text-muted font-sans mb-4">
@@ -195,10 +205,10 @@ export default function AboutPage() {
               Let's work together
             </h2>
             <a
-              href="mailto:hello@hridyachopra.com"
+              href="mailto:choprahridya@gmail.com"
               className="font-serif text-[28px] text-accent hover:opacity-80 transition-opacity block mb-12"
             >
-              hello@hridyachopra.com
+              choprahridya@gmail.com
             </a>
           </RevealText>
 
