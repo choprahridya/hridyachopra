@@ -35,14 +35,21 @@ export default function AboutPage() {
 
       {/* ── Hero ── */}
       <section className="px-[--page-padding] pt-10 pb-10">
-        <div className="max-w-site mx-auto grid md:grid-cols-[auto_1fr] gap-10 md:gap-16 items-start">
+        <div className="max-w-site mx-auto">
+
+          {/* "About" label at top */}
+          <RevealText className="mb-14">
+            <p className="text-[var(--text-small)] uppercase tracking-[var(--ls-wide)] text-text-muted font-sans">
+              About
+            </p>
+          </RevealText>
+
+          {/* Two-column content */}
+          <div className="grid md:grid-cols-[auto_1fr] gap-10 md:gap-16 items-start">
 
           {/* Left — photo + identity */}
           <RevealText>
             <div className="flex flex-col items-start gap-4">
-              <p className="text-[var(--text-small)] uppercase tracking-[var(--ls-wide)] text-text-muted font-sans leading-none">
-                About
-              </p>
               <div className="w-36 h-36 rounded-full overflow-hidden">
                 <img src="/about-hridya.jpg" alt="Hridya Chopra" className="w-full h-full object-cover" style={{ objectPosition: '50% 15%' }} />
               </div>
@@ -80,6 +87,7 @@ export default function AboutPage() {
             </div>
           </RevealText>
 
+          </div>
         </div>
       </section>
 
