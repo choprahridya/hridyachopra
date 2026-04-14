@@ -5,11 +5,11 @@ import { Footer } from '@/components/Footer';
 import { DividerMotif, RevealText, SkillRow, Button } from '@/components/ui';
 
 const skills = [
-  { name: 'Figma', level: 5 as const },
-  { name: 'Illustrator', level: 4 as const },
-  { name: 'Canva', level: 4 as const },
-  { name: 'Photoshop', level: 3 as const },
-  { name: 'JavaScript', level: 2 as const },
+  { name: 'Figma', level: 4 as const },
+  { name: 'Illustrator', level: 3 as const },
+  { name: 'Canva', level: 5 as const },
+  { name: 'Photoshop', level: 4 as const },
+  { name: 'JavaScript', level: 3 as const },
 ];
 
 const expertise = {
