@@ -69,6 +69,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${cormorant.variable} ${dmSerifDisplay.variable} ${dmSans.variable} ${playfair.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var t=localStorage.getItem('portfolio-theme');if(t&&t!=='default')document.documentElement.setAttribute('data-theme',t);})();` }} />
+      </head>
       <body className="antialiased bg-bg text-text-primary">
         <CustomCursor />
         <Nav />
