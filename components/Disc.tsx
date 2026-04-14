@@ -181,19 +181,21 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
         <circle cx={r} cy={r} r={r * 0.075} fill="#0A0908" stroke="#333" strokeWidth="1" />
       </motion.svg>
 
-      {/* Rotate hint — small circular arrow at right edge, vertically centered, fades on first drag */}
+      {/* Rotate hint — arc curved along disc edge, fades on first drag */}
       {(() => {
-        const pad = 40;
-        // Icon center: just outside the disc's right edge, at disc vertical center
-        const ix = size + pad + 14;
-        const iy = size / 2 + pad;
-        const ir = 18; // small icon radius
-        // 270° clockwise arc from top (270°) to left (180°)
-        const sx = ix;
-        const sy = iy - ir;             // top of arc
-        const ex = ix - ir;
-        const ey = iy;                  // left of arc
-        const d = `M ${sx},${sy} A ${ir},${ir} 0 1,1 ${ex},${ey}`;
+        const pad = 28;
+        const cx = r + pad;
+        const cy = r + pad;
+        const arcR = r + 16; // just outside the disc rim
+        // 130° arc on the right side, from -65° to +65° (clockwise)
+        const startAngle = -65 * (Math.PI / 180);
+        const endAngle   =  65 * (Math.PI / 180);
+        const x1 = cx + arcR * Math.cos(startAngle);
+        const y1 = cy + arcR * Math.sin(startAngle);
+        const x2 = cx + arcR * Math.cos(endAngle);
+        const y2 = cy + arcR * Math.sin(endAngle);
+        // sweep=1 clockwise, large-arc=0 (130° < 180°)
+        const d = `M ${x1.toFixed(2)},${y1.toFixed(2)} A ${arcR},${arcR} 0 0,1 ${x2.toFixed(2)},${y2.toFixed(2)}`;
         return (
           <motion.div
             className="absolute pointer-events-none"
@@ -204,14 +206,14 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
           >
             <svg width={size + pad * 2} height={size + pad * 2} style={{ display: 'block' }}>
               <defs>
-                <marker id="discArrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                  <path d="M 0,0 L 6,3 L 0,6 Z" fill="rgba(160,150,130,0.9)" />
+                <marker id="discArrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                  <path d="M 0,0 L 7,3.5 L 0,7 Z" fill="rgba(140,130,115,0.9)" />
                 </marker>
               </defs>
               <path
                 d={d}
                 fill="none"
-                stroke="rgba(160,150,130,0.7)"
+                stroke="rgba(140,130,115,0.65)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 markerEnd="url(#discArrow)"
