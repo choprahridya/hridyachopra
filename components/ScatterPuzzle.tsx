@@ -116,9 +116,9 @@ export function ScatterPuzzle() {
               whileHover={assembled ? { scale: 1.08 } : {}}
               transition={{
                 type: 'spring',
-                stiffness: 65,
+                stiffness: 45,
                 damping: 16,
-                delay: assembled ? i * 0.08 : i * 0.04,
+                delay: assembled ? i * 0.12 : i * 0.05,
               }}
             >
               <svg width={W} height={H} viewBox="0 0 150 120" overflow="visible" style={{ display: 'block' }}>
