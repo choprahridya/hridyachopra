@@ -75,6 +75,16 @@
   --transition-slow:   0.4s ease;
 }
 
+/* ── Disc project colours (6 shades, themed) ────────────────────────────── */
+:root {
+  --disc-color-1: #D8E8FA;
+  --disc-color-2: #C5D8F4;
+  --disc-color-3: #B8CCEE;
+  --disc-color-4: #CCE0F8;
+  --disc-color-5: #BDD2F2;
+  --disc-color-6: #D4E0F0;
+}
+
 /* ── Colour themes (data-theme attribute on <html>) ─────────────────────── */
 [data-theme="rose"] {
   --color-bg:             #F8F0EE;
@@ -87,6 +97,12 @@
   --color-accent-light:   #F5E0E0;
   --color-border:         #E8C8C8;
   --color-border-dark:    #D0A0A0;
+  --disc-color-1: #F5E0E0;
+  --disc-color-2: #EDD0D0;
+  --disc-color-3: #E8C8C8;
+  --disc-color-4: #F2D8D8;
+  --disc-color-5: #E5CCCC;
+  --disc-color-6: #EED8D8;
 }
 [data-theme="sage"] {
   --color-bg:             #EDF3EE;
@@ -99,6 +115,12 @@
   --color-accent-light:   #D8EDD8;
   --color-border:         #B8D8BB;
   --color-border-dark:    #80B885;
+  --disc-color-1: #D8EDD8;
+  --disc-color-2: #C8E0C8;
+  --disc-color-3: #BED8BE;
+  --disc-color-4: #CCE5CC;
+  --disc-color-5: #C2DCC2;
+  --disc-color-6: #D0E8D0;
 }
 [data-theme="sand"] {
   --color-bg:             #F5F0E8;
@@ -111,6 +133,12 @@
   --color-accent-light:   #F0E8D8;
   --color-border:         #D8C8A8;
   --color-border-dark:    #B8A080;
+  --disc-color-1: #EDE3D0;
+  --disc-color-2: #E5D8C0;
+  --disc-color-3: #DCCEB4;
+  --disc-color-4: #E8DCC8;
+  --disc-color-5: #E0D0BC;
+  --disc-color-6: #EAE0CE;
 }
 [data-theme="lavender"] {
   --color-bg:             #F0EDF8;
@@ -123,6 +151,12 @@
   --color-accent-light:   #E5D8F5;
   --color-border:         #C8B8E8;
   --color-border-dark:    #A090D0;
+  --disc-color-1: #E5D8F8;
+  --disc-color-2: #D8C8F4;
+  --disc-color-3: #CCBCEE;
+  --disc-color-4: #DDD0F5;
+  --disc-color-5: #D0C4F0;
+  --disc-color-6: #E0D5F8;
 }
 
 /* ── Base layer ──────────────────────────────────────────────────────────── */

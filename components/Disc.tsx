@@ -260,13 +260,13 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
                 outline: isActive
                   ? '2px solid var(--color-accent)'
                   : '1px solid rgba(255,255,255,0.1)',
-                boxShadow: isActive ? '0 4px 20px rgba(61,107,79,0.3)' : 'none',
+                boxShadow: isActive ? '0 4px 20px color-mix(in srgb, var(--color-accent) 30%, transparent)' : 'none',
               }}
             >
               <div
                 className="w-full h-full flex items-center justify-center font-sans font-medium"
                 style={{
-                  backgroundColor: project.color,
+                  backgroundColor: `var(--disc-color-${index + 1})`,
                   fontSize: project.title.includes("Franklin's") ? Math.max(7, thumbSize * 0.1) : project.title === 'Xchange' ? Math.max(8, thumbSize * 0.12) : project.title === 'Cogniva' ? Math.max(8, thumbSize * 0.12) : Math.max(10, thumbSize * 0.18),
                   color: '#555',
                 }}
