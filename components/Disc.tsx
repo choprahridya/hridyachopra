@@ -181,41 +181,38 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
         <circle cx={r} cy={r} r={r * 0.075} fill="#0A0908" stroke="#333" strokeWidth="1" />
       </motion.svg>
 
-      {/* Rotate hint — arc outside the disc, fades on first interaction */}
+      {/* Rotate hint — small circular arrow at right edge, vertically centered, fades on first drag */}
       {(() => {
-        const pad = 36;
-        const cx = r + pad;
-        const cy = r + pad;
-        const arcR = r + 20;
-        // Arc over the top from bottom-left to bottom-right (going counterclockwise = over the top)
-        const startAngle = 155 * (Math.PI / 180);
-        const endAngle   =  25 * (Math.PI / 180);
-        const x1 = cx + arcR * Math.cos(startAngle);
-        const y1 = cy + arcR * Math.sin(startAngle);
-        const x2 = cx + arcR * Math.cos(endAngle);
-        const y2 = cy + arcR * Math.sin(endAngle);
-        // sweep=0 counterclockwise, large-arc=0 → short path over the top
-        const d = `M ${x1.toFixed(2)},${y1.toFixed(2)} A ${arcR},${arcR} 0 0,0 ${x2.toFixed(2)},${y2.toFixed(2)}`;
+        const pad = 40;
+        // Icon center: just outside the disc's right edge, at disc vertical center
+        const ix = size + pad + 14;
+        const iy = size / 2 + pad;
+        const ir = 18; // small icon radius
+        // 270° clockwise arc from top (270°) to left (180°)
+        const sx = ix;
+        const sy = iy - ir;             // top of arc
+        const ex = ix - ir;
+        const ey = iy;                  // left of arc
+        const d = `M ${sx},${sy} A ${ir},${ir} 0 1,1 ${ex},${ey}`;
         return (
           <motion.div
             className="absolute pointer-events-none"
             style={{ top: -pad, left: -pad }}
-            initial={{ opacity: 0.8 }}
-            animate={{ opacity: hasInteracted ? 0 : 0.8 }}
+            initial={{ opacity: 0.85 }}
+            animate={{ opacity: hasInteracted ? 0 : 0.85 }}
             transition={{ duration: 1.4, delay: hasInteracted ? 0.2 : 0 }}
           >
-            <svg width={size + pad * 2} height={size + pad * 2} style={{ display: 'block', overflow: 'visible' }}>
+            <svg width={size + pad * 2} height={size + pad * 2} style={{ display: 'block' }}>
               <defs>
                 <marker id="discArrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                  <path d="M 0,0 L 6,3 L 0,6 Z" fill="rgba(160,150,130,0.85)" />
+                  <path d="M 0,0 L 6,3 L 0,6 Z" fill="rgba(160,150,130,0.9)" />
                 </marker>
               </defs>
               <path
                 d={d}
                 fill="none"
-                stroke="rgba(160,150,130,0.6)"
-                strokeWidth="1.5"
-                strokeDasharray="8 6"
+                stroke="rgba(160,150,130,0.7)"
+                strokeWidth="2"
                 strokeLinecap="round"
                 markerEnd="url(#discArrow)"
               />
