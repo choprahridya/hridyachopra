@@ -40,6 +40,9 @@ export default function AboutPage() {
           {/* Left — photo + identity */}
           <RevealText>
             <div className="flex flex-col items-start gap-4">
+              <p className="text-[var(--text-small)] uppercase tracking-[var(--ls-wide)] text-text-muted font-sans leading-none">
+                About
+              </p>
               <div className="w-36 h-36 rounded-full overflow-hidden">
                 <img src="/about-hridya.jpg" alt="Hridya Chopra" className="w-full h-full object-cover" style={{ objectPosition: '50% 15%' }} />
               </div>
@@ -60,10 +63,7 @@ export default function AboutPage() {
 
           {/* Right — heading + bio */}
           <RevealText delay={0.1}>
-            <div className="flex flex-col gap-5 pt-0">
-              <p className="text-[var(--text-small)] uppercase tracking-[var(--ls-wide)] text-text-muted font-sans leading-none">
-                About
-              </p>
+            <div className="flex flex-col gap-5">
               <h1
                 className="font-serif text-text-primary"
                 style={{ fontSize: 'var(--text-h1)', lineHeight: 'var(--lh-tight)' }}
