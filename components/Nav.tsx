@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { ThemePicker } from '@/components/ThemePicker';
 
 
 const navLinks = [
@@ -82,7 +81,6 @@ export function Nav() {
             >
               Resume
             </a>
-            <ThemePicker />
           </div>
 
           {/* Mobile */}
