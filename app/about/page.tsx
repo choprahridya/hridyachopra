@@ -77,12 +77,6 @@ export default function AboutPage() {
                 are Figma, Illustrator, and Photoshop. Always looking for projects where good
                 design genuinely changes something.
               </p>
-              <a
-                href="mailto:choprahridya@gmail.com"
-                className="text-[13px] text-text-secondary hover:text-text-primary transition-colors border-b border-transparent hover:border-text-secondary pb-px w-fit"
-              >
-                choprahridya@gmail.com →
-              </a>
             </div>
           </RevealText>
 
