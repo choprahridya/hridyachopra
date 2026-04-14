@@ -93,27 +93,25 @@ export default function Home() {
           </p>
         </motion.div>
 
-        {/* CTAs */}
+        {/* Scroll down arrow */}
         <motion.div
           custom={2}
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="flex gap-4 flex-wrap justify-center"
+          className="flex flex-col items-center gap-2"
         >
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 px-7 py-3 border border-text-primary rounded-pill text-[13px] font-medium text-text-primary tracking-[0.04em] transition-colors hover:bg-text-primary hover:text-bg"
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+            className="flex flex-col items-center gap-1 cursor-pointer"
+            onClick={() => window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })}
           >
-            View Projects →
-          </Link>
-          <a
-            href="/cv.pdf"
-            download
-            className="inline-flex items-center gap-2 text-[13px] text-text-secondary hover:text-text-primary transition-colors border-b border-transparent hover:border-text-secondary pb-px"
-          >
-            Download Resume →
-          </a>
+            <span className="text-[11px] uppercase tracking-[0.12em] text-text-muted font-sans">Scroll</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 3 L10 17 M4 11 L10 17 L16 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-text-muted" />
+            </svg>
+          </motion.div>
         </motion.div>
 
       </section>
