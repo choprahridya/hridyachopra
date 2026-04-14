@@ -4,6 +4,30 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
+const THEME_DISC_COLORS: Record<string, string[]> = {
+  default:  ['#D8E8FA', '#C5D8F4', '#B8CCEE', '#CCE0F8', '#BDD2F2', '#D4E0F0'],
+  rose:     ['#F5E0E0', '#EDD0D0', '#E8C8C8', '#F2D8D8', '#E5CCCC', '#EED8D8'],
+  sage:     ['#D8EDD8', '#C8E0C8', '#BED8BE', '#CCE5CC', '#C2DCC2', '#D0E8D0'],
+  sand:     ['#EDE3D0', '#E5D8C0', '#DCCEB4', '#E8DCC8', '#E0D0BC', '#EAE0CE'],
+  lavender: ['#E5D8F8', '#D8C8F4', '#CCBCEE', '#DDD0F5', '#D0C4F0', '#E0D5F8'],
+};
+
+function useDiscColors(): string[] {
+  const [theme, setTheme] = useState('default');
+
+  useEffect(() => {
+    const update = () => {
+      setTheme(document.documentElement.getAttribute('data-theme') || 'default');
+    };
+    update();
+    const observer = new MutationObserver(update);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    return () => observer.disconnect();
+  }, []);
+
+  return THEME_DISC_COLORS[theme] ?? THEME_DISC_COLORS.default;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -18,6 +42,7 @@ interface DiscProps {
 }
 
 export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps) {
+  const discColors = useDiscColors();
   const [rotation, setRotation] = useState(0);
   const [velocity, setVelocity] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -266,7 +291,7 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
               <div
                 className="w-full h-full flex items-center justify-center font-sans font-medium"
                 style={{
-                  backgroundColor: `var(--disc-color-${index + 1})`,
+                  backgroundColor: discColors[index] ?? discColors[0],
                   fontSize: project.title.includes("Franklin's") ? Math.max(7, thumbSize * 0.1) : project.title === 'Xchange' ? Math.max(8, thumbSize * 0.12) : project.title === 'Cogniva' ? Math.max(8, thumbSize * 0.12) : Math.max(10, thumbSize * 0.18),
                   color: '#555',
                 }}

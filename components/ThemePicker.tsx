@@ -58,7 +58,7 @@ export function ThemePicker() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-9 flex gap-2 px-3 py-2.5 bg-bg-card border border-border rounded-xl shadow-lg z-50">
+        <div className="absolute right-0 top-9 flex items-center gap-2 px-3 py-2.5 bg-bg-card border border-border rounded-xl shadow-lg z-50">
           {THEMES.map(theme => (
             <button
               key={theme.id}
@@ -74,6 +74,15 @@ export function ThemePicker() {
               <span className="w-2.5 h-2.5 rounded-full block" style={{ background: theme.dot }} />
             </button>
           ))}
+          {current !== 'default' && (
+            <button
+              onClick={() => handleSelect('default')}
+              title="Reset to default"
+              className="ml-1 text-[11px] text-text-muted hover:text-text-primary transition-colors tracking-wide leading-none"
+            >
+              ↺
+            </button>
+          )}
         </div>
       )}
     </div>

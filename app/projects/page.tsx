@@ -142,7 +142,7 @@ export default function ProjectsPage() {
                       <div className="rounded-md overflow-hidden border border-border bg-bg-card opacity-60">
                         <div
                           className="w-full overflow-hidden"
-                          style={{ aspectRatio: '3/2', background: project.bg }}
+                          style={{ aspectRatio: '3/2', background: `var(--disc-color-${index + 1})` }}
                         >
                           <div className="w-full h-full flex items-center justify-center font-serif text-text-muted text-sm italic">
                             Coming Soon
@@ -160,7 +160,7 @@ export default function ProjectsPage() {
                         <div className="rounded-md overflow-hidden border border-border bg-bg-card transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
                           <div
                             className="w-full overflow-hidden"
-                            style={{ aspectRatio: '3/2', background: project.bg }}
+                            style={{ aspectRatio: '3/2', background: `var(--disc-color-${index + 1})` }}
                           >
                             {(project as typeof project & { thumbnail?: string }).thumbnail ? (
                               <img
