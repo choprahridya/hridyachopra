@@ -47,8 +47,6 @@ function applyCustomColor(accent: string) {
   html.style.setProperty('--color-accent-light',    tint(accent, 0.75));
   html.style.setProperty('--color-border',          tint(accent, 0.65));
   html.style.setProperty('--color-border-dark',     tint(accent, 0.45));
-  localStorage.setItem('portfolio-theme', 'custom');
-  localStorage.setItem('portfolio-custom-color', accent);
 }
 
 function clearInlineVars() {
@@ -70,7 +68,6 @@ function applyTheme(id: string, customColor?: string) {
     html.classList.remove('dark');
     id === 'default' ? html.removeAttribute('data-theme') : html.setAttribute('data-theme', id);
   }
-  localStorage.setItem('portfolio-theme', id);
 }
 
 export function ThemeToggle() {
@@ -81,15 +78,9 @@ export function ThemeToggle() {
   const colorInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const saved = localStorage.getItem('portfolio-theme') || 'default';
-    const savedColor = localStorage.getItem('portfolio-custom-color') || '#6B96CC';
-    setCustomColor(savedColor);
-    setCurrent(saved);
-    if (saved === 'custom') {
-      applyCustomColor(savedColor);
-    } else {
-      applyTheme(saved);
-    }
+    // Always start with blue (default) on page load
+    setCurrent('default');
+    applyTheme('default');
   }, []);
 
   useEffect(() => {
