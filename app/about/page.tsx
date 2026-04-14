@@ -47,17 +47,14 @@ export default function AboutPage() {
                 <p className="font-serif text-[20px] text-text-primary leading-tight">Hridya Chopra</p>
                 <p className="text-[13px] text-text-secondary mt-0.5">UX Designer · SCAD '29</p>
               </div>
-              <div className="flex flex-col gap-2">
-                <a
-                  href="https://www.linkedin.com/in/hridyachopra"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[13px] text-text-secondary hover:text-text-primary transition-colors border-b border-transparent hover:border-text-secondary pb-px"
-                >
-                  LinkedIn →
-                </a>
-                <Button href="/cv.pdf" download>Download Resume →</Button>
-              </div>
+              <a
+                href="https://www.linkedin.com/in/hridyachopra"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[13px] text-text-secondary hover:text-text-primary transition-colors border-b border-transparent hover:border-text-secondary pb-px"
+              >
+                LinkedIn →
+              </a>
             </div>
           </RevealText>
 
