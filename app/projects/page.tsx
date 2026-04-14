@@ -16,6 +16,8 @@ const projects: Project[] = [
   { id: '6', title: 'Product Strategy', thumbnail: '', color: '#DCE8E4' },
 ];
 
+const COMING_SOON_IDS = new Set(['4', '5', '6']);
+
 const projectDetails = [
   { id: '1', title: 'Xchange', category: 'Brand Identity', year: '2025', bg: '#EAE5DD', thumbnail: '/projects/1/1.png' },
   { id: '2', title: "Website Redesign: Franklin's", category: 'UX / UI', year: '2026', bg: '#DDE5EA', thumbnail: '/projects/2/cover.png' },
@@ -29,6 +31,8 @@ export default function ProjectsPage() {
   const [activeProject, setActiveProject] = useState(projects[0]);
   const [showGrid, setShowGrid] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
+
+  const isComingSoon = COMING_SOON_IDS.has(activeProject.id);
 
   const handleShowGrid = () => {
     setShowGrid(true);
@@ -65,27 +69,32 @@ export default function ProjectsPage() {
               className="font-serif text-text-primary mb-6"
               style={{ fontSize: 'var(--text-h1)', lineHeight: 'var(--lh-tight)' }}
             >
-              {activeProject.title}
+              {isComingSoon ? 'Coming Soon' : activeProject.title}
             </h1>
 
             <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)] mb-8">
-              A considered project that redefines the digital experience and sets a new standard
-              for design excellence.
+              {isComingSoon
+                ? 'This project is currently in progress. Check back soon.'
+                : 'A considered project that redefines the digital experience and sets a new standard for design excellence.'}
             </p>
 
-            <div className="flex gap-2 mb-10 flex-wrap">
-              <PillTag>Brand</PillTag>
-              <PillTag>Identity</PillTag>
-              <PillTag>2024</PillTag>
-            </div>
+            {!isComingSoon && (
+              <div className="flex gap-2 mb-10 flex-wrap">
+                <PillTag>Brand</PillTag>
+                <PillTag>Identity</PillTag>
+                <PillTag>2024</PillTag>
+              </div>
+            )}
 
             <div className="flex items-center gap-4 flex-wrap">
-              <Link
-                href={`/projects/${activeProject.id}`}
-                className="inline-flex items-center gap-2 px-7 py-3 border border-text-primary rounded-pill text-[13px] font-medium text-text-primary tracking-[0.04em] transition-colors hover:bg-text-primary hover:text-bg"
-              >
-                View Case Study →
-              </Link>
+              {!isComingSoon && (
+                <Link
+                  href={`/projects/${activeProject.id}`}
+                  className="inline-flex items-center gap-2 px-7 py-3 border border-text-primary rounded-pill text-[13px] font-medium text-text-primary tracking-[0.04em] transition-colors hover:bg-text-primary hover:text-bg"
+                >
+                  View Case Study →
+                </Link>
+              )}
 
               <button
                 onClick={handleShowGrid}
@@ -129,34 +138,53 @@ export default function ProjectsPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.06, ease: [0.25, 0, 0, 1] }}
                   >
-                    <Link href={`/projects/${project.id}`} className="group block">
-                      <div className="rounded-md overflow-hidden border border-border bg-bg-card transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
+                    {COMING_SOON_IDS.has(project.id) ? (
+                      <div className="rounded-md overflow-hidden border border-border bg-bg-card opacity-60">
                         <div
                           className="w-full overflow-hidden"
                           style={{ aspectRatio: '3/2', background: project.bg }}
                         >
-                          {(project as typeof project & { thumbnail?: string }).thumbnail ? (
-                            <img
-                              src={(project as typeof project & { thumbnail?: string }).thumbnail}
-                              alt={project.title}
-                              className="w-full h-full object-contain p-4"
-                              loading="lazy"
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center font-serif text-text-muted text-sm">
-                              {project.title}
-                            </div>
-                          )}
+                          <div className="w-full h-full flex items-center justify-center font-serif text-text-muted text-sm italic">
+                            Coming Soon
+                          </div>
                         </div>
                         <div className="p-5">
                           <div className="flex items-center gap-2 mb-2">
-                            <span className="pill">{project.category}</span>
-                            <span className="text-[12px] text-text-muted">{project.year}</span>
+                            <span className="pill">Coming Soon</span>
                           </div>
-                          <p className="font-serif text-[var(--text-h3)] text-text-primary">{project.title}</p>
+                          <p className="font-serif text-[var(--text-h3)] text-text-muted">Coming Soon</p>
                         </div>
                       </div>
-                    </Link>
+                    ) : (
+                      <Link href={`/projects/${project.id}`} className="group block">
+                        <div className="rounded-md overflow-hidden border border-border bg-bg-card transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
+                          <div
+                            className="w-full overflow-hidden"
+                            style={{ aspectRatio: '3/2', background: project.bg }}
+                          >
+                            {(project as typeof project & { thumbnail?: string }).thumbnail ? (
+                              <img
+                                src={(project as typeof project & { thumbnail?: string }).thumbnail}
+                                alt={project.title}
+                                className="w-full h-full object-contain p-4"
+                                loading="lazy"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center font-serif text-text-muted text-sm">
+                                {project.title}
+                              </div>
+                            )}
+                          </div>
+                          <div className="p-5">
+                            <div className="flex items-center gap-2 mb-2">
+                              <span className="pill">{project.category}</span>
+                              <span className="text-[12px] text-text-muted">{project.year}</span>
+                            </div>
+                            <p className="font-serif text-[var(--text-h3)] text-text-primary">{project.title}</p>
+                          </div>
+                        </div>
+                      </Link>
+                    )}
                   </motion.div>
                 ))}
               </div>
