@@ -154,7 +154,7 @@ export default function Home() {
         >
           <RevealText>
             <div className="w-40 h-40 rounded-full mx-auto overflow-hidden">
-              <img src="/about.jpg" alt="Hridya Chopra" className="w-full h-full object-cover" style={{ objectPosition: '50% 15%' }} />
+              <img src="/about-hridya.jpg" alt="Hridya Chopra" className="w-full h-full object-cover" style={{ objectPosition: '50% 15%' }} />
             </div>
           </RevealText>
 
