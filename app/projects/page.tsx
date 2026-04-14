@@ -39,7 +39,7 @@ export default function ProjectsPage() {
     <main className="min-h-screen flex flex-col bg-bg pt-16">
 
       {/* ── Disc interaction ── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center" style={{ overflowX: 'clip' }}>
         {/* Left — Giant half-moon disc anchored to left edge, half visible */}
         <div
           className="absolute top-1/2 hidden lg:block"

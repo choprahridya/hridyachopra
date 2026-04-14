@@ -181,42 +181,46 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
         <circle cx={r} cy={r} r={r * 0.075} fill="#0A0908" stroke="#333" strokeWidth="1" />
       </motion.svg>
 
-      {/* Rotate hint — arc drawn inside disc SVG space on the visible right side, fades on first interaction */}
+      {/* Rotate hint — arc outside the disc, fades on first interaction */}
       {(() => {
-        // Draw on the right half of the disc (visible portion) at ~92% radius
-        const arcR = r * 0.92;
-        const startAngle = -65 * (Math.PI / 180);
-        const endAngle = 65 * (Math.PI / 180);
-        const x1 = r + arcR * Math.cos(startAngle);
-        const y1 = r + arcR * Math.sin(startAngle);
-        const x2 = r + arcR * Math.cos(endAngle);
-        const y2 = r + arcR * Math.sin(endAngle);
-        const d = `M ${x1.toFixed(2)},${y1.toFixed(2)} A ${arcR},${arcR} 0 0,1 ${x2.toFixed(2)},${y2.toFixed(2)}`;
+        const pad = 36;
+        const cx = r + pad;
+        const cy = r + pad;
+        const arcR = r + 20;
+        // Arc over the top from bottom-left to bottom-right (going counterclockwise = over the top)
+        const startAngle = 155 * (Math.PI / 180);
+        const endAngle   =  25 * (Math.PI / 180);
+        const x1 = cx + arcR * Math.cos(startAngle);
+        const y1 = cy + arcR * Math.sin(startAngle);
+        const x2 = cx + arcR * Math.cos(endAngle);
+        const y2 = cy + arcR * Math.sin(endAngle);
+        // sweep=0 counterclockwise, large-arc=0 → short path over the top
+        const d = `M ${x1.toFixed(2)},${y1.toFixed(2)} A ${arcR},${arcR} 0 0,0 ${x2.toFixed(2)},${y2.toFixed(2)}`;
         return (
-          <motion.svg
-            width={size}
-            height={size}
-            viewBox={`0 0 ${size} ${size}`}
-            className="absolute inset-0 pointer-events-none"
-            initial={{ opacity: 0.75 }}
-            animate={{ opacity: hasInteracted ? 0 : 0.75 }}
+          <motion.div
+            className="absolute pointer-events-none"
+            style={{ top: -pad, left: -pad }}
+            initial={{ opacity: 0.8 }}
+            animate={{ opacity: hasInteracted ? 0 : 0.8 }}
             transition={{ duration: 1.4, delay: hasInteracted ? 0.2 : 0 }}
           >
-            <defs>
-              <marker id="discArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-                <path d="M 0,0 L 8,4 L 0,8 Z" fill="rgba(255,255,255,0.55)" />
-              </marker>
-            </defs>
-            <path
-              d={d}
-              fill="none"
-              stroke="rgba(255,255,255,0.38)"
-              strokeWidth={Math.max(2, size * 0.003)}
-              strokeDasharray={`${size * 0.018} ${size * 0.012}`}
-              strokeLinecap="round"
-              markerEnd="url(#discArrow)"
-            />
-          </motion.svg>
+            <svg width={size + pad * 2} height={size + pad * 2} style={{ display: 'block', overflow: 'visible' }}>
+              <defs>
+                <marker id="discArrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                  <path d="M 0,0 L 6,3 L 0,6 Z" fill="rgba(160,150,130,0.85)" />
+                </marker>
+              </defs>
+              <path
+                d={d}
+                fill="none"
+                stroke="rgba(160,150,130,0.6)"
+                strokeWidth="1.5"
+                strokeDasharray="8 6"
+                strokeLinecap="round"
+                markerEnd="url(#discArrow)"
+              />
+            </svg>
+          </motion.div>
         );
       })()}
 
