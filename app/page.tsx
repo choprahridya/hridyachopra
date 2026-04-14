@@ -155,11 +155,8 @@ export default function Home() {
           style={{ background: 'var(--color-bg-overlay)' }}
         >
           <RevealText>
-            <div
-              className="w-40 h-40 rounded-full mx-auto flex items-center justify-center text-text-muted text-sm font-sans"
-              style={{ background: 'var(--color-border)' }}
-            >
-              Photo
+            <div className="w-40 h-40 rounded-full mx-auto overflow-hidden">
+              <img src="/about.jpg" alt="Hridya Chopra" className="w-full h-full object-cover" style={{ objectPosition: '50% 5%' }} />
             </div>
           </RevealText>
 

@@ -23,6 +23,7 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
   const [isDragging, setIsDragging] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   const router = useRouter();
   const discRef = useRef<HTMLDivElement>(null);
@@ -73,6 +74,7 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    setHasInteracted(true);
     setIsDragging(true);
     lastMouseY.current = e.clientY;
     lastTimestamp.current = performance.now();
@@ -97,6 +99,7 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
   const handleMouseUp = () => setIsDragging(false);
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    setHasInteracted(true);
     setIsDragging(true);
     lastMouseY.current = e.touches[0].clientY;
     lastTimestamp.current = performance.now();
@@ -177,6 +180,45 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
         {/* Center hole */}
         <circle cx={r} cy={r} r={r * 0.075} fill="#0A0908" stroke="#333" strokeWidth="1" />
       </motion.svg>
+
+      {/* Rotate hint — arc drawn inside disc SVG space on the visible right side, fades on first interaction */}
+      {(() => {
+        // Draw on the right half of the disc (visible portion) at ~92% radius
+        const arcR = r * 0.92;
+        const startAngle = -65 * (Math.PI / 180);
+        const endAngle = 65 * (Math.PI / 180);
+        const x1 = r + arcR * Math.cos(startAngle);
+        const y1 = r + arcR * Math.sin(startAngle);
+        const x2 = r + arcR * Math.cos(endAngle);
+        const y2 = r + arcR * Math.sin(endAngle);
+        const d = `M ${x1.toFixed(2)},${y1.toFixed(2)} A ${arcR},${arcR} 0 0,1 ${x2.toFixed(2)},${y2.toFixed(2)}`;
+        return (
+          <motion.svg
+            width={size}
+            height={size}
+            viewBox={`0 0 ${size} ${size}`}
+            className="absolute inset-0 pointer-events-none"
+            initial={{ opacity: 0.75 }}
+            animate={{ opacity: hasInteracted ? 0 : 0.75 }}
+            transition={{ duration: 1.4, delay: hasInteracted ? 0.2 : 0 }}
+          >
+            <defs>
+              <marker id="discArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M 0,0 L 8,4 L 0,8 Z" fill="rgba(255,255,255,0.55)" />
+              </marker>
+            </defs>
+            <path
+              d={d}
+              fill="none"
+              stroke="rgba(255,255,255,0.38)"
+              strokeWidth={Math.max(2, size * 0.003)}
+              strokeDasharray={`${size * 0.018} ${size * 0.012}`}
+              strokeLinecap="round"
+              markerEnd="url(#discArrow)"
+            />
+          </motion.svg>
+        );
+      })()}
 
       {/* Thumbnails */}
       {projects.map((project, index) => {
