@@ -121,22 +121,6 @@ export function ThemeToggle() {
       {/* Colour bar */}
       {open && (
         <div className="flex items-center gap-2 px-3 py-2 bg-bg-card border border-border rounded-full shadow-md">
-          {PALETTES.map(p => (
-            <button
-              key={p.id}
-              title={p.label}
-              onClick={() => handleSelect(p.id)}
-              className="w-6 h-6 rounded-full flex items-center justify-center transition-transform hover:scale-110"
-              style={{
-                background: p.bg,
-                outline: current === p.id ? `2px solid ${p.dot}` : '2px solid transparent',
-                outlineOffset: '2px',
-              }}
-            >
-              <span className="w-2.5 h-2.5 rounded-full block" style={{ background: p.dot }} />
-            </button>
-          ))}
-
           {/* Custom colour circle */}
           <div className="relative">
             <button
