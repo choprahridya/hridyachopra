@@ -3,10 +3,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 
-// Assembled: pieces form a 3×2 grid (120×96 px each at 0.8 scale).
-// Anchor is left:50%, top:90% of the 400px container.
-// Grid centers relative to anchor: cols -120/0/+120, rows -208/-112.
-// Scatter: pieces start spread out; on page load they fly together.
 const PIECES = [
   {
     id: 1, fill: '#BFD3EE',
@@ -58,18 +54,28 @@ const H = 96;
 export function ScatterPuzzle() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: false, amount: 0.2 });
+  // hiding: pieces fade out at assembled positions before resetting
+  const [hiding, setHiding]     = useState(false);
   const [resetting, setResetting] = useState(false);
 
   useEffect(() => {
     const handler = () => {
-      setResetting(true);
-      setTimeout(() => setResetting(false), 600);
+      // Phase 1: fade out at current assembled positions
+      setHiding(true);
+      setTimeout(() => {
+        // Phase 2: jump to scatter (still invisible), then reassemble
+        setHiding(false);
+        setResetting(true);
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => setResetting(false))
+        );
+      }, 320);
     };
     window.addEventListener('puzzleReset', handler);
     return () => window.removeEventListener('puzzleReset', handler);
   }, []);
 
-  const assembled = inView && !resetting;
+  const assembled = inView && !resetting && !hiding;
 
   return (
     <div ref={ref} className="relative w-full" style={{ height: '400px' }}>
@@ -84,6 +90,23 @@ export function ScatterPuzzle() {
       >
         {PIECES.map((piece, i) => {
           const hasPhoto = 'photoSrc' in piece;
+
+          // Determine target animate values
+          const isHiding = hiding && inView;
+          const animateValues = isHiding
+            ? { x: piece.assembled.x, y: piece.assembled.y, rotate: 0, opacity: 0, scale: 0.9 }
+            : assembled
+            ? { x: piece.assembled.x, y: piece.assembled.y, rotate: 0, opacity: 1, scale: 1 }
+            : { x: piece.scatter.x, y: piece.scatter.y, rotate: piece.scatter.rotate, opacity: 0, scale: 0.85 };
+
+          const transitionValues = isHiding
+            ? { duration: 0.25, ease: 'easeOut' as const, delay: i * 0.03 }
+            : resetting
+            ? { duration: 0 }
+            : assembled
+            ? { type: 'spring' as const, stiffness: 45, damping: 16, delay: i * 0.12 }
+            : { type: 'spring' as const, stiffness: 45, damping: 16, delay: i * 0.05 };
+
           return (
             <motion.div
               key={piece.id}
@@ -96,30 +119,9 @@ export function ScatterPuzzle() {
                 opacity: 0,
                 scale: 0.85,
               }}
-              animate={
-                assembled
-                  ? {
-                      x: piece.assembled.x,
-                      y: piece.assembled.y,
-                      rotate: 0,
-                      opacity: 1,
-                      scale: 1,
-                    }
-                  : {
-                      x: piece.scatter.x,
-                      y: piece.scatter.y,
-                      rotate: piece.scatter.rotate,
-                      opacity: 0,
-                      scale: 0.85,
-                    }
-              }
+              animate={animateValues}
+              transition={transitionValues}
               whileHover={assembled ? { scale: 1.08 } : {}}
-              transition={{
-                type: 'spring',
-                stiffness: 45,
-                damping: 16,
-                delay: assembled ? i * 0.12 : i * 0.05,
-              }}
             >
               <svg width={W} height={H} viewBox="0 0 150 120" overflow="visible" style={{ display: 'block' }}>
                 {hasPhoto && (
@@ -129,9 +131,7 @@ export function ScatterPuzzle() {
                     </clipPath>
                   </defs>
                 )}
-
                 <path d={piece.path} fill={piece.fill} stroke="none" />
-
                 {hasPhoto && (
                   <image
                     href={(piece as typeof piece & { photoSrc: string; photoY: number }).photoSrc}

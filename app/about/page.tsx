@@ -41,7 +41,7 @@ export default function AboutPage() {
           <RevealText>
             <div className="flex flex-col items-start gap-4">
               <div className="w-36 h-36 rounded-full overflow-hidden">
-                <img src="/about.jpg" alt="Hridya Chopra" className="w-full h-full object-cover" style={{ objectPosition: '50% 5%' }} />
+                <img src="/about.jpg" alt="Hridya Chopra" className="w-full h-full object-cover" style={{ objectPosition: '50% 15%' }} />
               </div>
               <div>
                 <p className="font-serif text-[20px] text-text-primary leading-tight">Hridya Chopra</p>
