@@ -187,9 +187,9 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
         const cx = r + pad;
         const cy = r + pad;
         const arcR = r + 16; // just outside the disc rim
-        // 60° arc on the right side, from -30° to +30° (clockwise)
-        const startAngle = -30 * (Math.PI / 180);
-        const endAngle   =  30 * (Math.PI / 180);
+        // ~15° arc on the right side, centred at 0° (clockwise)
+        const startAngle = -7.5 * (Math.PI / 180);
+        const endAngle   =  7.5 * (Math.PI / 180);
         const x1 = cx + arcR * Math.cos(startAngle);
         const y1 = cy + arcR * Math.sin(startAngle);
         const x2 = cx + arcR * Math.cos(endAngle);
