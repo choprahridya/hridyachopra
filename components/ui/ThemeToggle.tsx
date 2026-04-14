@@ -167,8 +167,11 @@ export function ThemeToggle() {
         className="w-9 h-9 flex items-center justify-center rounded-full border border-border bg-bg-card text-text-secondary hover:text-text-primary shadow-sm hover:shadow-md transition-all duration-200"
         aria-label="Change theme"
       >
-        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-          <path d="M7.5 1C4.46 1 2 3.46 2 6.5C2 9.54 4.46 12 7.5 12C9.38 12 11.05 11.07 12.07 9.64C11.56 9.87 11 10 10.41 10C8.21 10 6.41 8.21 6.41 6C6.41 4.67 7.08 3.49 8.11 2.77C7.92 2.74 7.71 2.72 7.5 2.72V1Z" stroke="currentColor" strokeWidth="1" fill="none"/>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 1.5C4.41 1.5 1.5 4.41 1.5 8C1.5 11.59 4.41 14.5 8 14.5C8.83 14.5 9.5 13.83 9.5 13C9.5 12.61 9.35 12.26 9.1 12C8.87 11.75 8.72 11.41 8.72 11C8.72 10.17 9.39 9.5 10.22 9.5H11.5C13.16 9.5 14.5 8.16 14.5 6.5C14.5 3.74 11.54 1.5 8 1.5Z" stroke="currentColor" strokeWidth="1" fill="none"/>
+          <circle cx="5.5" cy="6" r="1" fill="currentColor"/>
+          <circle cx="8" cy="4" r="1" fill="currentColor"/>
+          <circle cx="10.5" cy="6" r="1" fill="currentColor"/>
         </svg>
       </button>
     </div>
