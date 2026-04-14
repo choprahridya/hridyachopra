@@ -187,9 +187,9 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
         const cx = r + pad;
         const cy = r + pad;
         const arcR = r + 16; // just outside the disc rim
-        // 130° arc on the right side, from -65° to +65° (clockwise)
-        const startAngle = -65 * (Math.PI / 180);
-        const endAngle   =  65 * (Math.PI / 180);
+        // 60° arc on the right side, from -30° to +30° (clockwise)
+        const startAngle = -30 * (Math.PI / 180);
+        const endAngle   =  30 * (Math.PI / 180);
         const x1 = cx + arcR * Math.cos(startAngle);
         const y1 = cy + arcR * Math.sin(startAngle);
         const x2 = cx + arcR * Math.cos(endAngle);
@@ -206,14 +206,14 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
           >
             <svg width={size + pad * 2} height={size + pad * 2} style={{ display: 'block' }}>
               <defs>
-                <marker id="discArrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-                  <path d="M 0,0 L 7,3.5 L 0,7 Z" fill="rgba(140,130,115,0.9)" />
+                <marker id="discArrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+                  <path d="M 0,0 L 10,5 L 0,10 Z" fill="rgba(120,110,95,0.95)" />
                 </marker>
               </defs>
               <path
                 d={d}
                 fill="none"
-                stroke="rgba(140,130,115,0.65)"
+                stroke="rgba(140,130,115,0.7)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 markerEnd="url(#discArrow)"
