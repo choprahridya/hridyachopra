@@ -8,8 +8,8 @@ import { DividerMotif, RevealText } from '@/components/ui';
 import { ScatterPuzzle } from '@/components/ScatterPuzzle';
 
 const featuredProjects = [
-  { id: '1', title: 'Xchange', category: 'Brand Identity', year: '2025', bg: '#EAE5DD', thumbnail: '/projects/1/1.png' },
-  { id: '2', title: "Website Redesign: Franklin's", category: 'UX / UI', year: '2024', bg: '#DDE5EA', thumbnail: '/projects/2/cover.png' },
+  { id: '1', title: 'Xchange', category: 'Brand Identity', year: '2025', bg: '#EAE5DD', thumbnail: '/projects/1/1.png', hoverImage: '/projects/1/2.png' },
+  { id: '2', title: "Website Redesign: Franklin's", category: 'UX / UI', year: '2024', bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', hoverImage: '/projects/2/menu.png' },
 ];
 
 const fadeUp = {
@@ -43,8 +43,8 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
         onMouseLeave={() => setHovered(false)}
         onMouseMove={handleMouseMove}
       >
-        {/* Floating image preview */}
-        {project.thumbnail && (
+        {/* Floating hover preview (different image) */}
+        {project.hoverImage && (
           <motion.div
             className="absolute z-20 pointer-events-none rounded-lg overflow-hidden shadow-2xl"
             style={{ x, y, width: 220, top: 0, left: 0 }}
@@ -53,22 +53,25 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
             transition={{ duration: 0.2, ease: [0.25, 0, 0, 1] }}
           >
             <img
-              src={project.thumbnail}
+              src={project.hoverImage}
               alt={project.title}
               className="w-full h-auto block"
             />
           </motion.div>
         )}
 
-        {/* Card */}
+        {/* Card — original thumbnail */}
         <div className="w-full rounded-md overflow-hidden border border-border transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
           <div
             className="w-full overflow-hidden"
-            style={{ background: `var(--disc-color-${index + 1})`, aspectRatio: '5/2' }}
+            style={{ background: project.bg, aspectRatio: '5/2' }}
           >
-            <div className="w-full h-full flex items-center justify-center font-serif text-text-muted text-sm tracking-wide">
-              {project.title}
-            </div>
+            <img
+              src={project.thumbnail}
+              alt={project.title}
+              className="w-full h-full object-contain p-4"
+              loading="lazy"
+            />
           </div>
 
           <div className="p-5 bg-bg-card">
