@@ -137,7 +137,7 @@ export default function Home() {
             <h2 className="font-serif text-[var(--text-h2)] text-text-primary">Featured Work</h2>
           </RevealText>
 
-          <div className="flex flex-wrap gap-5 mb-10">
+          <div className="flex flex-nowrap gap-5 mb-10 overflow-x-auto">
             {featuredProjects.map((project, index) => (
               <div key={project.id} style={{ width: '650px' }}>
                 <ProjectCard project={project} index={index} />
