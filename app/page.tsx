@@ -139,7 +139,7 @@ export default function Home() {
 
           <div className="flex flex-wrap gap-5 mb-10">
             {featuredProjects.map((project, index) => (
-              <div key={project.id} style={{ width: '400px' }}>
+              <div key={project.id} style={{ width: '520px' }}>
                 <ProjectCard project={project} index={index} />
               </div>
             ))}
