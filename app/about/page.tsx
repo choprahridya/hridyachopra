@@ -21,13 +21,22 @@ const expertise = {
 export default function AboutPage() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [fieldError, setFieldError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (fieldError) setFieldError('');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.name.trim()) { setFieldError('Please enter your name.'); return; }
+    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setFieldError('Please enter a valid email address.'); return;
+    }
+    if (!formData.message.trim()) { setFieldError('Please enter a message.'); return; }
+
+    setFieldError('');
     setStatus('sending');
     try {
       const res = await fetch('/api/contact', {
@@ -180,7 +189,6 @@ export default function AboutPage() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  required
                   placeholder="Your name"
                   className="w-full px-4 py-3 bg-bg-card border border-border rounded-md text-[14px] text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-dark transition-colors"
                 />
@@ -193,7 +201,6 @@ export default function AboutPage() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
                   placeholder="your.email@example.com"
                   className="w-full px-4 py-3 bg-bg-card border border-border rounded-md text-[14px] text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-dark transition-colors"
                 />
@@ -205,12 +212,14 @@ export default function AboutPage() {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  required
                   rows={4}
                   placeholder="Tell me about your project..."
                   className="w-full px-4 py-3 bg-bg-card border border-border rounded-md text-[14px] text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-dark transition-colors resize-none"
                 />
               </div>
+              {fieldError && (
+                <p className="text-[13px] text-red-500">{fieldError}</p>
+              )}
               <div className="flex items-center gap-4 flex-wrap">
                 <button
                   type="submit"
