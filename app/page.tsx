@@ -34,7 +34,7 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
       >
         {/* Card */}
         <div className="w-full rounded-md overflow-hidden border border-border transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
-          <div className="relative w-full overflow-hidden" style={{ height: '300px' }}>
+          <div className="relative w-full overflow-hidden" style={{ height: '400px' }}>
             {/* Original image */}
             <img
               src={project.thumbnail}
@@ -139,7 +139,7 @@ export default function Home() {
 
           <div className="flex flex-wrap gap-5 mb-10">
             {featuredProjects.map((project, index) => (
-              <div key={project.id} style={{ width: '300px' }}>
+              <div key={project.id} style={{ width: '400px' }}>
                 <ProjectCard project={project} index={index} />
               </div>
             ))}
