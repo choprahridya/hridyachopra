@@ -74,15 +74,14 @@ export function ThemePicker() {
               <span className="w-2.5 h-2.5 rounded-full block" style={{ background: theme.dot }} />
             </button>
           ))}
-          {current !== 'default' && (
-            <button
-              onClick={() => handleSelect('default')}
-              title="Reset to default"
-              className="ml-1 text-[11px] text-text-muted hover:text-text-primary transition-colors tracking-wide leading-none"
-            >
-              ↺
-            </button>
-          )}
+          <button
+            onClick={() => handleSelect('default')}
+            title="Reset to default"
+            disabled={current === 'default'}
+            className="ml-1 text-[13px] transition-colors tracking-wide leading-none disabled:opacity-30 disabled:cursor-not-allowed text-text-muted hover:text-text-primary"
+          >
+            ↺
+          </button>
         </div>
       )}
     </div>
