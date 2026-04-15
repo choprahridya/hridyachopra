@@ -5,27 +5,37 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 const THEME_DISC_COLORS: Record<string, string[]> = {
-  default:  ['#D8E8FA', '#C5D8F4', '#B8CCEE', '#CCE0F8', '#BDD2F2', '#D4E0F0'],
-  rose:     ['#F5E0E0', '#EDD0D0', '#E8C8C8', '#F2D8D8', '#E5CCCC', '#EED8D8'],
-  sage:     ['#D8EDD8', '#C8E0C8', '#BED8BE', '#CCE5CC', '#C2DCC2', '#D0E8D0'],
-  sand:     ['#EDE3D0', '#E5D8C0', '#DCCEB4', '#E8DCC8', '#E0D0BC', '#EAE0CE'],
-  lavender: ['#E5D8F8', '#D8C8F4', '#CCBCEE', '#DDD0F5', '#D0C4F0', '#E0D5F8'],
+  'default':          ['#D8E8FA', '#C5D8F4', '#B8CCEE', '#CCE0F8', '#BDD2F2', '#D4E0F0'],
+  'rose':             ['#F5E0E0', '#EDD0D0', '#E8C8C8', '#F2D8D8', '#E5CCCC', '#EED8D8'],
+  'sage':             ['#D8EDD8', '#C8E0C8', '#BED8BE', '#CCE5CC', '#C2DCC2', '#D0E8D0'],
+  'sand':             ['#EDE3D0', '#E5D8C0', '#DCCEB4', '#E8DCC8', '#E0D0BC', '#EAE0CE'],
+  'lavender':         ['#E5D8F8', '#D8C8F4', '#CCBCEE', '#DDD0F5', '#D0C4F0', '#E0D5F8'],
+  'default-dark':     ['#101A2E', '#0C1626', '#08101E', '#142030', '#0E1C2A', '#121E32'],
+  'rose-dark':        ['#2A0F0F', '#341414', '#1E0A0A', '#300E0E', '#280C0C', '#381616'],
+  'sage-dark':        ['#0A1F0A', '#0C2A0C', '#071507', '#0E2A0E', '#091909', '#103010'],
+  'sand-dark':        ['#201408', '#2A1C0A', '#180F05', '#281A08', '#221608', '#301E0C'],
+  'lavender-dark':    ['#160E30', '#1C1438', '#100A24', '#1A1235', '#14102C', '#20183E'],
 };
 
 function useDiscColors(): string[] {
-  const [theme, setTheme] = useState('default');
+  const [key, setKey] = useState('default');
 
   useEffect(() => {
     const update = () => {
-      setTheme(document.documentElement.getAttribute('data-theme') || 'default');
+      const theme = document.documentElement.getAttribute('data-theme') || 'default';
+      const dark = document.documentElement.classList.contains('dark');
+      setKey(dark ? `${theme}-dark` : theme);
     };
     update();
     const observer = new MutationObserver(update);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme', 'class'],
+    });
     return () => observer.disconnect();
   }, []);
 
-  return THEME_DISC_COLORS[theme] ?? THEME_DISC_COLORS.default;
+  return THEME_DISC_COLORS[key] ?? THEME_DISC_COLORS['default'];
 }
 
 export interface Project {
