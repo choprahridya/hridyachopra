@@ -34,13 +34,13 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
       >
         {/* Card */}
         <div className="w-full rounded-md overflow-hidden border border-border transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
-          <div className="relative w-full overflow-hidden" style={{ maxHeight: '160px' }}>
+          <div className="relative w-full overflow-hidden" style={{ maxHeight: '140px' }}>
             {/* Original image — sets the natural height of the box */}
             <img
               src={project.thumbnail}
               alt={project.title}
               className="w-full h-full object-cover block transition-opacity duration-500"
-              style={{ opacity: hovered ? 0 : 1, maxHeight: '160px' }}
+              style={{ opacity: hovered ? 0 : 1, maxHeight: '140px' }}
               loading="lazy"
             />
             {/* Hover image — overlaid, same dimensions */}
@@ -137,9 +137,11 @@ export default function Home() {
             <h2 className="font-serif text-[var(--text-h2)] text-text-primary">Featured Work</h2>
           </RevealText>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          <div className="flex flex-wrap gap-5 mb-10">
             {featuredProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
+              <div key={project.id} style={{ width: '280px' }}>
+                <ProjectCard project={project} index={index} />
+              </div>
             ))}
           </div>
 
