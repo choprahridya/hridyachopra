@@ -36,13 +36,13 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
         <div className="w-full rounded-md overflow-hidden border border-border transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
           <div
             className="relative w-full overflow-hidden"
-            style={{ background: project.bg, aspectRatio: '5/2' }}
+            style={{ aspectRatio: '5/2' }}
           >
             {/* Original image */}
             <img
               src={project.thumbnail}
               alt={project.title}
-              className="absolute inset-0 w-full h-full object-contain p-4 transition-opacity duration-400"
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
               style={{ opacity: hovered ? 0 : 1 }}
               loading="lazy"
             />
@@ -51,7 +51,7 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
               <img
                 src={project.hoverImage}
                 alt={`${project.title} preview`}
-                className="absolute inset-0 w-full h-full object-contain p-4 transition-opacity duration-400"
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
                 style={{ opacity: hovered ? 1 : 0 }}
                 loading="lazy"
               />
