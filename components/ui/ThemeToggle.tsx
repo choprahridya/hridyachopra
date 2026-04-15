@@ -34,54 +34,39 @@ function clearInlineVars() {
   INLINE_PROPS.forEach(p => document.documentElement.style.removeProperty(p));
 }
 
-function applyCustomColor(accent: string, dark: boolean) {
+function applyCustomColor(accent: string) {
   const html = document.documentElement;
   clearInlineVars();
+  html.classList.remove('dark');
   html.removeAttribute('data-theme');
-  if (dark) {
-    html.classList.add('dark');
-    html.style.setProperty('--color-bg',             shade(accent, 0.93));
-    html.style.setProperty('--color-bg-card',         shade(accent, 0.88));
-    html.style.setProperty('--color-bg-overlay',      shade(accent, 0.84));
-    html.style.setProperty('--color-text-primary',    tint(accent, 0.88));
-    html.style.setProperty('--color-text-secondary',  tint(accent, 0.55));
-    html.style.setProperty('--color-text-muted',      tint(accent, 0.25));
-    html.style.setProperty('--color-accent',          tint(accent, 0.45));
-    html.style.setProperty('--color-accent-light',    shade(accent, 0.82));
-    html.style.setProperty('--color-border',          shade(accent, 0.78));
-    html.style.setProperty('--color-border-dark',     shade(accent, 0.70));
-  } else {
-    html.classList.remove('dark');
-    html.style.setProperty('--color-bg',             tint(accent, 0.88));
-    html.style.setProperty('--color-bg-card',         '#ffffff');
-    html.style.setProperty('--color-bg-overlay',      tint(accent, 0.80));
-    html.style.setProperty('--color-text-primary',    shade(accent, 0.75));
-    html.style.setProperty('--color-text-secondary',  shade(accent, 0.40));
-    html.style.setProperty('--color-text-muted',      tint(accent, 0.30));
-    html.style.setProperty('--color-accent',          accent);
-    html.style.setProperty('--color-accent-light',    tint(accent, 0.75));
-    html.style.setProperty('--color-border',          tint(accent, 0.65));
-    html.style.setProperty('--color-border-dark',     tint(accent, 0.45));
-  }
+  html.style.setProperty('--color-bg',             tint(accent, 0.88));
+  html.style.setProperty('--color-bg-card',         '#ffffff');
+  html.style.setProperty('--color-bg-overlay',      tint(accent, 0.80));
+  html.style.setProperty('--color-text-primary',    shade(accent, 0.75));
+  html.style.setProperty('--color-text-secondary',  shade(accent, 0.40));
+  html.style.setProperty('--color-text-muted',      tint(accent, 0.30));
+  html.style.setProperty('--color-accent',          accent);
+  html.style.setProperty('--color-accent-light',    tint(accent, 0.75));
+  html.style.setProperty('--color-border',          tint(accent, 0.65));
+  html.style.setProperty('--color-border-dark',     tint(accent, 0.45));
 }
 
-function applyPreset(id: string, dark: boolean) {
+function applyPreset(id: string) {
   const html = document.documentElement;
   clearInlineVars();
-  if (dark) html.classList.add('dark'); else html.classList.remove('dark');
+  html.classList.remove('dark');
   id === 'default' ? html.removeAttribute('data-theme') : html.setAttribute('data-theme', id);
 }
 
 export function ThemeToggle() {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState('default');
-  const [isDark, setIsDark] = useState(false);
   const [customColor, setCustomColor] = useState('#6B96CC');
   const ref = useRef<HTMLDivElement>(null);
   const colorInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    applyPreset('default', false);
+    applyPreset('default');
   }, []);
 
   useEffect(() => {
@@ -94,24 +79,13 @@ export function ThemeToggle() {
 
   const handleSelect = (id: string) => {
     setCurrent(id);
-    applyPreset(id, isDark);
+    applyPreset(id);
     setOpen(false);
-  };
-
-  const handleToggleDark = () => {
-    const next = !isDark;
-    setIsDark(next);
-    if (current === 'custom') {
-      applyCustomColor(customColor, next);
-    } else {
-      applyPreset(current, next);
-    }
   };
 
   const handleReset = () => {
     setCurrent('default');
-    setIsDark(false);
-    applyPreset('default', false);
+    applyPreset('default');
     setOpen(false);
   };
 
@@ -119,7 +93,7 @@ export function ThemeToggle() {
     const color = e.target.value;
     setCustomColor(color);
     setCurrent('custom');
-    applyCustomColor(color, isDark);
+    applyCustomColor(color);
   };
 
   const active = PALETTES.find(p => p.id === current);
@@ -171,41 +145,11 @@ export function ThemeToggle() {
             />
           </div>
 
-          {/* Divider */}
-          <span className="w-px h-4 bg-border flex-shrink-0" />
-
-          {/* Dark mode toggle */}
-          <button
-            onClick={handleToggleDark}
-            title={isDark ? 'Switch to light' : 'Switch to dark'}
-            className="w-6 h-6 flex items-center justify-center text-text-secondary hover:text-text-primary transition-colors flex-shrink-0"
-          >
-            {isDark ? (
-              /* Sun */
-              <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                <circle cx="7.5" cy="7.5" r="3" stroke="currentColor" strokeWidth="1.2"/>
-                <line x1="7.5" y1="1" x2="7.5" y2="2.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-                <line x1="7.5" y1="12.5" x2="7.5" y2="14" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-                <line x1="1" y1="7.5" x2="2.5" y2="7.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-                <line x1="12.5" y1="7.5" x2="14" y2="7.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-                <line x1="3" y1="3" x2="4.06" y2="4.06" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-                <line x1="10.94" y1="10.94" x2="12" y2="12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-                <line x1="12" y1="3" x2="10.94" y2="4.06" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-                <line x1="4.06" y1="10.94" x2="3" y2="12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-              </svg>
-            ) : (
-              /* Moon */
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M12 9.5A6 6 0 0 1 4.5 2a6 6 0 1 0 7.5 7.5z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            )}
-          </button>
-
           {/* Reset */}
           <button
             onClick={handleReset}
             title="Reset to default"
-            disabled={current === 'default' && !isDark}
+            disabled={current === 'default'}
             className="text-[14px] text-text-muted hover:text-text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed flex-shrink-0"
           >
             ↺
