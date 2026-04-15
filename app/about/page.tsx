@@ -48,6 +48,8 @@ export default function AboutPage() {
         setStatus('sent');
         setFormData({ name: '', email: '', message: '' });
       } else {
+        const body = await res.json().catch(() => ({}));
+        setFieldError(body.error || 'Something went wrong — try emailing directly.');
         setStatus('error');
       }
     } catch {
@@ -228,9 +230,6 @@ export default function AboutPage() {
                 >
                   {status === 'sending' ? 'Sending…' : status === 'sent' ? 'Sent ✓' : 'Send Message →'}
                 </button>
-                {status === 'error' && (
-                  <p className="text-[13px] text-red-500">Something went wrong — try emailing directly.</p>
-                )}
               </div>
             </form>
           </RevealText>

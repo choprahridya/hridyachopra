@@ -9,17 +9,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'All fields are required.' }, { status: 400 });
   }
 
-  try {
-    await resend.emails.send({
-      from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: 'choprahridya@gmail.com',
-      replyTo: email,
-      subject: `New message from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-    });
+  const { data, error } = await resend.emails.send({
+    from: 'Portfolio Contact <onboarding@resend.dev>',
+    to: 'choprahridya@gmail.com',
+    replyTo: email,
+    subject: `New message from ${name}`,
+    text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+  });
 
-    return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ error: 'Failed to send message.' }, { status: 500 });
+  if (error) {
+    console.error('Resend error:', error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
+
+  console.log('Email sent:', data?.id);
+  return NextResponse.json({ success: true });
 }
