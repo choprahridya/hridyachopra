@@ -112,8 +112,28 @@ export function ThemeToggle() {
       {/* Colour bar */}
       {open && (
         <div className="flex items-center gap-2 px-3 py-2 bg-bg-card border border-border rounded-full shadow-md">
+          {/* Preset palette swatches */}
+          {PALETTES.map(palette => (
+            <button
+              key={palette.id}
+              onClick={() => handleSelect(palette.id)}
+              title={palette.label}
+              className="w-6 h-6 rounded-full flex items-center justify-center transition-transform hover:scale-110 flex-shrink-0"
+              style={{
+                background: palette.bg,
+                outline: current === palette.id ? `2px solid ${palette.dot}` : '2px solid transparent',
+                outlineOffset: '2px',
+              }}
+            >
+              <span className="w-2.5 h-2.5 rounded-full block" style={{ background: palette.dot }} />
+            </button>
+          ))}
+
+          {/* Divider */}
+          <span className="w-px h-4 bg-border flex-shrink-0" />
+
           {/* Custom colour circle */}
-          <div className="relative">
+          <div className="relative flex-shrink-0">
             <button
               title="Custom colour"
               onClick={() => colorInputRef.current?.click()}
@@ -133,6 +153,16 @@ export function ThemeToggle() {
               style={{ width: '100%', height: '100%' }}
             />
           </div>
+
+          {/* Reset button */}
+          <button
+            onClick={() => handleSelect('default')}
+            title="Reset to default"
+            disabled={current === 'default'}
+            className="text-[14px] text-text-muted hover:text-text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed flex-shrink-0"
+          >
+            ↺
+          </button>
         </div>
       )}
 
