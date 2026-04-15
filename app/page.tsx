@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { useState } from 'react';
 import Link from 'next/link';
 import { Footer } from '@/components/Footer';
 import { DividerMotif, RevealText } from '@/components/ui';
@@ -21,26 +22,53 @@ const fadeUp = {
 };
 
 function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; index: number }) {
+  const [hovered, setHovered] = useState(false);
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const x = useSpring(rawX, { stiffness: 180, damping: 22 });
+  const y = useSpring(rawY, { stiffness: 180, damping: 22 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    rawX.set(e.clientX - rect.left + 20);
+    rawY.set(e.clientY - rect.top - 80);
+  };
+
   return (
     <RevealText delay={index * 0.08}>
-      <Link href={`/projects/${project.id}`} className="group block">
-        <div className={`w-full rounded-md overflow-hidden border border-border transition-all duration-300 ${!project.thumbnail ? 'group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]' : ''}`}>
+      <Link
+        href={`/projects/${project.id}`}
+        className="group block relative"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onMouseMove={handleMouseMove}
+      >
+        {/* Floating image preview */}
+        {project.thumbnail && (
+          <motion.div
+            className="absolute z-20 pointer-events-none rounded-lg overflow-hidden shadow-2xl"
+            style={{ x, y, width: 220, top: 0, left: 0 }}
+            initial={false}
+            animate={{ opacity: hovered ? 1 : 0, scale: hovered ? 1 : 0.92 }}
+            transition={{ duration: 0.2, ease: [0.25, 0, 0, 1] }}
+          >
+            <img
+              src={project.thumbnail}
+              alt={project.title}
+              className="w-full h-auto block"
+            />
+          </motion.div>
+        )}
+
+        {/* Card */}
+        <div className="w-full rounded-md overflow-hidden border border-border transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
           <div
             className="w-full overflow-hidden"
-            style={{ background: project.bg, aspectRatio: '5/2' }}
+            style={{ background: `var(--disc-color-${index + 1})`, aspectRatio: '5/2' }}
           >
-            {project.thumbnail ? (
-              <img
-                src={project.thumbnail}
-                alt={project.title}
-                className="w-full h-full object-contain p-4"
-                loading="lazy"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center font-serif text-text-muted text-sm">
-                {project.title}
-              </div>
-            )}
+            <div className="w-full h-full flex items-center justify-center font-serif text-text-muted text-sm tracking-wide">
+              {project.title}
+            </div>
           </div>
 
           <div className="p-5 bg-bg-card">
