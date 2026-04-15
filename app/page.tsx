@@ -34,7 +34,7 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
       >
         {/* Card */}
         <div className="w-full rounded-md overflow-hidden border border-border transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
-          <div className="relative w-full overflow-hidden" style={{ height: '400px' }}>
+          <div className="relative w-full overflow-hidden" style={{ aspectRatio: '3/2' }}>
             {/* Original image */}
             <img
               src={project.thumbnail}
@@ -137,7 +137,7 @@ export default function Home() {
             <h2 className="font-serif text-[var(--text-h2)] text-text-primary">Featured Work</h2>
           </RevealText>
 
-          <div className="grid grid-cols-2 gap-5 mb-10">
+          <div className="grid grid-cols-2 gap-5 mb-10 max-w-xl">
             {featuredProjects.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}
