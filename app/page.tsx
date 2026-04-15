@@ -34,13 +34,13 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
       >
         {/* Card */}
         <div className="w-full rounded-md overflow-hidden border border-border transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
-          <div className="relative w-full overflow-hidden">
+          <div className="relative w-full overflow-hidden" style={{ maxHeight: '220px' }}>
             {/* Original image — sets the natural height of the box */}
             <img
               src={project.thumbnail}
               alt={project.title}
-              className="w-full h-auto block transition-opacity duration-500"
-              style={{ opacity: hovered ? 0 : 1 }}
+              className="w-full h-full object-cover block transition-opacity duration-500"
+              style={{ opacity: hovered ? 0 : 1, maxHeight: '220px' }}
               loading="lazy"
             />
             {/* Hover image — overlaid, same dimensions */}
