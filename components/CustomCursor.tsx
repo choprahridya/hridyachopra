@@ -1,16 +1,15 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { motion, useSpring } from 'framer-motion';
+import { motion, useMotionValue } from 'framer-motion';
 
 export function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [rotation, setRotation] = useState(0);
 
-  // Much stiffer spring = snappier follow
-  const cursorX = useSpring(0, { damping: 15, stiffness: 1200, mass: 0.1 });
-  const cursorY = useSpring(0, { damping: 15, stiffness: 1200, mass: 0.1 });
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
 
   const lastPos = useRef({ x: 0, y: 0 });
   const rotRef = useRef(0);
