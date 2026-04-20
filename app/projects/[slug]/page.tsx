@@ -30,7 +30,6 @@ const projects: Record<string, {
         body: 'Xchange had no consistent visual language — different materials used different colours, typefaces, and tones. The brand felt untrustworthy for a platform handling financial transactions. The goal was to build a system that felt modern, secure, and approachable.',
       },
       { type: 'image', src: '/projects/1/2.png' },
-      { type: 'image', src: '/projects/1/2 - Compressed Version.png' },
       {
         type: 'text',
         label: 'Results',
