@@ -39,9 +39,9 @@ const projects: Record<string, {
       { type: 'image', src: '/projects/1/4.png' },
       {
         type: 'text',
-        label: 'Further Steps',
-        heading: 'Expanding the system',
-        body: 'Next phases include motion guidelines for UI transitions, an icon library, and a brand book for internal and external teams. The system is designed to scale as Xchange grows into new markets.',
+        label: 'Conclusion',
+        heading: 'Recognition and what comes next',
+        body: 'Xchange has been recognized by IIT Kanpur, Plaksha University, Youth Ideathon, and Youth Ki Awaaz for its impact-driven approach to sustainable book sharing. The project continues to evolve, with ongoing efforts focused on expanding its reach and improving the user experience.',
       },
       { type: 'image', src: '/projects/1/5.png' },
     ],
