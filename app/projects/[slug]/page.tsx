@@ -20,7 +20,7 @@ const projects: Record<string, {
     title: 'Xchange',
     category: 'Brand Identity',
     year: '2025',
-    description: 'Xchange is a book exchange platform designed to address the growing demand for new books while reducing cost, waste, and environmental impact. After exploring multiple approaches such as trading second-hand books, organizing donation drives, accessing digital libraries, and purchasing from low-cost vendors, we identified book exchange as the most sustainable and accessible solution. Xchange enables users to exchange already-read books within a community, extending the life of each book and improving access to reading materials. By encouraging reuse and mindful consumption, Xchange creates an affordable, eco-friendly alternative to constantly buying new books.',
+    description: 'Xchange is a book exchange platform that makes reading more affordable and sustainable. By allowing users to swap already-read books within a community, it reduces costs, minimizes waste, and extends the life of each book — offering an eco-friendly alternative to buying new ones.',
     sections: [
       { type: 'image', src: '/projects/1/xchange-books.png' },
       {
