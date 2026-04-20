@@ -152,7 +152,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </h1>
 
           {project.description && (
-            <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)] max-w-2xl">
+            <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)]">
               {project.description}
             </p>
           )}
