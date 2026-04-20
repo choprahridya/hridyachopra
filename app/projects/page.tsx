@@ -10,7 +10,7 @@ import { PillTag } from '@/components/ui';
 const projects: Project[] = [
   { id: '1', title: 'Xchange', thumbnail: '', color: '#E8E4DC' },
   { id: '2', title: "Website Redesign: Franklin's", thumbnail: '', color: '#E4E8DC' },
-  { id: '3', title: 'Cognuva', thumbnail: '', color: '#DCE4E8' },
+  { id: '3', title: 'Cogniva', thumbnail: '', color: '#DCE4E8' },
 ];
 
 const COMING_SOON_IDS = new Set(['3']);
@@ -18,7 +18,7 @@ const COMING_SOON_IDS = new Set(['3']);
 const projectDetails = [
   { id: '1', title: 'Xchange', category: 'Brand Identity', year: '2025', bg: '#EAE5DD', thumbnail: '/projects/1/1.png' },
   { id: '2', title: "Website Redesign: Franklin's", category: 'UX / UI', year: '2026', bg: '#DDE5EA', thumbnail: '/projects/2/cover.png' },
-  { id: '3', title: 'Cognuva', category: 'Brand Identity', year: '2025', bg: '#DCE4E8' },
+  { id: '3', title: 'Cogniva', category: 'Brand Identity', year: '2025', bg: '#DCE4E8' },
 ];
 
 export default function ProjectsPage() {
