@@ -10,21 +10,17 @@ import { PillTag } from '@/components/ui';
 const projects: Project[] = [
   { id: '1', title: 'Xchange', thumbnail: '', color: '#E8E4DC' },
   { id: '2', title: "Website Redesign: Franklin's", thumbnail: '', color: '#E4E8DC' },
-  { id: '3', title: 'Cogniva', thumbnail: '', color: '#DCE4E8' },
-  { id: '4', title: 'Visual Identity', thumbnail: '', color: '#E8DCDC' },
-  { id: '5', title: 'Marketing Site', thumbnail: '', color: '#E8E8DC' },
-  { id: '6', title: 'Product Strategy', thumbnail: '', color: '#DCE8E4' },
+  { id: '3', title: 'Cognuva', thumbnail: '', color: '#DCE4E8' },
+  { id: '4', title: 'Coming Soon', thumbnail: '', color: '#E8DCDC' },
 ];
 
-const COMING_SOON_IDS = new Set(['4', '5', '6']);
+const COMING_SOON_IDS = new Set(['3', '4']);
 
 const projectDetails = [
   { id: '1', title: 'Xchange', category: 'Brand Identity', year: '2025', bg: '#EAE5DD', thumbnail: '/projects/1/1.png' },
   { id: '2', title: "Website Redesign: Franklin's", category: 'UX / UI', year: '2026', bg: '#DDE5EA', thumbnail: '/projects/2/cover.png' },
-  { id: '3', title: 'Cogniva', category: 'Systems', year: '2023', bg: '#E5EADD' },
-  { id: '4', title: 'Visual Identity System', category: 'Brand', year: '2024', bg: '#EAE0DD' },
-  { id: '5', title: 'Marketing Site', category: 'Web', year: '2023', bg: '#EAEADD' },
-  { id: '6', title: 'Product Strategy', category: 'Strategy', year: '2024', bg: '#DDECE6' },
+  { id: '3', title: 'Cognuva', category: 'Brand Identity', year: '2025', bg: '#DCE4E8' },
+  { id: '4', title: 'Coming Soon', category: 'Coming Soon', year: '', bg: '#E8DCDC' },
 ];
 
 export default function ProjectsPage() {
