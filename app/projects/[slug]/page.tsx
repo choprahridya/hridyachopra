@@ -26,8 +26,8 @@ const projects: Record<string, {
       {
         type: 'text',
         label: 'Problem',
-        heading: 'A brand without identity',
-        body: 'Xchange had no consistent visual language — different materials used different colours, typefaces, and tones. The brand felt untrustworthy for a platform handling financial transactions. The goal was to build a system that felt modern, secure, and approachable.',
+        heading: 'A constant demand families struggle to meet',
+        body: 'There is a constant demand for new books, which many families struggle to keep up with. As books are quickly outgrown, they often go unused or create waste, while many children still lack access to basic reading materials. This cycle is also environmentally unsustainable, with about one tree cut for every 62.5 books produced.',
       },
       { type: 'image', src: '/projects/1/2.png' },
       {
