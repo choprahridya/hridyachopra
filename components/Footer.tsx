@@ -51,7 +51,7 @@ export function Footer() {
           ))}
         </ul>
 
-        <span className="text-[12px] text-text-muted tracking-[0.04em]">© 2025</span>
+        <span className="text-[12px] text-text-muted tracking-[0.04em]">© 2026</span>
       </div>
     </footer>
   );
