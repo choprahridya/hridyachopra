@@ -33,8 +33,8 @@ const projects: Record<string, {
       {
         type: 'text',
         label: 'Results',
-        heading: 'A cohesive system across every touchpoint',
-        body: 'The new identity introduced a refined logomark, a structured type hierarchy, and a colour palette that communicates trust and clarity. Applied across digital and print, the brand now feels consistent and credible — from the app interface to marketing materials.',
+        heading: 'Real impact, measurable growth',
+        body: 'Since May 2022, Xchange has facilitated the exchange of 25,000+ books through drives and an active community. It has donated 2,000+ books, helped families save nearly $43K, and preserved around 400 trees. The initiative also raised funds for its app and gained support from platforms like YouthKiAwaaz, Plaksha University, and YouthIdeathon 2023.',
       },
       { type: 'image', src: '/projects/1/4.png' },
       {
