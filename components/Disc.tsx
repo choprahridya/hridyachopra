@@ -299,14 +299,15 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
               }}
             >
               <div
-                className="w-full h-full flex items-center justify-center font-sans font-medium"
+                className="w-full h-full flex items-center justify-center font-sans font-medium text-center px-1"
                 style={{
                   backgroundColor: discColors[index] ?? discColors[0],
-                  fontSize: project.title.includes("Franklin's") ? Math.max(7, thumbSize * 0.1) : project.title === 'Xchange' ? Math.max(8, thumbSize * 0.12) : project.title === 'Cogniva' ? Math.max(8, thumbSize * 0.12) : Math.max(10, thumbSize * 0.18),
+                  fontSize: Math.max(7, thumbSize * 0.11),
                   color: '#555',
+                  lineHeight: 1.2,
                 }}
               >
-                {project.title.includes("Franklin's") ? "Franklin's" : project.title === 'Xchange' ? 'Xchange' : project.title === 'Cogniva' ? 'Cogniva' : project.title.slice(0, 2).toUpperCase()}
+                {project.title.includes("Franklin's") ? "Franklin's" : project.title}
               </div>
             </motion.div>
           </motion.div>
