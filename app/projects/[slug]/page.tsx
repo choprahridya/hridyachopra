@@ -25,6 +25,7 @@ const projects: Record<string, {
       {
         type: 'text',
         label: 'Overview',
+        heading: 'A platform for sharing books, not just buying them',
         body: 'Xchange is a book exchange platform designed to address the growing demand for new books while reducing cost, waste, and environmental impact. After exploring multiple approaches such as trading second-hand books, organizing donation drives, accessing digital libraries, and purchasing from low-cost vendors, we identified book exchange as the most sustainable and accessible solution. Xchange enables users to exchange already-read books within a community, extending the life of each book and improving access to reading materials. By encouraging reuse and mindful consumption, Xchange creates an affordable, eco-friendly alternative to constantly buying new books.',
       },
       { type: 'image', src: '/projects/1/1.png' },
