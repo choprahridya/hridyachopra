@@ -20,8 +20,14 @@ const projects: Record<string, {
     title: 'Xchange',
     category: 'Brand Identity',
     year: '2025',
-    description: 'Xchange is a book exchange platform designed to reduce cost, waste, and environmental impact — enabling users to swap already-read books within a community, making reading more accessible and sustainable.',
+    description: '',
     sections: [
+      {
+        type: 'text',
+        label: 'Overview',
+        heading: 'A platform for sharing books, not just buying them',
+        body: 'Xchange is a book exchange platform designed to address the growing demand for new books while reducing cost, waste, and environmental impact. After exploring multiple approaches such as trading second-hand books, organizing donation drives, accessing digital libraries, and purchasing from low-cost vendors, we identified book exchange as the most sustainable and accessible solution. Xchange enables users to exchange already-read books within a community, extending the life of each book and improving access to reading materials. By encouraging reuse and mindful consumption, Xchange creates an affordable, eco-friendly alternative to constantly buying new books.',
+      },
       { type: 'image', src: '/projects/1/1.png' },
       {
         type: 'text',
@@ -151,9 +157,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             {project.title}
           </h1>
 
-          <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)] max-w-2xl">
-            {project.description}
-          </p>
+          {project.description && (
+            <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)] max-w-2xl">
+              {project.description}
+            </p>
+          )}
         </div>
 
         {/* Sections */}
