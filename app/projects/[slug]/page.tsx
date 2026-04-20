@@ -2,8 +2,9 @@ import Link from 'next/link';
 import { Footer } from '@/components/Footer';
 
 interface Section {
-  type: 'image' | 'text';
+  type: 'image' | 'image-pair' | 'text';
   src?: string;
+  srcs?: [string, string];
   label?: string;
   heading?: string;
   body?: string;
@@ -36,14 +37,13 @@ const projects: Record<string, {
         heading: 'Real impact, measurable growth',
         body: 'Since May 2022, Xchange has facilitated the exchange of 25,000+ books through drives and an active community. It has donated 2,000+ books, helped families save nearly $43K, and preserved around 400 trees. The initiative also raised funds for its app and gained support from platforms like YouthKiAwaaz, Plaksha University, and YouthIdeathon 2023.',
       },
-      { type: 'image', src: '/projects/1/4.png' },
+      { type: 'image-pair', srcs: ['/projects/1/4.png', '/projects/1/5.png'] },
       {
         type: 'text',
         label: 'Conclusion',
         heading: 'Recognition and what comes next',
         body: 'Xchange has been recognized by IIT Kanpur, Plaksha University, Youth Ideathon, and Youth Ki Awaaz for its impact-driven approach to sustainable book sharing. The project continues to evolve, with ongoing efforts focused on expanding its reach and improving the user experience.',
       },
-      { type: 'image', src: '/projects/1/5.png' },
     ],
   },
   '2': {
@@ -161,6 +161,15 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           {project.sections.map((section, i) =>
             section.type === 'text' ? (
               <TextSection key={i} section={section} />
+            ) : section.type === 'image-pair' ? (
+              <div key={i} className="grid grid-cols-2 gap-4">
+                {section.srcs?.map((src, j) => (
+                  <div key={j} className="w-full rounded-xl overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={src} alt={`${project.title} — image ${i + 1}.${j + 1}`} className="w-full h-auto block" loading="lazy" />
+                  </div>
+                ))}
+              </div>
             ) : (
               <div key={i} className="w-full rounded-xl overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
