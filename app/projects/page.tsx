@@ -67,7 +67,7 @@ export default function ProjectsPage() {
               className="font-serif text-text-primary mb-6"
               style={{ fontSize: 'var(--text-h1)', lineHeight: 'var(--lh-tight)' }}
             >
-              {isComingSoon ? 'Coming Soon' : activeProject.title}
+              {activeProject.title === 'Coming Soon' ? 'Coming Soon' : activeProject.title}
             </h1>
 
             <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)] mb-8">
