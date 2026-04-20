@@ -1,25 +1,51 @@
 import Link from 'next/link';
 import { Footer } from '@/components/Footer';
 
+interface Section {
+  type: 'image' | 'text';
+  src?: string;
+  label?: string;
+  heading?: string;
+  body?: string;
+}
+
 const projects: Record<string, {
   title: string;
   category: string;
   year: string;
   description: string;
-  images: string[];
+  sections: Section[];
 }> = {
   '1': {
     title: 'Xchange',
     category: 'Brand Identity',
     year: '2025',
     description: 'A complete brand identity system built for a modern currency exchange platform — covering logomark, typography, colour palette, and application across digital touchpoints.',
-    images: [
-      '/projects/1/1.png',
-      '/projects/1/2.png',
-      '/projects/1/2 - Compressed Version.png',
-      '/projects/1/3.png',
-      '/projects/1/4.png',
-      '/projects/1/5.png',
+    sections: [
+      { type: 'image', src: '/projects/1/1.png' },
+      {
+        type: 'text',
+        label: 'Problem',
+        heading: 'A brand without identity',
+        body: 'Xchange had no consistent visual language — different materials used different colours, typefaces, and tones. The brand felt untrustworthy for a platform handling financial transactions. The goal was to build a system that felt modern, secure, and approachable.',
+      },
+      { type: 'image', src: '/projects/1/2.png' },
+      { type: 'image', src: '/projects/1/2 - Compressed Version.png' },
+      {
+        type: 'text',
+        label: 'Results',
+        heading: 'A cohesive system across every touchpoint',
+        body: 'The new identity introduced a refined logomark, a structured type hierarchy, and a colour palette that communicates trust and clarity. Applied across digital and print, the brand now feels consistent and credible — from the app interface to marketing materials.',
+      },
+      { type: 'image', src: '/projects/1/3.png' },
+      { type: 'image', src: '/projects/1/4.png' },
+      {
+        type: 'text',
+        label: 'Further Steps',
+        heading: 'Expanding the system',
+        body: 'Next phases include motion guidelines for UI transitions, an icon library, and a brand book for internal and external teams. The system is designed to scale as Xchange grows into new markets.',
+      },
+      { type: 'image', src: '/projects/1/5.png' },
     ],
   },
   '2': {
@@ -27,12 +53,52 @@ const projects: Record<string, {
     category: 'UX / UI',
     year: '2026',
     description: "A full UX and visual redesign of Franklin's restaurant website — improving navigation, menu hierarchy, and mobile experience while preserving the brand's warm character.",
-    images: [
-      '/projects/2/cover.png',
-      '/projects/2/menu.png',
+    sections: [
+      { type: 'image', src: '/projects/2/cover.png' },
+      {
+        type: 'text',
+        label: 'Problem',
+        heading: 'A website that didn\'t reflect the experience',
+        body: 'Franklin\'s is a beloved local restaurant with a warm, welcoming atmosphere — but the old website felt cluttered and hard to navigate. Customers struggled to find the menu, make reservations, or understand the brand. Mobile experience was particularly poor.',
+      },
+      {
+        type: 'text',
+        label: 'Results',
+        heading: 'Clarity and warmth in every interaction',
+        body: 'The redesign simplified navigation to three clear paths: menu, reservations, and story. A warmer colour palette and generous typography brought the in-restaurant feeling online. Mobile conversion improved significantly with a single-tap reservation flow.',
+      },
+      { type: 'image', src: '/projects/2/menu.png' },
+      {
+        type: 'text',
+        label: 'Further Steps',
+        heading: 'Online ordering and loyalty',
+        body: 'The next phase introduces an online ordering system and a loyalty programme page — keeping the same warm, unhurried design language that makes Franklin\'s feel like a place worth returning to.',
+      },
     ],
   },
 };
+
+function TextSection({ section }: { section: Section }) {
+  return (
+    <div className="max-w-2xl py-10">
+      {section.label && (
+        <p className="text-[11px] uppercase tracking-[0.12em] text-text-muted font-sans mb-3">
+          {section.label}
+        </p>
+      )}
+      {section.heading && (
+        <h2 className="font-serif text-text-primary mb-4" style={{ fontSize: 'var(--text-h2)', lineHeight: 'var(--lh-tight)' }}>
+          {section.heading}
+        </h2>
+      )}
+      {section.body && (
+        <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)]">
+          {section.body}
+        </p>
+      )}
+    </div>
+  );
+}
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -60,14 +126,12 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     );
   }
 
-  const [hero, ...rest] = project.images;
-
   return (
     <main className="min-h-screen flex flex-col bg-bg pt-20">
       <section className="px-[--page-padding] pb-24 max-w-site mx-auto w-full">
 
-        {/* Back + header */}
-        <div className="mb-10">
+        {/* Header */}
+        <div className="mb-12">
           <Link
             href="/projects"
             className="inline-flex items-center gap-1.5 text-[13px] text-text-muted hover:text-text-primary transition-colors mb-8 group"
@@ -92,33 +156,24 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </p>
         </div>
 
-        {/* Hero image */}
-        <div className="w-full rounded-xl overflow-hidden mb-4 bg-bg-overlay">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={hero}
-            alt={`${project.title} — hero`}
-            className="w-full h-auto block"
-            loading="eager"
-          />
-        </div>
-
-        {/* Rest of images — 2-col grid */}
-        {rest.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {rest.map((src, i) => (
-              <div key={i} className="rounded-xl overflow-hidden bg-bg-overlay">
+        {/* Sections */}
+        <div className="flex flex-col gap-4">
+          {project.sections.map((section, i) =>
+            section.type === 'text' ? (
+              <TextSection key={i} section={section} />
+            ) : (
+              <div key={i} className="w-full rounded-xl overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={src}
-                  alt={`${project.title} — image ${i + 2}`}
+                  src={section.src}
+                  alt={`${project.title} — image ${i + 1}`}
                   className="w-full h-auto block"
-                  loading="lazy"
+                  loading={i === 0 ? 'eager' : 'lazy'}
                 />
               </div>
-            ))}
-          </div>
-        )}
+            )
+          )}
+        </div>
 
       </section>
       <Footer />
