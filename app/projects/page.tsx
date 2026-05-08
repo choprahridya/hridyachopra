@@ -174,8 +174,9 @@ export default function ProjectsPage() {
                           </div>
                           <div className="p-5">
                             <div className="flex items-center gap-2 mb-2">
-                              <span className="pill">{project.category}</span>
-                              <span className="text-[12px] text-text-muted">{project.year}</span>
+                              {project.tags.slice(0, 2).map(tag => (
+                                <span key={tag} className="pill">{tag}</span>
+                              ))}
                             </div>
                             <p className="font-serif text-[var(--text-h3)] text-text-primary">{project.title}</p>
                           </div>
