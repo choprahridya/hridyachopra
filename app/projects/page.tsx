@@ -78,7 +78,7 @@ export default function ProjectsPage() {
             </p>
 
             {!isComingSoon && activeDetail && activeDetail.tags.length > 0 && (
-              <div className="flex gap-2 mb-10 flex-wrap">
+              <div className="flex gap-4 mb-10 flex-wrap">
                 {activeDetail.tags.map(tag => <PillTag key={tag}>{tag}</PillTag>)}
               </div>
             )}
