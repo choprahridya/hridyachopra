@@ -18,11 +18,11 @@ const projects: Project[] = [
 const COMING_SOON_IDS = new Set(['3', '4', '5']);
 
 const projectDetails = [
-  { id: '1', title: 'Xchange', category: 'Brand Identity', year: '2025', bg: '#EAE5DD', thumbnail: '/projects/1/1.png' },
-  { id: '2', title: "Website Redesign: Franklin's", category: 'UX / UI', year: '2026', bg: '#DDE5EA', thumbnail: '/projects/2/cover.png' },
-  { id: '3', title: 'Cogniva', category: 'Brand Identity', year: '2025', bg: '#DCE4E8' },
-  { id: '4', title: 'Coming Soon', category: 'Coming Soon', year: '', bg: '#E8DCDC' },
-  { id: '5', title: 'Coming Soon', category: 'Coming Soon', year: '', bg: '#E4E8E4' },
+  { id: '1', title: 'Xchange', category: 'Product UI/UX', year: '2023', bg: '#EAE5DD', thumbnail: '/projects/1/1.png', blurb: 'A community-driven app designed to make local exchanges feel simple, fast, and trustworthy.' },
+  { id: '2', title: "Website Redesign: Franklin's", category: 'UX / UI', year: '2026', bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', blurb: "A full UX and visual redesign of Franklin's restaurant website — improving navigation, menu hierarchy, and mobile experience." },
+  { id: '3', title: 'Cogniva', category: 'Brand Identity', year: '2025', bg: '#DCE4E8', blurb: '' },
+  { id: '4', title: 'Coming Soon', category: 'Coming Soon', year: '', bg: '#E8DCDC', blurb: '' },
+  { id: '5', title: 'Coming Soon', category: 'Coming Soon', year: '', bg: '#E4E8E4', blurb: '' },
 ];
 
 export default function ProjectsPage() {
@@ -31,6 +31,7 @@ export default function ProjectsPage() {
   const gridRef = useRef<HTMLDivElement>(null);
 
   const isComingSoon = COMING_SOON_IDS.has(activeProject.id);
+  const activeDetail = projectDetails.find(p => p.id === activeProject.id);
 
   const handleShowGrid = () => {
     setShowGrid(true);
@@ -73,14 +74,13 @@ export default function ProjectsPage() {
             <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)] mb-8">
               {isComingSoon
                 ? 'This project is currently in progress. Check back soon.'
-                : 'A considered project that redefines the digital experience and sets a new standard for design excellence.'}
+                : activeDetail?.blurb || ''}
             </p>
 
-            {!isComingSoon && (
+            {!isComingSoon && activeDetail && (
               <div className="flex gap-2 mb-10 flex-wrap">
-                <PillTag>Brand</PillTag>
-                <PillTag>Identity</PillTag>
-                <PillTag>2024</PillTag>
+                {activeDetail.category && <PillTag>{activeDetail.category}</PillTag>}
+                {activeDetail.year && <PillTag>{activeDetail.year}</PillTag>}
               </div>
             )}
 
