@@ -9,7 +9,7 @@ import { PillTag } from '@/components/ui';
 
 const projects: Project[] = [
   { id: '1', title: 'Xchange', thumbnail: '', color: '#E8E4DC' },
-  { id: '2', title: "Website Redesign: Franklin's", thumbnail: '', color: '#E4E8DC' },
+  { id: '2', title: "Franklins", thumbnail: '', color: '#E4E8DC' },
   { id: '3', title: 'Cogniva', thumbnail: '', color: '#DCE4E8' },
   { id: '4', title: 'Coming Soon', thumbnail: '', color: '#E8DCDC' },
   { id: '5', title: 'Coming Soon', thumbnail: '', color: '#E4E8E4' },
@@ -18,11 +18,11 @@ const projects: Project[] = [
 const COMING_SOON_IDS = new Set(['3', '4', '5']);
 
 const projectDetails = [
-  { id: '1', title: 'Xchange', category: 'Product UI/UX', year: '2023', bg: '#EAE5DD', thumbnail: '/projects/1/1.png', blurb: 'A community-driven app designed to make local exchanges feel simple, fast, and trustworthy.' },
-  { id: '2', title: "Website Redesign: Franklin's", category: 'UX / UI', year: '2026', bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', blurb: "A full UX and visual redesign of Franklin's restaurant website — improving navigation, menu hierarchy, and mobile experience." },
-  { id: '3', title: 'Cogniva', category: 'Brand Identity', year: '2025', bg: '#DCE4E8', blurb: '' },
-  { id: '4', title: 'Coming Soon', category: 'Coming Soon', year: '', bg: '#E8DCDC', blurb: '' },
-  { id: '5', title: 'Coming Soon', category: 'Coming Soon', year: '', bg: '#E4E8E4', blurb: '' },
+  { id: '1', title: 'Xchange', bg: '#EAE5DD', thumbnail: '/projects/1/1.png', blurb: 'A community-driven app designed to make local exchanges feel simple, fast, and trustworthy.', tags: ['Product UI/UX', '2023'] },
+  { id: '2', title: "Franklins", bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', blurb: 'A digital experience designed to reflect the calm, inviting atmosphere of a neighborhood coffee shop.', tags: ['Website Redesign', 'UI/UX', '2026'] },
+  { id: '3', title: 'Cogniva', bg: '#DCE4E8', blurb: '', tags: ['Brand Identity', '2025'] },
+  { id: '4', title: 'Coming Soon', bg: '#E8DCDC', blurb: '', tags: [] },
+  { id: '5', title: 'Coming Soon', bg: '#E4E8E4', blurb: '', tags: [] },
 ];
 
 export default function ProjectsPage() {
@@ -77,10 +77,9 @@ export default function ProjectsPage() {
                 : activeDetail?.blurb || ''}
             </p>
 
-            {!isComingSoon && activeDetail && (
+            {!isComingSoon && activeDetail && activeDetail.tags.length > 0 && (
               <div className="flex gap-2 mb-10 flex-wrap">
-                {activeDetail.category && <PillTag>{activeDetail.category}</PillTag>}
-                {activeDetail.year && <PillTag>{activeDetail.year}</PillTag>}
+                {activeDetail.tags.map(tag => <PillTag key={tag}>{tag}</PillTag>)}
               </div>
             )}
 
