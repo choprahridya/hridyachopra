@@ -78,7 +78,7 @@ const projects: Record<string, {
     title: 'Cogniva',
     category: 'Product',
     year: '2026',
-    description: 'A robot to help make connections smoother in a nursing home.',
+    description: 'A socially assistive robot designed to foster meaningful connection in nursing homes.',
     sections: [],
   },
 };
