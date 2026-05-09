@@ -298,17 +298,26 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
                 boxShadow: isActive ? '0 4px 20px color-mix(in srgb, var(--color-accent) 30%, transparent)' : 'none',
               }}
             >
-              <div
-                className="w-full h-full flex items-center justify-center font-sans font-medium text-center px-1"
-                style={{
-                  backgroundColor: discColors[index] ?? discColors[0],
-                  fontSize: Math.max(7, thumbSize * 0.11),
-                  color: '#555',
-                  lineHeight: 1.2,
-                }}
-              >
-                {project.title.includes("Franklin's") ? "Franklin's" : project.title}
-              </div>
+              {project.thumbnail ? (
+                <img
+                  src={project.thumbnail}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                  draggable={false}
+                />
+              ) : (
+                <div
+                  className="w-full h-full flex items-center justify-center font-sans font-medium text-center px-1"
+                  style={{
+                    backgroundColor: discColors[index] ?? discColors[0],
+                    fontSize: Math.max(7, thumbSize * 0.11),
+                    color: '#555',
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {project.title}
+                </div>
+              )}
             </motion.div>
           </motion.div>
         );
