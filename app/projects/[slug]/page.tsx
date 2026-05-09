@@ -74,6 +74,13 @@ const projects: Record<string, {
       },
     ],
   },
+  '3': {
+    title: 'Cogniva',
+    category: 'Product',
+    year: '2026',
+    description: 'A robot to help make connections smoother in a nursing home.',
+    sections: [],
+  },
 };
 
 function TextSection({ section }: { section: Section }) {

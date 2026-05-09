@@ -15,12 +15,12 @@ const projects: Project[] = [
   { id: '5', title: 'Coming Soon', thumbnail: '', color: '#E4E8E4' },
 ];
 
-const COMING_SOON_IDS = new Set(['3', '4', '5']);
+const COMING_SOON_IDS = new Set(['4', '5']);
 
 const projectDetails = [
   { id: '1', title: 'Xchange', bg: '#EAE5DD', thumbnail: '/projects/1/1.png', blurb: 'A community-driven app designed to make local exchanges feel simple, fast, and trustworthy.', tags: ['Product', 'UI/UX', '2022'] },
   { id: '2', title: "Franklins", bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', blurb: 'A digital experience designed to reflect the calm, inviting atmosphere of a neighborhood coffee shop.', tags: ['Website Redesign', 'UI/UX', '2026'] },
-  { id: '3', title: 'Cogniva', bg: '#DCE4E8', blurb: '', tags: ['Product', 'UI/UX', '2026'] },
+  { id: '3', title: 'Cogniva', bg: '#DCE4E8', blurb: 'A robot to help make connections smoother in a nursing home.', tags: ['Product', 'UI/UX', '2026'] },
   { id: '4', title: 'Coming Soon', bg: '#E8DCDC', blurb: '', tags: [] },
   { id: '5', title: 'Coming Soon', bg: '#E4E8E4', blurb: '', tags: [] },
 ];
@@ -146,9 +146,6 @@ export default function ProjectsPage() {
                           </div>
                         </div>
                         <div className="p-5">
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="pill">Coming Soon</span>
-                          </div>
                           <p className="font-serif text-[var(--text-h3)] text-text-muted">Coming Soon</p>
                         </div>
                       </div>
@@ -163,7 +160,7 @@ export default function ProjectsPage() {
                               <img
                                 src={(project as typeof project & { thumbnail?: string }).thumbnail}
                                 alt={project.title}
-                                className="w-full h-full object-contain p-4"
+                                className="w-full h-full object-cover"
                                 loading="lazy"
                               />
                             ) : (
@@ -173,11 +170,6 @@ export default function ProjectsPage() {
                             )}
                           </div>
                           <div className="p-5">
-                            <div className="flex items-center gap-2 mb-2">
-                              {project.tags.slice(0, 2).map(tag => (
-                                <span key={tag} className="pill">{tag}</span>
-                              ))}
-                            </div>
                             <p className="font-serif text-[var(--text-h3)] text-text-primary">{project.title}</p>
                           </div>
                         </div>
