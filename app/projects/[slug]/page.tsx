@@ -8,6 +8,7 @@ interface Section {
   label?: string;
   heading?: string;
   body?: string;
+  callout?: string;
 }
 
 const projects: Record<string, {
@@ -42,7 +43,8 @@ const projects: Record<string, {
         type: 'text',
         label: 'Conclusion',
         heading: 'Recognition and what comes next',
-        body: 'Xchange has been recognized by IIT Kanpur, Plaksha University, Youth Ideathon, and Youth Ki Awaaz for its impact-driven approach to sustainable book sharing. The project continues to evolve, with ongoing efforts focused on expanding its reach and improving the user experience. Our goal is to Xchange a Million Books by 2028.',
+        body: 'Xchange has been recognized by IIT Kanpur, Plaksha University, Youth Ideathon, and Youth Ki Awaaz for its impact-driven approach to sustainable book sharing. The project continues to evolve, with ongoing efforts focused on expanding its reach and improving the user experience.',
+        callout: 'Our goal is to Xchange a Million Books by 2028.',
       },
     ],
   },
@@ -99,6 +101,11 @@ function TextSection({ section }: { section: Section }) {
       {section.body && (
         <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)]">
           {section.body}
+        </p>
+      )}
+      {section.callout && (
+        <p className="text-[15px] text-text-primary font-semibold leading-[var(--lh-loose)] mt-3">
+          {section.callout}
         </p>
       )}
     </div>
