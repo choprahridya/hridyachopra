@@ -61,7 +61,7 @@ const projects: Record<string, {
         heading: 'A website that didn\'t reflect the experience',
         body: 'Franklin\'s is a beloved local restaurant with a warm, welcoming atmosphere — but the old website felt cluttered and hard to navigate. Customers struggled to find the menu, make reservations, or understand the brand. Mobile experience was particularly poor.',
       },
-      { type: 'image-pair', srcs: ['/projects/2/franklins-1.png', '/projects/2/franklins-2.png'] },
+      { type: 'image-pair', srcs: ['/projects/2/franklins-1.png', '/projects/2/journey-map.png'] },
       {
         type: 'text',
         label: 'Results',
