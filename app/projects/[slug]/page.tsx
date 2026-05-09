@@ -42,7 +42,7 @@ const projects: Record<string, {
         type: 'text',
         label: 'Conclusion',
         heading: 'Recognition and what comes next',
-        body: 'Xchange has been recognized by IIT Kanpur, Plaksha University, Youth Ideathon, and Youth Ki Awaaz for its impact-driven approach to sustainable book sharing. The project continues to evolve, with ongoing efforts focused on expanding its reach and improving the user experience.',
+        body: 'Xchange has been recognized by IIT Kanpur, Plaksha University, Youth Ideathon, and Youth Ki Awaaz for its impact-driven approach to sustainable book sharing. The project continues to evolve, with ongoing efforts focused on expanding its reach and improving the user experience. Our goal is to Xchange a Million Books by 2028.',
       },
     ],
   },
