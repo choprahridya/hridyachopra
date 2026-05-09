@@ -18,7 +18,7 @@ const projects: Project[] = [
 const COMING_SOON_IDS = new Set(['3', '4', '5']);
 
 const projectDetails = [
-  { id: '1', title: 'Xchange', bg: '#EAE5DD', thumbnail: '/projects/1/1.png', blurb: 'A community-driven app designed to make local exchanges feel simple, fast, and trustworthy.', tags: ['Product', 'UI/UX', '2023'] },
+  { id: '1', title: 'Xchange', bg: '#EAE5DD', thumbnail: '/projects/1/1.png', blurb: 'A community-driven app designed to make local exchanges feel simple, fast, and trustworthy.', tags: ['Product', 'UI/UX', '2022'] },
   { id: '2', title: "Franklins", bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', blurb: 'A digital experience designed to reflect the calm, inviting atmosphere of a neighborhood coffee shop.', tags: ['Website Redesign', 'UI/UX', '2026'] },
   { id: '3', title: 'Cogniva', bg: '#DCE4E8', blurb: '', tags: ['Brand Identity', '2025'] },
   { id: '4', title: 'Coming Soon', bg: '#E8DCDC', blurb: '', tags: [] },
