@@ -19,7 +19,7 @@ const projects: Record<string, {
 }> = {
   '1': {
     title: 'Xchange',
-    category: 'Brand Identity',
+    category: 'Product',
     year: '2022',
     description: 'Xchange is a book exchange platform that makes reading more affordable and sustainable. By allowing users to swap already read books within a community, it reduces costs, minimizes waste, and extends the life of each book offering an eco-friendly alternative to buying new ones.',
     sections: [
