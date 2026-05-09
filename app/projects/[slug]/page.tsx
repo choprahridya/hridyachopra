@@ -68,7 +68,7 @@ const projects: Record<string, {
         heading: 'Clarity and warmth in every interaction',
         body: 'The redesign simplified navigation to three clear paths: menu, reservations, and story. A warmer colour palette and generous typography brought the in-restaurant feeling online. Mobile conversion improved significantly with a single-tap reservation flow.',
       },
-      { type: 'image', src: '/projects/2/menu.png' },
+      { type: 'image-pair', srcs: ['/projects/2/menu.png', '/projects/2/menu-mobile.png'] },
       {
         type: 'text',
         label: 'Further Steps',
