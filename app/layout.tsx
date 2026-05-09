@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Serif_Display, DM_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
-import { CustomCursor } from "@/components/CustomCursor";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const playfair = Playfair_Display({
@@ -73,7 +72,6 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: `(function(){var t=localStorage.getItem('portfolio-theme');if(t&&t!=='default')document.documentElement.setAttribute('data-theme',t);})();` }} />
       </head>
       <body className="antialiased bg-bg text-text-primary">
-        <CustomCursor />
         <Nav />
         {children}
         <ThemeToggle />
