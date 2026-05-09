@@ -54,7 +54,7 @@ const projects: Record<string, {
     year: '2026',
     description: "A full UX and visual redesign of Franklin's restaurant website — improving navigation, menu hierarchy, and mobile experience while preserving the brand's warm character.",
     sections: [
-      { type: 'image', src: '/projects/2/cover.png' },
+      { type: 'image', src: '/projects/2/cover-new.png' },
       {
         type: 'text',
         label: 'Problem',
