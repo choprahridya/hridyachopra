@@ -30,7 +30,7 @@ const projects: Record<string, {
         heading: 'A constant demand families struggle to meet',
         body: 'There is a constant demand for new books, which many families struggle to keep up with. As books are quickly outgrown, they often go unused or create waste, while many children still lack access to basic reading materials. This cycle is also environmentally unsustainable, with about one tree cut for every 62.5 books produced.',
       },
-      { type: 'image', src: '/projects/1/2.png' },
+      { type: 'image', src: '/projects/1/xhca-1.png' },
       {
         type: 'text',
         label: 'Results',
