@@ -271,10 +271,6 @@
     font-family: var(--font-serif);
   }
 
-  /* Hide custom cursor on desktop; show default on touch */
-  @media (pointer: fine) {
-    * { cursor: none !important; }
-  }
   @media (pointer: coarse) {
     * { cursor: auto !important; }
   }
