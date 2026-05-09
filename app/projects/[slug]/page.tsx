@@ -35,7 +35,7 @@ const projects: Record<string, {
         type: 'text',
         label: 'Results',
         heading: 'Real impact, measurable growth',
-        body: 'Since May 2022, Xchange has facilitated the exchange of 25,000+ books through drives and an active community. It has donated 2,000+ books, helped families save nearly $43K, and preserved around 400 trees. The initiative also raised funds for its app and gained support from platforms like YouthKiAwaaz, Plaksha University, and YouthIdeathon 2023.',
+        body: 'Since May 2022, Xchange has facilitated the exchange of 25,000+ books through drives and an active community. It has donated 2,000+ books, helped families save nearly $25K, and preserved around 400 trees. The initiative also raised funds for its app and gained support from platforms like YouthKiAwaaz, Plaksha University, and YouthIdeathon 2023.',
       },
       { type: 'image-pair', srcs: ['/projects/1/frame-4.png', '/projects/1/frame-3.png'] },
       {
