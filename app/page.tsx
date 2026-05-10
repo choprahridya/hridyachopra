@@ -10,6 +10,7 @@ import { ScatterPuzzle } from '@/components/ScatterPuzzle';
 const featuredProjects = [
   { id: '1', title: 'Xchange', category: 'Brand Identity', year: '2022', bg: '#EAE5DD', thumbnail: '/projects/1/xchange-cover.png', hoverImage: '/projects/1/xchange-hover.png' },
   { id: '2', title: "Website Redesign: Franklin's", category: 'UX / UI', year: '2024', bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', hoverImage: '/projects/2/menu.png' },
+  { id: '3', title: 'Cogniva', category: 'Product', year: '2026', bg: '#DCE4E8', thumbnail: '/projects/3/cover.png', hoverImage: '/projects/3/cover.png' },
 ];
 
 const fadeUp = {
@@ -137,7 +138,7 @@ export default function Home() {
             <h2 className="font-serif text-[var(--text-h2)] text-text-primary">Featured Work</h2>
           </RevealText>
 
-          <div className="grid grid-cols-2 gap-5 mb-10 max-w-xl">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
             {featuredProjects.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}
