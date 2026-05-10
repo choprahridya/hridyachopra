@@ -8,7 +8,7 @@ import { DividerMotif, RevealText } from '@/components/ui';
 import { ScatterPuzzle } from '@/components/ScatterPuzzle';
 
 const featuredProjects = [
-  { id: '1', title: 'Xchange', category: 'Brand Identity', year: '2022', bg: '#EAE5DD', thumbnail: '/projects/1/xchange-cover.png', hoverImage: '/projects/1/xchange-books.png' },
+  { id: '1', title: 'Xchange', category: 'Brand Identity', year: '2022', bg: '#EAE5DD', thumbnail: '/projects/1/xchange-cover.png', hoverImage: '/projects/1/xchange-hover.png' },
   { id: '2', title: "Website Redesign: Franklin's", category: 'UX / UI', year: '2024', bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', hoverImage: '/projects/2/menu.png' },
 ];
 
