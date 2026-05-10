@@ -9,6 +9,7 @@ interface Section {
   heading?: string;
   body?: string;
   callout?: string;
+  small?: boolean;
 }
 
 const projects: Record<string, {
@@ -97,13 +98,13 @@ const projects: Record<string, {
         heading: 'A companion system built for connection',
         body: 'Cogniva aims to create a social companion system tailored for nursing home environments — one that reduces emotional isolation among residents and fosters meaningful peer interaction and daily engagement without replacing human care.',
       },
+      { type: 'image-pair', srcs: ['/projects/3/robot-1.png', '/projects/3/robot-2.png'], small: true },
       {
         type: 'text',
         label: 'Features',
         heading: 'Three ways Cogniva connects',
         body: 'Life Link helps residents share personal stories and memories, building bridges between generations and peers. Bridge Mode facilitates structured social activities and conversations between residents who might not otherwise connect. Circle Connect brings small groups together around shared interests, creating a sustained sense of community within the home.',
       },
-      { type: 'image-pair', srcs: ['/projects/3/robot-1.png', '/projects/3/robot-2.png'] },
     ],
   },
 };
@@ -199,9 +200,9 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             section.type === 'text' ? (
               <TextSection key={i} section={section} />
             ) : section.type === 'image-pair' ? (
-              <div key={i} className="grid grid-cols-2 gap-4">
+              <div key={i} className={section.small ? 'flex gap-4' : 'grid grid-cols-2 gap-4'} style={section.small ? { maxWidth: '360px' } : undefined}>
                 {section.srcs?.map((src, j) => (
-                  <div key={j} className="w-full rounded-xl overflow-hidden">
+                  <div key={j} className="rounded-xl overflow-hidden flex-1">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={src} alt={`${project.title} — image ${i + 1}.${j + 1}`} className="w-full h-auto block" loading="lazy" />
                   </div>
