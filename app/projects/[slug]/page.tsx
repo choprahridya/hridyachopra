@@ -81,8 +81,28 @@ const projects: Record<string, {
     title: 'Cogniva',
     category: 'Product',
     year: '2026',
-    description: 'A socially assistive robot designed to foster meaningful connection in nursing homes.',
-    sections: [],
+    description: 'Where Care Meets Companionship — Cogniva is a socially assistive robot designed to reduce emotional isolation among nursing home residents through meaningful peer interaction and daily engagement.',
+    sections: [
+      {
+        type: 'text',
+        label: 'The Problem',
+        heading: 'Isolation is a silent crisis in care homes',
+        body: 'Limited social interaction leads to emotional isolation, which harms residents\' mental and emotional well-being. As nursing homes face growing staffing shortages, residents increasingly feel a reduced sense of belonging and community — with no scalable solution in sight.',
+        callout: '1 in 4 seniors feel socially isolated. 1 in 3 experience loneliness. 3 in 4 nursing homes report staffing shortages.',
+      },
+      {
+        type: 'text',
+        label: 'Our Goal',
+        heading: 'A companion system built for connection',
+        body: 'Cogniva aims to create a social companion system tailored for nursing home environments — one that reduces emotional isolation among residents and fosters meaningful peer interaction and daily engagement without replacing human care.',
+      },
+      {
+        type: 'text',
+        label: 'Features',
+        heading: 'Three ways Cogniva connects',
+        body: 'Life Link helps residents share personal stories and memories, building bridges between generations and peers. Bridge Mode facilitates structured social activities and conversations between residents who might not otherwise connect. Circle Connect brings small groups together around shared interests, creating a sustained sense of community within the home.',
+      },
+    ],
   },
 };
 
