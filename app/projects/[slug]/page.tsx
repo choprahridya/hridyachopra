@@ -200,7 +200,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             section.type === 'text' ? (
               <TextSection key={i} section={section} />
             ) : section.type === 'image-pair' ? (
-              <div key={i} className={section.small ? 'flex gap-4' : 'grid grid-cols-2 gap-4'} style={section.small ? { maxWidth: '360px' } : undefined}>
+              <div key={i} className={section.small ? 'flex gap-4 mx-auto' : 'grid grid-cols-2 gap-4'} style={section.small ? { maxWidth: '520px' } : undefined}>
                 {section.srcs?.map((src, j) => (
                   <div key={j} className="rounded-xl overflow-hidden flex-1">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
