@@ -10,7 +10,7 @@ import { PillTag } from '@/components/ui';
 const projects: Project[] = [
   { id: '1', title: 'Xchange', thumbnail: '/projects/1/thumb.png', color: '#E8E4DC' },
   { id: '2', title: "Franklins", thumbnail: '/projects/2/thumb.png', color: '#E4E8DC' },
-  { id: '3', title: 'Cogniva', thumbnail: '', color: '#DCE4E8' },
+  { id: '3', title: 'Cogniva', thumbnail: '/projects/3/cover.png', color: '#DCE4E8' },
   { id: '4', title: 'Coming Soon', thumbnail: '', color: '#E8DCDC' },
   { id: '5', title: 'Coming Soon', thumbnail: '', color: '#E4E8E4' },
 ];
