@@ -14,7 +14,7 @@ const skills = [
 
 const expertise = {
   Design: ['UX Design', 'Design Thinking', 'Visual Design', 'Prototyping', 'Interaction Design'],
-  Strategy: ['User Research', 'Digital Marketing', 'Content Strategy', 'Brand Identity', 'SEO'],
+  Strategy: ['User Research', 'Digital Marketing', 'Content Strategy', 'Brand Identity'],
   Technical: ['Figma', 'Adobe Suite', 'Canva', 'JavaScript', 'App Prototyping'],
 };
 
