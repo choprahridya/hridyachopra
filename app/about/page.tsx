@@ -102,7 +102,7 @@ export default function AboutPage() {
                 className="font-serif text-text-primary"
                 style={{ fontSize: 'var(--text-h1)', lineHeight: 'var(--lh-tight)' }}
               >
-                Solving real life problems using design.
+                Solving Real Life Problems Using Design.
               </h1>
               <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)] max-w-prose">
                 I work across UX design, digital marketing, and visual identity. My tools of choice
