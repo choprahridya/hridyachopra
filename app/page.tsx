@@ -135,7 +135,7 @@ export default function Home() {
       <section className="px-[--page-padding] pb-24">
         <div className="max-w-site mx-auto">
           <RevealText className="mb-10">
-            <h2 className="font-serif text-[var(--text-h1)] text-text-primary">Featured Work</h2>
+            <h2 className="font-serif text-[length:var(--text-h1)] text-text-primary">Featured Work</h2>
           </RevealText>
 
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
