@@ -5,10 +5,9 @@ interface ButtonProps {
   href?: string;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'ghost';
   className?: string;
-  external?: boolean;
-  download?: boolean;
+  arrow?: boolean;
 }
 
 export function Button({
@@ -18,51 +17,39 @@ export function Button({
   type = 'button',
   variant = 'primary',
   className = '',
-  external = false,
-  download = false,
+  arrow = false
 }: ButtonProps) {
-  const primaryStyles = `
-    inline-flex items-center gap-2 px-7 py-3
-    border border-text-primary rounded-pill
-    text-[13px] font-medium text-text-primary
-    tracking-[0.04em] bg-transparent
-    transition-colors duration-[--transition-normal]
-    hover:bg-text-primary hover:text-bg
-  `;
+  const baseStyles = 'inline-flex items-center gap-2 px-8 py-4 rounded-pill text-sm font-bold uppercase tracking-wider transition-all duration-300 relative overflow-hidden group hover:shadow-xl hover:scale-[1.02]';
 
-  const secondaryStyles = `
-    inline-flex items-center gap-2
-    text-[13px] text-text-secondary
-    transition-colors duration-[--transition-normal]
-    hover:text-text-primary border-b border-transparent
-    hover:border-text-secondary pb-px
-  `;
+  const variantStyles = {
+    primary: 'bg-accent text-white hover:shadow-[0_0_30px_var(--color-accent)] border-2 border-accent',
+    secondary: 'border-2 border-accent text-accent hover:bg-accent hover:text-white hover:shadow-[0_0_30px_var(--color-accent)]',
+    ghost: 'text-text-secondary hover:text-accent border-2 border-transparent hover:border-accent'
+  };
 
-  const styles = `${variant === 'primary' ? primaryStyles : secondaryStyles} ${className}`;
+  const content = (
+    <>
+      <span className="relative z-10">{children}</span>
+      {arrow && <span className="relative z-10 transition-transform group-hover:translate-x-1">↗</span>}
+      {variant !== 'ghost' && (
+        <span className="absolute inset-0 bg-current transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out opacity-10" />
+      )}
+    </>
+  );
+
+  const styles = `${baseStyles} ${variantStyles[variant]} ${className}`;
 
   if (href) {
-    if (download) {
-      return (
-        <a href={href} download className={styles}>
-          {children}
-        </a>
-      );
-    }
     return (
-      <Link
-        href={href}
-        className={styles}
-        target={external ? '_blank' : undefined}
-        rel={external ? 'noopener noreferrer' : undefined}
-      >
-        {children}
+      <Link href={href} className={styles}>
+        {content}
       </Link>
     );
   }
 
   return (
     <button type={type} onClick={onClick} className={styles}>
-      {children}
+      {content}
     </button>
   );
 }

@@ -60,7 +60,7 @@ export default function ProjectsPage() {
             transition={{ duration: 0.25, ease: [0.25, 0, 0, 1] }}
             className="max-w-md"
           >
-            <p className="text-[var(--text-small)] uppercase tracking-[var(--ls-wide)] text-text-muted font-sans mb-6">
+            <p className="text-[length:var(--text-small)] uppercase tracking-[var(--ls-wide)] text-text-muted font-sans mb-6">
               Selected Work
             </p>
 
@@ -146,7 +146,7 @@ export default function ProjectsPage() {
                           </div>
                         </div>
                         <div className="p-5">
-                          <p className="font-serif text-[var(--text-h3)] text-text-muted">Coming Soon</p>
+                          <p className="font-serif text-[length:var(--text-h3)] text-text-muted">Coming Soon</p>
                         </div>
                       </div>
                     ) : (
@@ -170,7 +170,7 @@ export default function ProjectsPage() {
                             )}
                           </div>
                           <div className="p-5">
-                            <p className="font-serif text-[var(--text-h3)] text-text-primary">{project.title}</p>
+                            <p className="font-serif text-[length:var(--text-h3)] text-text-primary">{project.title}</p>
                           </div>
                         </div>
                       </Link>

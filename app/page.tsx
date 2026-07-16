@@ -61,7 +61,7 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
               <span className="pill">{project.category}</span>
               <span className="text-[12px] text-text-muted">{project.year}</span>
             </div>
-            <p className="font-serif text-[var(--text-h3)] text-text-primary">{project.title}</p>
+            <p className="font-serif text-[length:var(--text-h3)] text-text-primary">{project.title}</p>
           </div>
         </div>
       </Link>
@@ -135,7 +135,7 @@ export default function Home() {
       <section className="px-[--page-padding] pb-24">
         <div className="max-w-site mx-auto">
           <RevealText className="mb-10">
-            <h2 className="font-serif text-[length:var(--text-h1)] text-text-primary">Featured Work</h2>
+            <h2 className="font-serif text-[length:35px] text-text-primary">Featured Work</h2>
           </RevealText>
 
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
@@ -172,7 +172,7 @@ export default function Home() {
           </RevealText>
 
           <RevealText delay={0.1}>
-            <h2 className="font-serif text-[var(--text-h2)] text-text-primary mb-3">Hridya Chopra</h2>
+            <h2 className="font-serif text-[length:var(--text-h2)] text-text-primary mb-3">Hridya Chopra</h2>
             <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)] mb-6 max-w-prose">
               BFA UX Design student at SCAD, on the Dean's List with a 3.6 GPA. I work across
               UX design, digital marketing, and visual identity — with a background in Figma,

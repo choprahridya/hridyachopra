@@ -1,240 +1,193 @@
 'use client';
 
-import { useState } from 'react';
-import { Footer } from '@/components/Footer';
-import { DividerMotif, RevealText, SkillRow, Button } from '@/components/ui';
+import { Heading, Eyebrow, BodyText, PillTag, Button, RevealText } from '@/components/ui';
 
-const skills = [
-  { name: 'Figma', level: 4 as const },
-  { name: 'Illustrator', level: 3 as const },
-  { name: 'Canva', level: 5 as const },
-  { name: 'Photoshop', level: 4 as const },
-  { name: 'JavaScript', level: 3 as const },
-];
-
-const expertise = {
-  Design: ['UX Design', 'Design Thinking', 'Visual Design', 'Prototyping', 'Interaction Design'],
-  Strategy: ['User Research', 'Digital Marketing', 'Content Strategy', 'Brand Identity'],
-  Technical: ['Figma', 'Adobe Suite', 'Canva', 'JavaScript', 'App Prototyping'],
+const skills = {
+  'Design': ['UI/UX Design', 'Brand Identity', 'Design Systems', 'Visual Design', 'Interaction Design'],
+  'Strategy': ['User Research', 'Information Architecture', 'Content Strategy', 'Design Thinking'],
+  'Technical': ['Prototyping', 'Responsive Design', 'Accessibility', 'Design Ops']
 };
 
+const tools = [
+  'Figma',
+  'Adobe CC',
+  'Sketch',
+  'Protopie',
+  'Framer',
+  'Miro',
+  'Notion',
+  'After Effects'
+];
+
+const socialLinks = [
+  { name: 'LinkedIn', url: 'https://linkedin.com' },
+  { name: 'Dribbble', url: 'https://dribbble.com' },
+  { name: 'Twitter', url: 'https://twitter.com' },
+  { name: 'Instagram', url: 'https://instagram.com' }
+];
+
 export default function AboutPage() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
-  const [fieldError, setFieldError] = useState('');
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    if (fieldError) setFieldError('');
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name.trim()) { setFieldError('Please enter your name.'); return; }
-    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      setFieldError('Please enter a valid email address.'); return;
-    }
-    if (!formData.message.trim()) { setFieldError('Please enter a message.'); return; }
-
-    setFieldError('');
-    setStatus('sending');
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      if (res.ok) {
-        setStatus('sent');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        const body = await res.json().catch(() => ({}));
-        setFieldError(body.error || 'Something went wrong — try emailing directly.');
-        setStatus('error');
-      }
-    } catch {
-      setStatus('error');
-    }
-  };
-
   return (
-    <main className="min-h-screen flex flex-col bg-bg pt-16">
+    <main className="min-h-screen bg-bg pt-32 pb-24 px-8 md:px-16 lg:px-24">
+      <div className="max-w-7xl mx-auto">
+        {/* Hero */}
+        <RevealText>
+          <Eyebrow className="mb-6 text-accent">
+            About Me ★
+          </Eyebrow>
+          <Heading level={1} className="mb-16 max-w-4xl">
+            Designer crafting
+            <br />
+            <span className="text-accent">
+              bold experiences
+            </span>
+          </Heading>
+        </RevealText>
 
-      {/* ── Hero ── */}
-      <section className="px-[--page-padding] pt-10 pb-10">
-        <div className="max-w-site mx-auto">
-
-          {/* "About" label at top */}
-          <RevealText className="mb-14">
-            <p className="text-[var(--text-small)] uppercase tracking-[var(--ls-wide)] text-text-muted font-sans">
-              About
-            </p>
-          </RevealText>
-
-          {/* Two-column content */}
-          <div className="grid md:grid-cols-[auto_1fr] gap-10 md:gap-16 items-start">
-
-          {/* Left — photo + identity */}
-          <RevealText>
-            <div className="flex flex-col items-start gap-4">
-              <div className="w-36 h-36 rounded-full overflow-hidden">
-                <img src="/about-hridya.jpg" alt="Hridya Chopra" className="w-full h-full object-cover" style={{ objectPosition: '50% 15%' }} />
+        {/* Two-column layout */}
+        <div className="grid md:grid-cols-2 gap-16 lg:gap-24 mb-24">
+          {/* Left column - Bio */}
+          <div>
+            <RevealText delay={0.1}>
+              <div className="space-y-6">
+                <BodyText size="lg" className="text-text-secondary leading-relaxed">
+                  I'm a UI/UX & brand designer who believes great work happens at the intersection
+                  of <span className="text-accent">empathy</span>,
+                  <span className="text-accent"> craft</span>, and
+                  <span className="text-accent"> strategy</span>.
+                </BodyText>
+                <BodyText size="lg" className="text-text-secondary leading-relaxed">
+                  With over 5 years of experience, I've helped startups and established companies
+                  create meaningful digital experiences that scale and evolve.
+                </BodyText>
+                <BodyText size="lg" className="text-text-secondary leading-relaxed">
+                  When I'm not designing, you'll find me exploring new coffee shops, reading about
+                  design history, or experimenting with generative art.
+                </BodyText>
               </div>
-              <div>
-                <p className="font-serif text-[20px] text-text-primary leading-tight">Hridya Chopra</p>
-                <p className="text-[13px] text-text-secondary mt-0.5">UX Designer · SCAD '29</p>
-              </div>
-              <a
-                href="https://www.linkedin.com/in/hridyachopra"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[13px] text-text-secondary hover:text-text-primary transition-colors border-b border-transparent hover:border-text-secondary pb-px"
-              >
-                LinkedIn →
-              </a>
-            </div>
-          </RevealText>
-
-          {/* Right — heading + bio */}
-          <RevealText delay={0.1}>
-            <div className="flex flex-col gap-5">
-              <h1
-                className="font-serif text-text-primary"
-                style={{ fontSize: 'var(--text-h1)', lineHeight: 'var(--lh-tight)' }}
-              >
-                Solving Real Life Problems Using Design.
-              </h1>
-              <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)] max-w-prose">
-                I work across UX design, digital marketing, and visual identity. My tools of choice
-                are Figma, Illustrator, and Photoshop. Always looking for projects where good
-                design genuinely changes something.
-              </p>
-            </div>
-          </RevealText>
-
+            </RevealText>
           </div>
-        </div>
-      </section>
 
-      <DividerMotif />
-
-      {/* ── Skills ── */}
-      <section className="px-[--page-padding] py-12">
-        <div className="max-w-site mx-auto">
-          <RevealText className="mb-8">
-            <p className="text-[var(--text-small)] uppercase tracking-[var(--ls-wide)] text-text-muted font-sans mb-2">
-              Skills &amp; Expertise
-            </p>
-            <h2 className="font-serif text-[var(--text-h2)] text-text-primary">What I do</h2>
-          </RevealText>
-
-          <div className="grid md:grid-cols-[2fr_1fr] gap-12 items-start">
-            {/* Expertise pills */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {Object.entries(expertise).map(([category, skillList], i) => (
-                <RevealText key={category} delay={i * 0.08}>
-                  <h3 className="font-serif text-[var(--text-h3)] text-text-primary mb-3">{category}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {skillList.map((skill) => (
-                      <span key={skill} className="pill">{skill}</span>
-                    ))}
-                  </div>
-                </RevealText>
-              ))}
-            </div>
-
-            {/* Tool bars */}
+          {/* Right column - Small circular photo */}
+          <div>
             <RevealText delay={0.2}>
-              <p className="text-[var(--text-small)] uppercase tracking-[var(--ls-wide)] text-text-muted font-sans mb-4">
-                Tools
-              </p>
-              {skills.map((skill) => (
-                <SkillRow key={skill.name} name={skill.name} level={skill.level} />
-              ))}
+              <div className="relative w-48 h-48">
+                {/* Soft blue glow */}
+                <div className="absolute -inset-2 rounded-full opacity-30 blur-xl"
+                     style={{
+                       background: `linear-gradient(135deg, var(--color-accent), var(--color-text-secondary))`
+                     }}
+                />
+
+                {/* Photo placeholder */}
+                <div className="relative w-48 h-48 bg-bg-card rounded-full overflow-hidden border-4 border-accent">
+                  <div className="absolute inset-0 flex items-center justify-center text-text-muted text-sm text-center px-4">
+                    [Portrait photo]
+                  </div>
+                </div>
+              </div>
             </RevealText>
           </div>
         </div>
-      </section>
 
-      <DividerMotif />
+        {/* Skills section */}
+        <RevealText delay={0.3}>
+          <div className="mb-24">
+            <Eyebrow className="mb-8 text-accent">
+              Skills & Expertise
+            </Eyebrow>
 
-      {/* ── Contact ── */}
-      <section id="contact" className="px-[--page-padding] py-14">
-        <div className="max-w-site mx-auto grid md:grid-cols-2 gap-16 items-start">
+            <div className="grid md:grid-cols-3 gap-8">
+              {Object.entries(skills).map(([category, skillList]) => (
+                <div key={category} className="p-8 rounded-xl border-2 border-border bg-bg-card hover:border-accent transition-all duration-300 hover:scale-[1.02]">
+                  <h3 className="font-serif text-2xl mb-6 text-accent">
+                    {category}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {skillList.map((skill) => (
+                      <PillTag key={skill}>{skill}</PillTag>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </RevealText>
 
-          {/* Left — heading + email */}
-          <RevealText>
-            <p className="text-[var(--text-small)] uppercase tracking-[var(--ls-wide)] text-text-muted font-sans mb-4">
-              Get in Touch
-            </p>
-            <h2 className="font-serif text-[var(--text-h2)] text-text-primary mb-6">
-              Let's work together
-            </h2>
-            <a
-              href="mailto:choprahridya@gmail.com"
-              className="font-serif text-[22px] text-accent hover:opacity-80 transition-opacity block"
-            >
-              choprahridya@gmail.com →
-            </a>
-          </RevealText>
-
-          {/* Right — form */}
-          <RevealText delay={0.1}>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-[13px] text-text-secondary mb-1.5">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your name"
-                  className="w-full px-4 py-3 bg-bg-card border border-border rounded-md text-[14px] text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-dark transition-colors"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-[13px] text-text-secondary mb-1.5">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="your.email@example.com"
-                  className="w-full px-4 py-3 bg-bg-card border border-border rounded-md text-[14px] text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-dark transition-colors"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-[13px] text-text-secondary mb-1.5">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  placeholder="Tell me about your project..."
-                  className="w-full px-4 py-3 bg-bg-card border border-border rounded-md text-[14px] text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-dark transition-colors resize-none"
-                />
-              </div>
-              {fieldError && (
-                <p className="text-[13px] text-red-500">{fieldError}</p>
-              )}
-              <div className="flex items-center gap-4 flex-wrap">
-                <button
-                  type="submit"
-                  disabled={status === 'sending' || status === 'sent'}
-                  className="inline-flex items-center gap-2 px-7 py-3 border border-text-primary rounded-pill text-[13px] font-medium text-text-primary tracking-[0.04em] transition-colors hover:bg-text-primary hover:text-bg disabled:opacity-50 disabled:cursor-not-allowed"
+        {/* Tools */}
+        <RevealText delay={0.4}>
+          <div className="mb-24">
+            <Eyebrow className="mb-8 text-accent">
+              Tools I Love
+            </Eyebrow>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {tools.map((tool) => (
+                <div
+                  key={tool}
+                  className="px-6 py-4 rounded-lg font-bold text-sm uppercase tracking-wider text-center text-accent bg-accent-light transition-all hover:scale-105 hover:shadow-xl"
                 >
-                  {status === 'sending' ? 'Sending…' : status === 'sent' ? 'Sent ✓' : 'Send Message →'}
-                </button>
-              </div>
-            </form>
+                  {tool}
+                </div>
+              ))}
+            </div>
+          </div>
+        </RevealText>
+
+        {/* How I work - card contrast */}
+        <div className="bg-bg-card rounded-2xl p-12 md:p-16 mb-24 border-4 border-accent">
+          <RevealText delay={0.5}>
+            <Eyebrow className="mb-6 text-accent">
+              How I Work
+            </Eyebrow>
+            <h2 className="font-serif text-4xl md:text-5xl mb-8 text-text-primary">
+              Collaboration over ego.
+              <br />
+              Outcomes over outputs.
+            </h2>
+            <BodyText className="text-text-secondary leading-relaxed mb-6 text-lg">
+              I believe in iteration over perfection. My process is flexible but always starts
+              with understanding the problem deeply before jumping to solutions.
+            </BodyText>
+            <BodyText className="text-text-secondary leading-relaxed text-lg">
+              I work best in environments that value curiosity, experimentation, and thoughtful critique.
+              I'm comfortable wearing multiple hats and bridging the gap between design, product, and engineering.
+            </BodyText>
           </RevealText>
         </div>
-      </section>
 
-      <Footer />
+        {/* Bottom CTA section */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <RevealText delay={0.6}>
+            <div>
+              <Button href="/cv.pdf" arrow>
+                Download CV
+              </Button>
+            </div>
+          </RevealText>
+
+          <RevealText delay={0.7}>
+            <div>
+              <Eyebrow className="mb-4 text-accent">
+                Connect
+              </Eyebrow>
+              <div className="flex flex-wrap gap-4">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-text-secondary hover:text-accent transition-colors font-medium relative group text-sm"
+                  >
+                    {link.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </RevealText>
+        </div>
+      </div>
     </main>
   );
 }
