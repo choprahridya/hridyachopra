@@ -1,6 +1,6 @@
 'use client';
 
-import { Heading, Eyebrow, BodyText, PillTag, RevealText } from '@/components/ui';
+import { PillTag, RevealText } from '@/components/ui';
 
 const skills = [
   'UX Research',
@@ -22,144 +22,184 @@ const tools = [
   'Keyshot'
 ];
 
-const socialLinks = [
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/hridyachopra' }
+const education = [
+  {
+    period: '2025 - 2029',
+    school: 'SCAD (Savannah College of Art and Design)',
+    detail: "BFA UX Design · 3.77 GPA (Dean's List)"
+  },
+  {
+    period: '2019 - 2025',
+    school: 'HXLS (Heritage Xperiential Learning School)',
+    detail: 'PCM (CBSE) · Grade 12: 88%, Grade 10: 86%'
+  }
+];
+
+const experience = [
+  {
+    period: 'June 2026 - Present',
+    role: 'UX Design Intern',
+    company: 'Ixigo',
+    description: "Designed wireframes & high-fidelity interfaces for airport cab booking experiences, including Live Activity notifications, ensuring consistency with Ixigo's design system."
+  },
+  {
+    period: 'Apr - Jun 2025',
+    role: 'Social Media Intern',
+    company: 'Social Panga',
+    description: 'Designed user-focused social media assets aligned with brand guidelines, improving engagement consistency across clients.'
+  }
 ];
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-bg pt-32 pb-24 px-8 md:px-16 lg:px-24">
-      <div className="max-w-7xl mx-auto">
-        {/* Hero - heading left, small photo aligned top-right */}
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 mb-16">
-          <RevealText className="flex-1">
-            <Eyebrow className="mb-6 text-accent">
-              About Me ★
-            </Eyebrow>
-            <Heading level={1}>
-              Designer crafting{' '}
-              <span className="text-accent">
-                bold experiences
-              </span>
-            </Heading>
-          </RevealText>
+      <div className="max-w-7xl mx-auto grid md:grid-cols-[300px_1fr] gap-16 lg:gap-24">
 
-          <RevealText delay={0.2}>
-            <div className="relative w-32 h-32 md:w-40 md:h-40 shrink-0">
-              {/* Soft blue glow */}
-              <div className="absolute -inset-2 rounded-full opacity-30 blur-xl"
-                   style={{
-                     background: `linear-gradient(135deg, var(--color-accent), var(--color-text-secondary))`
-                   }}
-              />
+        {/* Left column - photo, contact, skills */}
+        <div>
+          <RevealText>
+            <div className="relative w-full max-w-[260px]">
+              {/* Decorative star accent */}
+              <svg className="absolute -bottom-3 -right-3 z-10" width="40" height="40" viewBox="0 0 24 24" fill="var(--color-accent)">
+                <path d="M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z" />
+              </svg>
 
-              {/* Photo placeholder */}
-              <div className="relative w-full h-full bg-bg-card rounded-full overflow-hidden border-4 border-accent">
-                <div className="absolute inset-0 flex items-center justify-center text-text-muted text-xs text-center px-2">
-                  [Portrait photo]
-                </div>
+              {/* Photo */}
+              <div className="relative aspect-[3/4] bg-bg-card rounded-2xl overflow-hidden border-2 border-border">
+                <img src="/about-portrait.jpg" alt="Hridya Chopra" className="w-full h-full object-cover" />
               </div>
             </div>
           </RevealText>
-        </div>
 
-        {/* Bio */}
-        <RevealText delay={0.1}>
-          <div className="space-y-6 max-w-2xl mb-24">
-            <BodyText size="lg" className="text-text-secondary leading-relaxed">
-              I'm a BFA UX Design student at <span className="text-accent">SCAD</span>, currently
-              interning as a <span className="text-accent">UX Design Intern at Ixigo</span>, where
-              I design wireframes and high-fidelity interfaces for airport cab booking experiences.
-            </BodyText>
-            <BodyText size="lg" className="text-text-secondary leading-relaxed">
-              Outside of coursework, I co-founded <span className="text-accent">KitabX</span>, a
-              book exchange movement that's exchanged 25,000+ books, saved $50K+ and 400+ trees,
-              and been recognized by IIT Kanpur, Plaksha University, and Youth Ki Awaaz.
-            </BodyText>
-            <BodyText size="lg" className="text-text-secondary leading-relaxed">
-              I hold a Google UX Design Professional Certificate and I'm always looking for
-              projects where good design genuinely changes something.
-            </BodyText>
-          </div>
-        </RevealText>
-
-        {/* Skills section */}
-        <RevealText delay={0.3}>
-          <div className="mb-24">
-            <Eyebrow className="mb-8 text-accent">
-              Skills & Expertise
-            </Eyebrow>
-
-            <div className="flex flex-wrap gap-3">
-              {skills.map((skill) => (
-                <PillTag key={skill}>{skill}</PillTag>
-              ))}
-            </div>
-          </div>
-        </RevealText>
-
-        {/* Tools */}
-        <RevealText delay={0.4}>
-          <div className="mb-24">
-            <Eyebrow className="mb-8 text-accent">
-              Tools I Love
-            </Eyebrow>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {tools.map((tool) => (
-                <div
-                  key={tool}
-                  className="px-6 py-4 rounded-lg font-bold text-sm uppercase tracking-wider text-center text-accent bg-accent-light transition-all hover:scale-105 hover:shadow-xl"
+          {/* Contact */}
+          <RevealText delay={0.1}>
+            <div className="mt-8 space-y-2 text-[length:var(--text-body)]">
+              <p className="text-text-secondary">
+                <span className="font-bold text-text-primary">Phone: </span>
+                +1 912 220 4951
+              </p>
+              <p className="text-text-secondary">
+                <span className="font-bold text-text-primary">Email: </span>
+                choprahridya@gmail.com
+              </p>
+              <p className="text-text-secondary">
+                <span className="font-bold text-text-primary">LinkedIn: </span>
+                <a
+                  href="https://www.linkedin.com/in/hridyachopra"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent transition-colors"
                 >
-                  {tool}
-                </div>
-              ))}
+                  hridyachopra
+                </a>
+              </p>
             </div>
-          </div>
-        </RevealText>
-
-        {/* How I work - card contrast */}
-        <div className="bg-bg-card rounded-2xl p-12 md:p-16 mb-24 border-4 border-accent">
-          <RevealText delay={0.5}>
-            <Eyebrow className="mb-6 text-accent">
-              How I Work
-            </Eyebrow>
-            <h2 className="font-serif text-4xl md:text-5xl mb-8 text-text-primary">
-              Collaboration over ego.
-              <br />
-              Outcomes over outputs.
-            </h2>
-            <BodyText className="text-text-secondary leading-relaxed mb-6 text-lg">
-              I believe in iteration over perfection. My process is flexible but always starts
-              with understanding the problem deeply before jumping to solutions.
-            </BodyText>
-            <BodyText className="text-text-secondary leading-relaxed text-lg">
-              I work best in environments that value curiosity, experimentation, and thoughtful critique.
-              I'm comfortable wearing multiple hats and bridging the gap between design, product, and engineering.
-            </BodyText>
           </RevealText>
-        </div>
 
-        {/* Bottom CTA section */}
-        <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
-          <RevealText delay={0.7}>
-            <div>
-              <Eyebrow className="mb-4 text-accent">
-                Connect
-              </Eyebrow>
-              <div className="flex flex-wrap gap-4">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-text-secondary hover:text-accent transition-colors font-medium relative group text-sm"
-                  >
-                    {link.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300" />
-                  </a>
+          {/* Skills */}
+          <RevealText delay={0.2}>
+            <div className="mt-10">
+              <p className="text-[length:var(--text-small)] font-bold uppercase tracking-[0.08em] text-accent mb-4">
+                Skills
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill) => (
+                  <PillTag key={skill}>{skill}</PillTag>
                 ))}
               </div>
+            </div>
+          </RevealText>
+
+          {/* Tools */}
+          <RevealText delay={0.3}>
+            <div className="mt-10">
+              <p className="text-[length:var(--text-small)] font-bold uppercase tracking-[0.08em] text-accent mb-4">
+                Tools
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {tools.map((tool) => (
+                  <PillTag key={tool}>{tool}</PillTag>
+                ))}
+              </div>
+            </div>
+          </RevealText>
+        </div>
+
+        {/* Right column - about, education, experience */}
+        <div>
+          {/* About Me */}
+          <RevealText>
+            <h2 className="font-serif text-[length:var(--text-h2)] text-accent mb-6">
+              About Me
+            </h2>
+            <div className="border-l-4 border-border-dark pl-6 space-y-4 mb-16">
+              <p className="font-sans text-[length:var(--text-body)] text-text-secondary leading-relaxed">
+                I'm a BFA UX Design student at SCAD, currently interning as a UX Design Intern at
+                Ixigo, where I design wireframes and high-fidelity interfaces for airport cab
+                booking experiences.
+              </p>
+              <p className="font-sans text-[length:var(--text-body)] text-text-secondary leading-relaxed">
+                Outside of coursework, I co-founded KitabX, a book exchange movement that's
+                exchanged 25,000+ books, saved $50K+ and 400+ trees, and been recognized by IIT
+                Kanpur, Plaksha University, and Youth Ki Awaaz.
+              </p>
+              <p className="font-sans text-[length:var(--text-body)] text-text-secondary leading-relaxed">
+                I hold a Google UX Design Professional Certificate and I'm always looking for
+                projects where good design genuinely changes something.
+              </p>
+            </div>
+          </RevealText>
+
+          {/* Education */}
+          <RevealText delay={0.1}>
+            <h2 className="font-serif text-[length:var(--text-h2)] text-accent mb-8">
+              Education
+            </h2>
+            <div className="border-l-2 border-border space-y-8 mb-16">
+              {education.map((item) => (
+                <div key={item.school} className="pl-6 relative">
+                  <span className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-accent" />
+                  <p className="text-[length:var(--text-pill)] uppercase tracking-wide text-text-muted mb-1">{item.period}</p>
+                  <p className="font-serif text-[length:var(--text-h3)] text-text-primary">{item.school}</p>
+                  <p className="text-[length:var(--text-small)] text-text-secondary">{item.detail}</p>
+                </div>
+              ))}
+            </div>
+          </RevealText>
+
+          {/* Experience */}
+          <RevealText delay={0.2}>
+            <h2 className="font-serif text-[length:var(--text-h2)] text-accent mb-8">
+              Experience
+            </h2>
+            <div className="border-l-2 border-border space-y-8">
+              {experience.map((item) => (
+                <div key={item.company} className="pl-6 relative">
+                  <span className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-accent" />
+                  <p className="text-[length:var(--text-pill)] uppercase tracking-wide text-text-muted mb-1">{item.period}</p>
+                  <p className="font-serif text-[length:var(--text-h3)] text-text-primary">{item.role}</p>
+                  <p className="text-[length:var(--text-small)] text-accent italic mb-2">{item.company}</p>
+                  <p className="text-[length:var(--text-small)] text-text-secondary leading-relaxed">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </RevealText>
+
+          {/* Connect */}
+          <RevealText delay={0.3}>
+            <div className="mt-16 pt-12 border-t border-border">
+              <h2 className="font-serif text-[length:var(--text-h2)] text-accent mb-3">
+                Want to connect?
+              </h2>
+              <p className="text-text-secondary mb-6 max-w-prose">
+                Always happy to talk design, opportunities, or anything in between.
+              </p>
+              <a
+                href="mailto:choprahridya@gmail.com"
+                className="font-serif text-[22px] text-accent hover:opacity-80 transition-opacity"
+              >
+                choprahridya@gmail.com →
+              </a>
             </div>
           </RevealText>
         </div>
