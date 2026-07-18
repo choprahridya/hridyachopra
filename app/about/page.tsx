@@ -1,6 +1,7 @@
 'use client';
 
 import { PillTag, RevealText } from '@/components/ui';
+import { Footer } from '@/components/Footer';
 
 const skills = [
   'UX Research',
@@ -52,8 +53,10 @@ const experience = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-bg pt-32 pb-24 px-8 md:px-16 lg:px-24">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-[300px_1fr] gap-16 lg:gap-24">
+    <main className="min-h-screen flex flex-col bg-bg">
+      <section className="flex-1 flex flex-col justify-center min-h-screen px-8 md:px-16 lg:px-24 pt-32 pb-24">
+      <div className="max-w-7xl mx-auto w-full">
+      <div className="grid md:grid-cols-[300px_1fr] gap-16 lg:gap-24">
 
         {/* Left column - photo, contact, skills */}
         <div>
@@ -99,7 +102,7 @@ export default function AboutPage() {
           {/* Skills */}
           <RevealText delay={0.2}>
             <div className="mt-10">
-              <p className="text-[length:var(--text-small)] font-bold uppercase tracking-[0.08em] text-accent mb-4">
+              <p className="text-[length:var(--text-small)] font-extrabold uppercase tracking-[0.08em] text-accent mb-4">
                 Skills
               </p>
               <div className="flex flex-wrap gap-2">
@@ -113,7 +116,7 @@ export default function AboutPage() {
           {/* Tools */}
           <RevealText delay={0.3}>
             <div className="mt-10">
-              <p className="text-[length:var(--text-small)] font-bold uppercase tracking-[0.08em] text-accent mb-4">
+              <p className="text-[length:var(--text-small)] font-extrabold uppercase tracking-[0.08em] text-accent mb-4">
                 Tools
               </p>
               <div className="flex flex-wrap gap-2">
@@ -184,10 +187,16 @@ export default function AboutPage() {
               ))}
             </div>
           </RevealText>
+        </div>
+      </div>
+      </div>
+      </section>
 
-          {/* Connect */}
+      {/* Connect - full width section, own div from the footer */}
+      <section className="px-8 md:px-16 lg:px-24">
+        <div className="max-w-7xl mx-auto w-full">
           <RevealText delay={0.3}>
-            <div className="mt-16 pt-12 border-t border-border">
+            <div className="mt-8 pt-12 border-t border-border pb-24">
               <h2 className="font-serif text-[length:var(--text-h2)] text-accent mb-3">
                 Want to connect?
               </h2>
@@ -203,7 +212,9 @@ export default function AboutPage() {
             </div>
           </RevealText>
         </div>
-      </div>
+      </section>
+
+      <Footer />
     </main>
   );
 }
