@@ -103,6 +103,7 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
 
   const handleWheel = (e: WheelEvent) => {
     e.preventDefault();
+    setHasInteracted(true);
     const delta = e.deltaY * 0.05;
     setRotation((prev) => prev + delta);
     setVelocity((prev) => prev + delta * 0.15);
@@ -216,7 +217,7 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
         <circle cx={r} cy={r} r={r * 0.075} fill="#0A0908" stroke="#333" strokeWidth="1" />
       </motion.svg>
 
-      {/* Rotate hint — arc curved along disc edge, fades on first drag */}
+      {/* Rotate hint — arc curved along disc edge, stays visible permanently */}
       {(() => {
         const pad = 28;
         const cx = r + pad;
@@ -232,13 +233,7 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
         // sweep=1 clockwise, large-arc=0 (130° < 180°)
         const d = `M ${x1.toFixed(2)},${y1.toFixed(2)} A ${arcR},${arcR} 0 0,1 ${x2.toFixed(2)},${y2.toFixed(2)}`;
         return (
-          <motion.div
-            className="absolute pointer-events-none"
-            style={{ top: -pad, left: -pad }}
-            initial={{ opacity: 0.85 }}
-            animate={{ opacity: hasInteracted ? 0 : 0.85 }}
-            transition={{ duration: 1.4, delay: hasInteracted ? 0.2 : 0 }}
-          >
+          <div className="absolute pointer-events-none" style={{ top: -pad, left: -pad }}>
             <svg width={size + pad * 2} height={size + pad * 2} style={{ display: 'block' }}>
               <defs>
                 <marker id="discArrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
@@ -253,6 +248,48 @@ export function Disc({ projects, onActiveProjectChange, size = 420 }: DiscProps)
                 strokeLinecap="round"
                 markerEnd="url(#discArrow)"
               />
+            </svg>
+          </div>
+        );
+      })()}
+
+      {/* Text hint — curves along the disc rim, above the arrow, fades on first interaction */}
+      {(() => {
+        const pad = 28;
+        const cx = r + pad;
+        const cy = r + pad;
+        const textR = r + 16; // same radius as the arrow's arc, so they read as one continuous curve
+        // curves from upper-right down toward the arrow at 0°
+        const startAngle = -35 * (Math.PI / 180);
+        const endAngle   =  -7.5 * (Math.PI / 180);
+        const x1 = cx + textR * Math.cos(startAngle);
+        const y1 = cy + textR * Math.sin(startAngle);
+        const x2 = cx + textR * Math.cos(endAngle);
+        const y2 = cy + textR * Math.sin(endAngle);
+        const d = `M ${x1.toFixed(2)},${y1.toFixed(2)} A ${textR},${textR} 0 0,1 ${x2.toFixed(2)},${y2.toFixed(2)}`;
+        return (
+          <motion.div
+            className="absolute pointer-events-none"
+            style={{ top: -pad, left: -pad }}
+            initial={{ opacity: 0.85 }}
+            animate={{ opacity: hasInteracted ? 0 : 0.85 }}
+            transition={{ duration: 1.4, delay: hasInteracted ? 0.2 : 0 }}
+          >
+            <svg width={size + pad * 2} height={size + pad * 2} style={{ overflow: 'visible', display: 'block' }}>
+              <defs>
+                <path id="hintTextArc" d={d} fill="none" />
+              </defs>
+              <text
+                className="font-sans"
+                fontSize="12"
+                letterSpacing="1.6"
+                fill="rgba(140,130,115,0.9)"
+                style={{ textTransform: 'uppercase' }}
+              >
+                <textPath href="#hintTextArc" startOffset="0%">
+                  Drag or scroll to explore
+                </textPath>
+              </text>
             </svg>
           </motion.div>
         );

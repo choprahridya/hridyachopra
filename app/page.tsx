@@ -174,9 +174,10 @@ export default function Home() {
           <RevealText delay={0.1}>
             <h2 className="font-serif text-[length:var(--text-h2)] text-text-primary mb-3">Hridya Chopra</h2>
             <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)] mb-6 max-w-prose">
-              BFA UX Design student at SCAD, on the Dean's List with a 3.6 GPA. I work across
-              UX design, digital marketing, and visual identity — with a background in Figma,
-              Illustrator, and Photoshop. Always looking for work where design actually matters.
+              BFA UX Design student at SCAD, on the Dean's List with a 3.77 GPA. Currently a UX
+              Design Intern at Ixigo, working across UX research, wireframing, and prototyping —
+              with a background in Figma, Illustrator, and Photoshop. Always looking for work
+              where design actually matters.
             </p>
             <div className="flex gap-4 flex-wrap">
               <Link

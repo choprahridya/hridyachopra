@@ -77,9 +77,13 @@ export function Nav() {
             <a
               href="/cv.pdf"
               download
-              className="text-[13px] uppercase tracking-[0.1em] text-text-secondary hover:text-text-primary transition-colors"
+              className="group text-[13px] uppercase tracking-[0.1em] text-text-secondary hover:text-text-primary transition-colors"
             >
               Resume
+              <span
+                className="block h-px bg-text-primary mt-0.5 w-0 group-hover:w-full"
+                style={{ transition: 'width 0.3s cubic-bezier(0.25, 0, 0, 1)' }}
+              />
             </a>
           </div>
 

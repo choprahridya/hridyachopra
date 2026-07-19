@@ -62,13 +62,8 @@ export default function AboutPage() {
         <div>
           <RevealText>
             <div className="relative w-full max-w-[260px]">
-              {/* Decorative star accent */}
-              <svg className="absolute -bottom-3 -right-3 z-10" width="40" height="40" viewBox="0 0 24 24" fill="var(--color-accent)">
-                <path d="M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z" />
-              </svg>
-
               {/* Photo */}
-              <div className="relative aspect-[3/4] bg-bg-card rounded-2xl overflow-hidden border-2 border-border">
+              <div className="relative aspect-[3/4] bg-bg-card rounded-2xl overflow-hidden border-2 border-border transition-all duration-300 hover:scale-105 hover:border-accent hover:shadow-lg">
                 <img src="/about-portrait.jpg" alt="Hridya Chopra" className="w-full h-full object-cover" />
               </div>
             </div>
@@ -102,7 +97,7 @@ export default function AboutPage() {
           {/* Skills */}
           <RevealText delay={0.2}>
             <div className="mt-10">
-              <p className="text-[length:var(--text-small)] font-extrabold uppercase tracking-[0.08em] text-accent mb-4">
+              <p className="text-[length:var(--text-small)] font-extrabold uppercase tracking-[0.08em] text-text-primary mb-4">
                 Skills
               </p>
               <div className="flex flex-wrap gap-2">
@@ -116,7 +111,7 @@ export default function AboutPage() {
           {/* Tools */}
           <RevealText delay={0.3}>
             <div className="mt-10">
-              <p className="text-[length:var(--text-small)] font-extrabold uppercase tracking-[0.08em] text-accent mb-4">
+              <p className="text-[length:var(--text-small)] font-extrabold uppercase tracking-[0.08em] text-text-primary mb-4">
                 Tools
               </p>
               <div className="flex flex-wrap gap-2">
@@ -137,18 +132,17 @@ export default function AboutPage() {
             </h2>
             <div className="border-l-4 border-border-dark pl-6 space-y-4 mb-16">
               <p className="font-sans text-[length:var(--text-body)] text-text-secondary leading-relaxed">
-                I'm a BFA UX Design student at SCAD, currently interning as a UX Design Intern at
-                Ixigo, where I design wireframes and high-fidelity interfaces for airport cab
-                booking experiences.
+                I got into design because I like solving problems that actually matter to people —
+                not just making something look good, but making it <span className="text-accent">work better</span> for
+                whoever has to use it.
               </p>
               <p className="font-sans text-[length:var(--text-body)] text-text-secondary leading-relaxed">
-                Outside of coursework, I co-founded KitabX, a book exchange movement that's
-                exchanged 25,000+ books, saved $50K+ and 400+ trees, and been recognized by IIT
-                Kanpur, Plaksha University, and Youth Ki Awaaz.
+                I care about the kind of design that creates change you can actually measure, not just
+                a polished mockup — something that shows up in how people's day-to-day actually improves.
               </p>
               <p className="font-sans text-[length:var(--text-body)] text-text-secondary leading-relaxed">
-                I hold a Google UX Design Professional Certificate and I'm always looking for
-                projects where good design genuinely changes something.
+                What keeps me curious is the process itself — research, prototyping, testing, repeat —
+                and figuring out what makes an experience feel obvious in hindsight.
               </p>
             </div>
           </RevealText>

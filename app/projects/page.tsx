@@ -95,9 +95,10 @@ export default function ProjectsPage() {
 
               <button
                 onClick={handleShowGrid}
-                className="inline-flex items-center gap-2 px-7 py-3 text-[13px] font-medium text-text-secondary tracking-[0.04em] transition-colors hover:text-text-primary"
+                className="group relative inline-flex items-center gap-2 px-7 py-3 text-[13px] font-medium text-text-secondary tracking-[0.04em] transition-colors hover:text-text-primary"
               >
                 All Projects ↓
+                <span className="absolute -bottom-0.5 left-7 right-7 h-px bg-text-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </button>
             </div>
           </motion.div>
