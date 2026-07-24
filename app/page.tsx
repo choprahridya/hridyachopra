@@ -8,9 +8,9 @@ import { DividerMotif, RevealText } from '@/components/ui';
 import { ScatterPuzzle } from '@/components/ScatterPuzzle';
 
 const featuredProjects = [
-  { id: '1', title: 'Xchange', category: 'Brand Identity', year: '2022', bg: '#EAE5DD', thumbnail: '/projects/1/xchange-cover.png', hoverImage: '/projects/1/xchange-hover.png' },
-  { id: '2', title: "Website Redesign: Franklin's", category: 'UX / UI', year: '2024', bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', hoverImage: '/projects/2/menu.png' },
-  { id: '3', title: 'Cogniva', category: 'Product', year: '2026', bg: '#DCE4E8', thumbnail: '/projects/3/cover.png', hoverImage: '/projects/3/hover.png' },
+  { id: '1', title: 'Xchange', category: 'Brand Identity', year: '2022', bg: '#EAE5DD', thumbnail: '/projects/1/xchange-cover.png', hoverImage: '/projects/1/xchange-hover.png', blurb: 'A community-driven app designed to make local exchanges feel simple, fast, and trustworthy.' },
+  { id: '2', title: "Website Redesign: Franklin's", category: 'UX / UI', year: '2024', bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', hoverImage: '/projects/2/menu.png', blurb: 'A digital experience designed to reflect the calm, inviting atmosphere of a neighborhood coffee shop.' },
+  { id: '3', title: 'Cogniva', category: 'Product', year: '2026', bg: '#DCE4E8', thumbnail: '/projects/3/cover.png', hoverImage: '/projects/3/hover.png', blurb: 'A socially assistive robot designed to foster meaningful connection in nursing homes.' },
 ];
 
 const fadeUp = {
@@ -34,7 +34,7 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
         onMouseLeave={() => setHovered(false)}
       >
         {/* Card */}
-        <div className="w-full rounded-md overflow-hidden border border-border transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
+        <div className="w-full rounded-md overflow-hidden border border-border transition-all duration-300 group-hover:-translate-y-1 group-hover:border-accent group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
           <div className="relative w-full overflow-hidden" style={{ aspectRatio: '3/2' }}>
             {/* Original image */}
             <img
@@ -54,6 +54,23 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
                 loading="lazy"
               />
             )}
+
+            {/* Detail scrim — appears on the thumbnail itself on hover */}
+            <div
+              className="absolute inset-0 flex flex-col justify-end p-4 transition-opacity duration-300"
+              style={{
+                opacity: hovered ? 1 : 0,
+                background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 55%, transparent 100%)',
+              }}
+            >
+              {project.blurb && (
+                <p className="text-[13px] text-white/90 leading-relaxed mb-2">{project.blurb}</p>
+              )}
+              <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-white">
+                View Case Study
+                <span className="transition-transform group-hover:translate-x-0.5">→</span>
+              </span>
+            </div>
           </div>
 
           <div className="p-5 bg-bg-card">
@@ -174,10 +191,10 @@ export default function Home() {
           <RevealText delay={0.1}>
             <h2 className="font-serif text-[length:var(--text-h2)] text-text-primary mb-3">Hridya Chopra</h2>
             <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)] mb-6 max-w-prose">
-              BFA UX Design student at SCAD, on the Dean's List with a 3.77 GPA. Currently a UX
-              Design Intern at Ixigo, working across UX research, wireframing, and prototyping —
-              with a background in Figma, Illustrator, and Photoshop. Always looking for work
-              where design actually matters.
+              I'm a UX designer who enjoys turning complex problems into intuitive experiences.
+              Currently interning at Ixigo while studying UX Design at SCAD, I love working across
+              research, interaction design, and prototyping to create products people genuinely
+              enjoy using.
             </p>
             <div className="flex gap-4 flex-wrap">
               <Link

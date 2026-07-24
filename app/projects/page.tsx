@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { Disc, type Project } from '@/components/Disc';
@@ -18,24 +19,47 @@ const projects: Project[] = [
 const COMING_SOON_IDS = new Set(['4', '5']);
 
 const projectDetails = [
-  { id: '1', title: 'Xchange', bg: '#EAE5DD', thumbnail: '/projects/1/1.png', blurb: 'A community-driven app designed to make local exchanges feel simple, fast, and trustworthy.', tags: ['Product', 'UI/UX', '2022'] },
-  { id: '2', title: "Franklins", bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', blurb: 'A digital experience designed to reflect the calm, inviting atmosphere of a neighborhood coffee shop.', tags: ['Website Redesign', 'UI/UX', '2026'] },
-  { id: '3', title: 'Cogniva', bg: '#DCE4E8', blurb: 'A socially assistive robot designed to foster meaningful connection in nursing homes.', tags: ['Product', 'UI/UX', '2026'] },
+  { id: '1', title: 'Xchange', bg: '#EAE5DD', thumbnail: '/projects/1/xchange-cover.png', hoverImage: '/projects/1/xchange-hover.png', blurb: 'A community-driven app designed to make local exchanges feel simple, fast, and trustworthy.', tags: ['Product', 'UI/UX', '2022'] },
+  { id: '2', title: "Franklins", bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', hoverImage: '/projects/2/menu.png', blurb: 'A digital experience designed to reflect the calm, inviting atmosphere of a neighborhood coffee shop.', tags: ['Website Redesign', 'UI/UX', '2026'] },
+  { id: '3', title: 'Cogniva', bg: '#DCE4E8', thumbnail: '/projects/3/cover.png', hoverImage: '/projects/3/hover.png', blurb: 'A socially assistive robot designed to foster meaningful connection in nursing homes.', tags: ['Product', 'UI/UX', '2026'] },
   { id: '4', title: 'Coming Soon', bg: '#E8DCDC', blurb: '', tags: [] },
   { id: '5', title: 'Coming Soon', bg: '#E4E8E4', blurb: '', tags: [] },
 ];
 
 export default function ProjectsPage() {
+  return (
+    <Suspense fallback={null}>
+      <ProjectsPageContent />
+    </Suspense>
+  );
+}
+
+function ProjectsPageContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [activeProject, setActiveProject] = useState(projects[0]);
-  const [showGrid, setShowGrid] = useState(false);
+  const [showGrid, setShowGrid] = useState(() => searchParams.get('view') === 'grid');
   const gridRef = useRef<HTMLDivElement>(null);
 
   const isComingSoon = COMING_SOON_IDS.has(activeProject.id);
   const activeDetail = projectDetails.find(p => p.id === activeProject.id);
 
+  useEffect(() => {
+    if (showGrid) {
+      gridRef.current?.scrollIntoView({ behavior: 'auto' });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleShowGrid = () => {
     setShowGrid(true);
+    router.replace('/projects?view=grid', { scroll: false });
     setTimeout(() => gridRef.current?.scrollIntoView({ behavior: 'smooth' }), 50);
+  };
+
+  const handleCloseGrid = () => {
+    setShowGrid(false);
+    router.replace('/projects', { scroll: false });
   };
 
   return (
@@ -121,7 +145,7 @@ export default function ProjectsPage() {
                   All Projects
                 </h2>
                 <button
-                  onClick={() => setShowGrid(false)}
+                  onClick={handleCloseGrid}
                   className="text-[13px] text-text-muted hover:text-text-primary transition-colors tracking-[0.04em]"
                 >
                   ✕ Close
@@ -152,23 +176,58 @@ export default function ProjectsPage() {
                       </div>
                     ) : (
                       <Link href={`/projects/${project.id}`} className="group block">
-                        <div className="rounded-md overflow-hidden border border-border bg-bg-card transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
+                        <div className="rounded-md overflow-hidden border border-border bg-bg-card transition-all duration-300 group-hover:-translate-y-1 group-hover:border-accent group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
                           <div
-                            className="w-full overflow-hidden"
+                            className="relative w-full overflow-hidden"
                             style={{ aspectRatio: '3/2', background: `var(--disc-color-${index + 1})` }}
                           >
                             {(project as typeof project & { thumbnail?: string }).thumbnail ? (
-                              <img
-                                src={(project as typeof project & { thumbnail?: string }).thumbnail}
-                                alt={project.title}
-                                className="w-full h-full object-cover"
-                                loading="lazy"
-                              />
+                              <>
+                                <img
+                                  src={(project as typeof project & { thumbnail?: string }).thumbnail}
+                                  alt={project.title}
+                                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0"
+                                  loading="lazy"
+                                />
+                                {(project as typeof project & { hoverImage?: string }).hoverImage && (
+                                  <img
+                                    src={(project as typeof project & { hoverImage?: string }).hoverImage}
+                                    alt={`${project.title} preview`}
+                                    className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                                    loading="lazy"
+                                  />
+                                )}
+                              </>
                             ) : (
                               <div className="w-full h-full flex items-center justify-center font-serif text-text-muted text-sm">
                                 {project.title}
                               </div>
                             )}
+
+                            {/* Detail scrim — appears on the thumbnail itself on hover, no layout shift */}
+                            <div
+                              className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                              style={{
+                                background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 55%, transparent 100%)',
+                              }}
+                            >
+                              {project.tags.length > 0 && (
+                                <div className="flex gap-2 flex-wrap mb-2">
+                                  {project.tags.map(tag => (
+                                    <span key={tag} className="px-2.5 py-1 rounded text-[10px] uppercase tracking-wide font-medium text-white bg-white/15 backdrop-blur-sm">
+                                      {tag}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                              {project.blurb && (
+                                <p className="text-[13px] text-white/90 leading-relaxed mb-2">{project.blurb}</p>
+                              )}
+                              <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-white">
+                                View Case Study
+                                <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                              </span>
+                            </div>
                           </div>
                           <div className="p-5">
                             <p className="font-serif text-[length:var(--text-h3)] text-text-primary">{project.title}</p>
