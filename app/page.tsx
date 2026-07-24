@@ -8,9 +8,9 @@ import { DividerMotif, RevealText } from '@/components/ui';
 import { ScatterPuzzle } from '@/components/ScatterPuzzle';
 
 const featuredProjects = [
-  { id: '1', title: 'Xchange', category: 'Brand Identity', year: '2022', bg: '#EAE5DD', thumbnail: '/projects/1/xchange-cover.png', hoverImage: '/projects/1/xchange-hover.png', blurb: 'A community-driven app designed to make local exchanges feel simple, fast, and trustworthy.' },
-  { id: '2', title: "Website Redesign: Franklin's", category: 'UX / UI', year: '2024', bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', hoverImage: '/projects/2/menu.png', blurb: 'A digital experience designed to reflect the calm, inviting atmosphere of a neighborhood coffee shop.' },
-  { id: '3', title: 'Cogniva', category: 'Product', year: '2026', bg: '#DCE4E8', thumbnail: '/projects/3/cover.png', hoverImage: '/projects/3/hover.png', blurb: 'A socially assistive robot designed to foster meaningful connection in nursing homes.' },
+  { id: '1', title: 'Xchange', tags: ['Product', 'UI/UX', '2022'], bg: '#EAE5DD', thumbnail: '/projects/1/xchange-cover.png', hoverImage: '/projects/1/xchange-hover.png', blurb: 'A community-driven app designed to make local exchanges feel simple, fast, and trustworthy.' },
+  { id: '2', title: "Website Redesign: Franklin's", tags: ['Website Redesign', 'UI/UX', '2026'], bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', hoverImage: '/projects/2/menu.png', blurb: 'A digital experience designed to reflect the calm, inviting atmosphere of a neighborhood coffee shop.' },
+  { id: '3', title: 'Cogniva', tags: ['Product', 'UI/UX', '2026'], bg: '#DCE4E8', thumbnail: '/projects/3/cover.png', hoverImage: '/projects/3/hover.png', blurb: 'A socially assistive robot designed to foster meaningful connection in nursing homes.' },
 ];
 
 const fadeUp = {
@@ -64,12 +64,11 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
               }}
             >
               <div className="flex gap-2 flex-wrap mb-2">
-                <span className="px-2.5 py-1 rounded text-[10px] uppercase tracking-wide font-medium text-white bg-white/15 backdrop-blur-sm">
-                  {project.category}
-                </span>
-                <span className="px-2.5 py-1 rounded text-[10px] uppercase tracking-wide font-medium text-white bg-white/15 backdrop-blur-sm">
-                  {project.year}
-                </span>
+                {project.tags.map((tag) => (
+                  <span key={tag} className="px-2.5 py-1 rounded text-[10px] uppercase tracking-wide font-medium text-white bg-white/15 backdrop-blur-sm">
+                    {tag}
+                  </span>
+                ))}
               </div>
               {project.blurb && (
                 <p className="text-[13px] text-white/90 leading-relaxed mb-2">{project.blurb}</p>
@@ -83,8 +82,8 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
 
           <div className="p-5 bg-bg-card">
             <div className="flex items-center gap-2 mb-2">
-              <span className="pill">{project.category}</span>
-              <span className="text-[12px] text-text-muted">{project.year}</span>
+              <span className="pill">{project.tags[0]}</span>
+              <span className="text-[12px] text-text-muted">{project.tags[2]}</span>
             </div>
             <p className="font-serif text-[length:var(--text-h3)] text-text-primary">{project.title}</p>
           </div>
