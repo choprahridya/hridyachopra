@@ -35,7 +35,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "hridyachopra — UI/UX & Brand Designer",
+  title: "hridyachopra | UI/UX & Brand Designer",
   description: "UI/UX & brand designer crafting considered digital experiences. Portfolio showcasing brand identity, user experience design, and digital strategy work.",
   keywords: ["UI/UX Designer", "Brand Designer", "Portfolio", "User Experience", "Visual Design"],
   authors: [{ name: "Hridya Chopra" }],
@@ -44,13 +44,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://hridyachopra.com",
-    title: "hridyachopra — UI/UX & Brand Designer",
+    title: "hridyachopra | UI/UX & Brand Designer",
     description: "UI/UX & brand designer crafting considered digital experiences",
     siteName: "hridyachopra Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "hridyachopra — UI/UX & Brand Designer",
+    title: "hridyachopra | UI/UX & Brand Designer",
     description: "UI/UX & brand designer crafting considered digital experiences",
   },
 };

@@ -23,34 +23,40 @@ const projects: Record<string, {
     title: 'Xchange',
     category: 'Product',
     year: '2022',
-    description: 'Xchange is a book exchange platform that makes reading more affordable and sustainable. By allowing users to swap already read books within a community, it reduces costs, minimizes waste, and extends the life of each book offering an eco-friendly alternative to buying new ones.',
+    description: 'Xchange is a community-driven book exchange platform that makes reading more affordable and sustainable. By enabling people to exchange books instead of buying new ones, it reduces costs, minimizes waste, and extends the life of every book.',
     sections: [
       { type: 'image', src: '/projects/1/xchange-books.png' },
       {
         type: 'text',
         label: 'Problem',
         heading: 'A constant demand families struggle to meet',
-        body: 'There is a constant demand for new books, which many families struggle to keep up with. As books are quickly outgrown, they often go unused or create waste, while many children still lack access to basic reading materials. This cycle is also environmentally unsustainable, with about one tree cut for every 62.5 books produced.',
+        body: 'Children quickly outgrow books, creating a constant demand that many families struggle to afford. As books sit unused on shelves or are discarded, thousands of reusable books go to waste while others still lack access to reading materials. This cycle is also environmentally unsustainable, with roughly one tree used to produce every 62.5 books.',
       },
       { type: 'image', src: '/projects/1/xhca-1.png' },
       {
         type: 'text',
         label: 'Solution',
         heading: 'A community-first exchange platform',
-        body: 'Xchange connects nearby book owners so they can swap titles instead of buying new ones. Users list the books they\'re done with, browse what\'s available in their community, and arrange a swap — turning a one-time purchase into a book that keeps circulating instead of sitting unused on a shelf.',
+        body: 'Xchange connects nearby readers, allowing them to exchange books instead of purchasing new ones. Users list books they\'ve finished, discover titles available within their community, and arrange swaps, keeping books in circulation instead of letting them collect dust.',
+      },
+      {
+        type: 'text',
+        label: 'My Role',
+        heading: 'Co-Founder, leading design end to end',
+        body: 'I co-founded Xchange and led the end-to-end visual design and user experience, from early concept through the mobile app prototype in Figma.',
       },
       {
         type: 'text',
         label: 'Result',
         heading: 'Real impact, measurable growth',
-        body: 'Since May 2022, Xchange has facilitated the exchange of 25,000+ books through drives and an active community. It has donated 2,000+ books, helped families save nearly $25K, and preserved around 400 trees. The initiative also raised funds for its app and gained support from platforms like YouthKiAwaaz, Plaksha University, and YouthIdeathon 2023.',
+        body: 'Since launching in May 2022, Xchange has facilitated the exchange of over 25,000 books through community drives and its growing network. The initiative has donated 2,000+ books, helped families save nearly $25,000, preserved approximately 400 trees, and secured funding to support app development. It has also been recognized by Youth Ki Awaaz, Plaksha University, and Youth Ideathon 2023.',
       },
-      { type: 'image-pair', srcs: ['/projects/1/frame-4.png', '/projects/1/frame-3.png'] },
+      { type: 'image-pair', srcs: ['/projects/1/frame-3.png', '/projects/1/frame-4.png'] },
       {
         type: 'text',
         label: 'Conclusion',
         heading: 'Recognition and what comes next',
-        body: 'Xchange has been recognized by IIT Kanpur, Plaksha University, Youth Ideathon, and Youth Ki Awaaz for its impact-driven approach to sustainable book sharing. The project continues to evolve, with ongoing efforts focused on expanding its reach and improving the user experience.',
+        body: 'Xchange continues to evolve as both a social initiative and a digital product. The next phase focuses on expanding the community, improving the exchange experience, and working toward our goal of exchanging one million books by 2028.',
         callout: 'Our goal is to Xchange a Million Books by 2028.',
       },
     ],
@@ -59,34 +65,40 @@ const projects: Record<string, {
     title: "Website Redesign: Franklin's",
     category: 'UX / UI',
     year: '2026',
-    description: "A full UX and visual redesign of Franklin's restaurant website — improving navigation, menu hierarchy, and mobile experience while preserving the brand's warm character.",
+    description: "A full UX and visual redesign of Franklin's restaurant website, improving navigation, menu hierarchy, and the mobile experience while preserving the restaurant's warm, welcoming identity.",
     sections: [
       { type: 'image', src: '/projects/2/cover-new.png' },
       {
         type: 'text',
         label: 'Problem',
         heading: 'A website that didn\'t reflect the experience',
-        body: 'Franklin\'s is a beloved local restaurant with a warm, welcoming atmosphere — but the old website felt cluttered and hard to navigate. Customers struggled to find the menu, make reservations, or understand the brand. Mobile experience was particularly poor.',
+        body: 'Franklin\'s is a beloved local restaurant with a warm, welcoming atmosphere, but its website felt cluttered and difficult to navigate. Customers struggled to find the menu, make reservations, and learn about the restaurant, while the mobile experience lacked usability and visual consistency.',
       },
       { type: 'image-pair', srcs: ['/projects/2/franklins-1.png', '/projects/2/journey-map.png'] },
       {
         type: 'text',
         label: 'Solution',
         heading: 'Clarity and warmth in every interaction',
-        body: 'The redesign simplified navigation to three clear paths: menu, reservations, and story. A warmer colour palette and generous typography brought the in-restaurant feeling online, with a single-tap reservation flow designed mobile-first.',
+        body: "The redesign simplified the experience into three primary actions: view the menu, make a reservation, and explore the restaurant's story. A warmer visual language, improved typography, and a mobile-first layout created a more intuitive experience, while a streamlined reservation flow reduced friction.",
+      },
+      {
+        type: 'text',
+        label: 'My Role',
+        heading: 'UX Designer',
+        body: 'Led the redesign of the menu page, improving navigation, content hierarchy, and mobile usability, while collaborating on the design and refinement of the remaining website pages to create a cohesive user experience.',
       },
       { type: 'image-pair', srcs: ['/projects/2/menu.png', '/projects/2/menu-mobile.png'] },
       {
         type: 'text',
         label: 'Result',
-        heading: 'A smoother path from browsing to booking',
-        body: 'Mobile conversion improved significantly with the streamlined single-tap reservation flow, and customers could finally find the menu and reserve a table without fighting the old site\'s clutter.',
+        heading: 'A simpler, more intuitive user experience',
+        body: 'The redesigned experience makes it easier for users to browse the menu, book a table, and explore the restaurant with fewer steps and clearer navigation. The mobile-first approach improves accessibility and creates a more seamless experience across devices.',
       },
       {
         type: 'text',
         label: 'Conclusion',
-        heading: 'Online ordering and loyalty, next',
-        body: 'The next phase introduces an online ordering system and a loyalty programme page — keeping the same warm, unhurried design language that makes Franklin\'s feel like a place worth returning to.',
+        heading: 'Building on the experience',
+        body: "This redesign demonstrates how thoughtful UX and visual design can transform a restaurant's digital presence. Future iterations could introduce online ordering, loyalty features, and accessibility improvements while maintaining Franklin's warm and welcoming identity.",
       },
     ],
   },
@@ -94,34 +106,40 @@ const projects: Record<string, {
     title: 'Cogniva',
     category: 'Product',
     year: '2026',
-    description: 'Where Care Meets Companionship — Cogniva is a socially assistive robot designed to reduce emotional isolation among nursing home residents through meaningful peer interaction and daily engagement.',
+    description: 'Cogniva is a socially assistive companion system designed to reduce emotional isolation among nursing home residents through meaningful peer interaction, shared experiences, and daily engagement.',
     sections: [
       { type: 'image', src: '/projects/3/cover.png' },
       {
         type: 'text',
         label: 'Problem',
         heading: 'Isolation is a silent crisis in care homes',
-        body: 'Limited social interaction leads to emotional isolation, which harms residents\' mental and emotional well-being. As nursing homes face growing staffing shortages, residents increasingly feel a reduced sense of belonging and community — with no scalable solution in sight.',
-        callout: '1 in 4 seniors feel socially isolated. 1 in 3 experience loneliness. 3 in 4 nursing homes report staffing shortages.',
+        body: 'Limited social interaction contributes to emotional isolation, negatively affecting residents\' mental and emotional well-being. At the same time, nursing homes continue to face staffing shortages, making it difficult to provide consistent social engagement at scale.',
+        callout: '1 in 4 older adults experience social isolation. 1 in 3 report feelings of loneliness. 3 in 4 nursing homes report staffing shortages.',
       },
       {
         type: 'text',
         label: 'Solution',
         heading: 'A companion system built for connection',
-        body: 'Cogniva is a social companion system tailored for nursing home environments, built around three ways of connecting. Life Link helps residents share personal stories and memories, building bridges between generations and peers. Bridge Mode facilitates structured social activities and conversations between residents who might not otherwise connect. Circle Connect brings small groups together around shared interests — reducing emotional isolation without replacing human care.',
+        body: 'Cogniva is a socially assistive companion system designed to foster meaningful connections in nursing homes through three core experiences. Life Link enables residents to preserve and share personal stories, strengthening connections across generations and with fellow residents. Bridge Mode encourages one-on-one conversations and guided social activities between residents. Circle Connect brings together small groups with shared interests, creating opportunities for regular social interaction without replacing human care.',
+      },
+      {
+        type: 'text',
+        label: 'My Role',
+        heading: 'UX Designer (Team of 4)',
+        body: "Conducted user research, contributed to concept development, designed user flows and interfaces, created high-fidelity prototypes in Figma, and collaborated with teammates to define Cogniva's core interaction experiences for the SCAD StartUp Competition.",
       },
       { type: 'image-pair', srcs: ['/projects/3/robot-1.png', '/projects/3/robot-2.png'], small: true },
       {
         type: 'text',
         label: 'Result',
         heading: 'Recognized for its potential',
-        body: 'Cogniva earned 3rd place and a $2,000 scholarship at SCAD StartUp, validating the concept\'s potential to address a real, scalable gap in elder care.',
+        body: "Cogniva was awarded 3rd place at the SCAD StartUp Competition, where our four-member team received a $2,000 scholarship in recognition of the concept's innovation and potential to address emotional isolation in elder care.",
       },
       {
         type: 'text',
         label: 'Conclusion',
-        heading: 'Still a concept, with real appetite behind it',
-        body: 'Cogniva remains a concept, but the recognition confirmed genuine interest in scalable, non-invasive companionship tools for care settings. Next steps include prototyping the physical form factor and testing Life Link, Bridge Mode, and Circle Connect with real residents.',
+        heading: 'From concept to future impact',
+        body: 'While Cogniva is currently a concept, the recognition from the SCAD StartUp Competition validated both the problem and the proposed solution. Future work includes developing a functional prototype, refining the physical interaction experience, and testing Life Link, Bridge Mode, and Circle Connect with nursing home residents to evaluate usability and real-world impact.',
       },
     ],
   },
@@ -227,7 +245,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 {section.srcs?.map((src, j) => (
                   <div key={j} className="rounded-xl overflow-hidden flex-1">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={src} alt={`${project.title} — image ${i + 1}.${j + 1}`} className="w-full h-auto block" loading="lazy" />
+                    <img src={src} alt={`${project.title} image ${i + 1}.${j + 1}`} className="w-full h-auto block" loading="lazy" />
                   </div>
                 ))}
               </div>
@@ -236,7 +254,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={section.src}
-                  alt={`${project.title} — image ${i + 1}`}
+                  alt={`${project.title} image ${i + 1}`}
                   className="w-full h-auto block"
                   loading={i === 0 ? 'eager' : 'lazy'}
                 />

@@ -132,16 +132,16 @@ export default function AboutPage() {
             </h2>
             <div className="border-l-4 border-border-dark pl-6 space-y-4 mb-16">
               <p className="font-sans text-[length:var(--text-body)] text-text-secondary leading-relaxed">
-                I got into design because I like solving problems that actually matter to people —
+                I got into design because I like solving problems that actually matter to people,
                 not just making something look good, but making it <span className="text-accent">work better</span> for
                 whoever has to use it.
               </p>
               <p className="font-sans text-[length:var(--text-body)] text-text-secondary leading-relaxed">
                 I care about the kind of design that creates change you can actually measure, not just
-                a polished mockup — something that shows up in how people's day-to-day actually improves.
+                a polished mockup, something that shows up in how people's day-to-day actually improves.
               </p>
               <p className="font-sans text-[length:var(--text-body)] text-text-secondary leading-relaxed">
-                What keeps me curious is the process itself — research, prototyping, testing, repeat —
+                What keeps me curious is the process itself: research, prototyping, testing, repeat,
                 and figuring out what makes an experience feel obvious in hindsight.
               </p>
             </div>
