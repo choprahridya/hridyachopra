@@ -63,6 +63,14 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
                 background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 55%, transparent 100%)',
               }}
             >
+              <div className="flex gap-2 flex-wrap mb-2">
+                <span className="px-2.5 py-1 rounded text-[10px] uppercase tracking-wide font-medium text-white bg-white/15 backdrop-blur-sm">
+                  {project.category}
+                </span>
+                <span className="px-2.5 py-1 rounded text-[10px] uppercase tracking-wide font-medium text-white bg-white/15 backdrop-blur-sm">
+                  {project.year}
+                </span>
+              </div>
               {project.blurb && (
                 <p className="text-[13px] text-white/90 leading-relaxed mb-2">{project.blurb}</p>
               )}
