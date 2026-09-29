@@ -12,7 +12,7 @@ const projects: Project[] = [
   { id: '1', title: 'Xchange', thumbnail: '/projects/1/thumb.png', color: '#E8E4DC' },
   { id: '2', title: "Franklins", thumbnail: '/projects/2/thumb.png', color: '#E4E8DC' },
   { id: '3', title: 'Cogniva', thumbnail: '/projects/3/thumb.png', color: '#DCE4E8' },
-  { id: '4', title: 'ixigo', thumbnail: '', color: '#E8DCDC' },
+  { id: '4', title: 'ixigo', thumbnail: '/projects/4/thumb.png', color: '#E8DCDC' },
   { id: '5', title: 'Coming Soon', thumbnail: '', color: '#E4E8E4' },
 ];
 
@@ -22,7 +22,7 @@ const projectDetails = [
   { id: '1', title: 'Xchange', bg: '#EAE5DD', thumbnail: '/projects/1/xchange-cover.png', hoverImage: '/projects/1/xchange-hover.png', blurb: 'A community-driven app designed to make local exchanges feel simple, fast, and trustworthy.', tags: ['Product', 'UI/UX', '2022'] },
   { id: '2', title: "Franklins", bg: '#DDE5EA', thumbnail: '/projects/2/cover.png', hoverImage: '/projects/2/menu.png', blurb: 'A digital experience designed to reflect the calm, inviting atmosphere of a neighborhood coffee shop.', tags: ['Website Redesign', 'UI/UX', '2026'] },
   { id: '3', title: 'Cogniva', bg: '#DCE4E8', thumbnail: '/projects/3/cover.png', hoverImage: '/projects/3/hover.png', blurb: 'A socially assistive robot designed to foster meaningful connection in nursing homes.', tags: ['Product', 'UI/UX', '2026'] },
-  { id: '4', title: 'ixigo', bg: '#E8DCDC', blurb: "Wireframes and high-fidelity interfaces for ixigo's airport cab booking flow, including Live Activity notifications.", tags: ['Product', 'UI/UX', '2026'] },
+  { id: '4', title: 'ixigo', bg: '#E8DCDC', thumbnail: '/projects/4/cover.png', blurb: "Wireframes and high-fidelity interfaces for ixigo's airport cab booking flow, including Live Activity notifications.", tags: ['Product', 'UI/UX', '2026'] },
   { id: '5', title: 'Coming Soon', bg: '#E4E8E4', blurb: '', tags: [] },
 ];
 
