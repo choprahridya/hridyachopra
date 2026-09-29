@@ -38,7 +38,7 @@ const education = [
 
 const experience = [
   {
-    period: 'June 2026 - Present',
+    period: 'June - Aug 2026',
     role: 'UX Design Intern',
     company: 'Ixigo',
     description: "Designed wireframes & high-fidelity interfaces for airport cab booking experiences, including Live Activity notifications, ensuring consistency with Ixigo's design system."
