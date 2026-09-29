@@ -199,9 +199,9 @@ export default function Home() {
             <h2 className="font-serif text-[length:var(--text-h2)] text-text-primary mb-3">Hridya Chopra</h2>
             <p className="text-[15px] text-text-secondary leading-[var(--lh-loose)] mb-6 max-w-prose">
               I'm a UX designer who enjoys turning complex problems into intuitive experiences.
-              Currently interning at Ixigo while studying UX Design at SCAD, I love working across
-              research, interaction design, and prototyping to create products people genuinely
-              enjoy using.
+              I recently interned at Ixigo while studying UX Design at SCAD, and I love working
+              across research, interaction design, and prototyping to create products people
+              genuinely enjoy using.
             </p>
             <div className="flex gap-4 flex-wrap">
               <Link
