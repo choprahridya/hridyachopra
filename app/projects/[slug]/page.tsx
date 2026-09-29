@@ -143,6 +143,32 @@ const projects: Record<string, {
       },
     ],
   },
+  '4': {
+    title: 'ixigo',
+    category: 'UI/UX',
+    year: '2026',
+    description: "Designed wireframes and high-fidelity interfaces for ixigo's airport cab booking flow, including Live Activity notifications, built within ixigo's existing design system.",
+    sections: [
+      {
+        type: 'text',
+        label: 'Scope',
+        heading: 'Airport cab booking, wireframe to high fidelity',
+        body: "The work covered the airport cab booking flow within the ixigo app, from early wireframes through high-fidelity screens ready for handoff.",
+      },
+      {
+        type: 'text',
+        label: 'Live Activity',
+        heading: 'Real-time status without opening the app',
+        body: "Live Activity notifications were designed to give riders visibility into their cab booking status directly from the lock screen, without needing to open the app.",
+      },
+      {
+        type: 'text',
+        label: 'Design System',
+        heading: "Built within ixigo's design system",
+        body: "Screens were designed to follow ixigo's existing design system, keeping the new flow visually and interactionally consistent with the rest of the product.",
+      },
+    ],
+  },
 };
 
 function TextSection({ section }: { section: Section }) {
