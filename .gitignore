@@ -1,0 +1,10 @@
+node_modules
+dist
+.vercel
+.env*
+!.env.example
+.DS_Store
+*.tmp
+
+# Dashboard/lab automatic save snapshots: local recovery only (Git commits are the durable history)
+authoring/history/

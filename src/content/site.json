@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 2,
+  "identity": {
+    "name": "Hridya Chopra",
+    "discipline": "UX Designer",
+    "statement": {
+      "lead": "Solving problems",
+      "emphasis": "through design."
+    }
+  },
+  "meta": {
+    "home": {
+      "title": "Hridya Chopra — UX Designer",
+      "description": "Hridya Chopra, UX designer — solving problems through design."
+    },
+    "work": {
+      "title": "Work — Hridya Chopra",
+      "description": "UX projects and case studies by Hridya Chopra."
+    },
+    "about": {
+      "title": "About — Hridya Chopra",
+      "description": "About Hridya Chopra, UX designer."
+    }
+  },
+  "home": {
+    "intro": {
+      "text": "[One or two sentences on the kind of problems you like to work on and who you design for.]",
+      "scaffold": true
+    },
+    "featured": [
+      "project-01",
+      "project-02"
+    ]
+  },
+  "about": {
+    "intro": {
+      "text": "[Introduce your practice, the work you enjoy making and what you want to explore next.]",
+      "scaffold": true
+    },
+    "bio": {
+      "text": "[A short paragraph in your own words — how you came to UX, what you care about when you design, what you're studying.]",
+      "scaffold": true
+    },
+    "sections": [
+      {
+        "id": "education",
+        "title": "Education",
+        "items": [
+          {
+            "text": "[School · Programme · Years]",
+            "scaffold": true
+          }
+        ],
+        "hidden": false
+      },
+      {
+        "id": "experience",
+        "title": "Experience",
+        "items": [
+          {
+            "text": "[Role · Organisation · Years]",
+            "scaffold": true
+          }
+        ],
+        "hidden": false
+      },
+      {
+        "id": "tools",
+        "title": "Tools & methods",
+        "items": [
+          {
+            "text": "[e.g. the research methods and tools you actually use]",
+            "scaffold": true
+          }
+        ],
+        "hidden": false
+      }
+    ],
+    "portrait": {
+      "src": "",
+      "alt": "Portrait of Hridya Chopra",
+      "caption": "",
+      "fit": "cover",
+      "ratio": "4 / 5",
+      "label": "Portrait · 4:5"
+    }
+  },
+  "contact": {
+    "email": "",
+    "linkedin": "",
+    "resume": ""
+  },
+  "projects": [
+    {
+      "id": "project-01",
+      "slug": "project-01",
+      "format": "ux-case-study",
+      "scaffold": true,
+      "title": "[Project title 01]",
+      "summary": "[One sentence about what this project is and why it matters.]",
+      "tags": [
+        "[Discipline]",
+        "[Year]"
+      ],
+      "meta": {
+        "role": "[Your individual contribution]",
+        "timeline": "[Duration · Year]",
+        "team": "[Collaborators and their roles]",
+        "context": "[Course, internship or self-initiated]"
+      },
+      "sections": [
+        {
+          "id": "overview",
+          "label": "Overview",
+          "body": "[What the project is, who it was for and what you set out to change.]",
+          "hidden": false
+        },
+        {
+          "id": "context",
+          "label": "Context",
+          "body": "[The situation and constraints you started from.]",
+          "hidden": false
+        },
+        {
+          "id": "contribution",
+          "label": "My contribution",
+          "body": "[Describe your individual contribution, separate from the team's.]",
+          "hidden": false
+        },
+        {
+          "id": "decisions",
+          "label": "Key decisions",
+          "body": "[Explain one decision and the evidence behind it.]",
+          "media": {
+            "src": "",
+            "alt": "",
+            "caption": "",
+            "fit": "cover",
+            "ratio": "4 / 3",
+            "label": "Decision artefact · 4:3"
+          },
+          "hidden": false
+        },
+        {
+          "id": "evidence",
+          "label": "Evidence & iteration",
+          "body": "[What you tested or observed, and what changed because of it.]",
+          "media": {
+            "src": "",
+            "alt": "",
+            "caption": "",
+            "fit": "cover",
+            "ratio": "16 / 9",
+            "label": "Iteration comparison · 16:9"
+          },
+          "hidden": false
+        },
+        {
+          "id": "reflection",
+          "label": "Reflection",
+          "body": "[What you'd do differently, and what you learned.]",
+          "hidden": false
+        }
+      ],
+      "cover": {
+        "src": "",
+        "alt": "",
+        "caption": "",
+        "fit": "cover",
+        "ratio": "16 / 9",
+        "label": "Project cover · 16:9"
+      },
+      "hidden": false,
+      "redirectFrom": []
+    },
+    {
+      "id": "project-02",
+      "slug": "project-02",
+      "format": "ux-case-study",
+      "scaffold": true,
+      "title": "[Project title 02]",
+      "summary": "[One sentence about what this project is and why it matters.]",
+      "tags": [
+        "[Discipline]",
+        "[Year]"
+      ],
+      "meta": {
+        "role": "[Your individual contribution]",
+        "timeline": "[Duration · Year]",
+        "team": "[Collaborators and their roles]",
+        "context": "[Course, internship or self-initiated]"
+      },
+      "sections": [
+        {
+          "id": "overview",
+          "label": "Overview",
+          "body": "[What the project is, who it was for and what you set out to change.]",
+          "hidden": false
+        },
+        {
+          "id": "context",
+          "label": "Context",
+          "body": "[The situation and constraints you started from.]",
+          "hidden": false
+        },
+        {
+          "id": "contribution",
+          "label": "My contribution",
+          "body": "[Describe your individual contribution, separate from the team's.]",
+          "hidden": false
+        },
+        {
+          "id": "decisions",
+          "label": "Key decisions",
+          "body": "[Explain one decision and the evidence behind it.]",
+          "media": {
+            "src": "",
+            "alt": "",
+            "caption": "",
+            "fit": "cover",
+            "ratio": "4 / 3",
+            "label": "Decision artefact · 4:3"
+          },
+          "hidden": false
+        },
+        {
+          "id": "reflection",
+          "label": "Reflection",
+          "body": "[What you'd do differently, and what you learned.]",
+          "hidden": false
+        }
+      ],
+      "cover": {
+        "src": "",
+        "alt": "",
+        "caption": "",
+        "fit": "cover",
+        "ratio": "16 / 9",
+        "label": "Project cover · 16:9"
+      },
+      "hidden": false,
+      "redirectFrom": []
+    }
+  ]
+}
