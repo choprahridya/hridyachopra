@@ -1,13 +1,13 @@
 {
   "schemaVersion": 2,
   "colors": {
-    "bg": "#F7F8F7",
-    "surface": "#FDFDFD",
+    "bg": "#F3F8FE",
+    "surface": "#FBFDFF",
     "ink": "#21395E",
     "muted": "#566783",
     "accent": "#17459F",
     "accentSoft": "#DDE7FA",
-    "line": "#DBDEE0"
+    "line": "#D7DEE8"
   },
   "type": {
     "heroMinRem": 3.6,
@@ -27,6 +27,7 @@
   "variants": {
     "heroLayout": "carousel",
     "hero": "split",
-    "workPreview": "cursor"
+    "workPreview": "cursor",
+    "ripples": "on"
   }
 }

@@ -29,6 +29,8 @@ export const SETTINGS = [
     options: [['type', 'Name, statement & introduction'], ['carousel', 'Name & project carousel only']] },
   { id: 'variants.hero', group: 'Layout variants', label: 'Hero arrangement', type: 'select', scope: 'desktop', target: 'Name, statement & introduction version (phones always stack)',
     options: [['split', 'Statement on the right'], ['stacked', 'Everything left-aligned']] },
+  { id: 'variants.ripples', group: 'Layout variants', label: 'Ripples when clicking the background', type: 'select', scope: 'all', target: 'Every page (not on links, buttons or the carousel)',
+    options: [['off', 'Off'], ['on', 'On']] },
   { id: 'variants.workPreview', group: 'Layout variants', label: 'Work list covers', type: 'select', scope: 'desktop', target: 'Home and Work project list',
     options: [['cursor', 'Appear beside the cursor'], ['inline', 'Always shown under each title']] },
 ]

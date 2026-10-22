@@ -1,11 +1,13 @@
 import { NavLink, Link, Outlet } from 'react-router-dom'
 import { useContent } from '../content'
+import Ripples from './Ripples'
 
 export default function Layout() {
-  const { site } = useContent()
+  const { site, settings } = useContent()
   const [first, ...rest] = site.identity.name.split(' ')
   return (
     <>
+      {settings.variants.ripples === 'on' && <Ripples />}
       <a className="skip" href="#main">Skip to content</a>
       <header className="nav">
         <Link to="/" className="nav__name" aria-label={`${site.identity.name} — home`}>

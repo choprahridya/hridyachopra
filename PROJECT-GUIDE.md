@@ -25,7 +25,7 @@ npm run build      # static output in dist/ (Vercel: Vite preset, output dist)
 | --- | --- | --- | --- |
 | pramitranjan-portfolio.vercel.app | Motion | Scroll reveals (fade + small rise, ease-out), hover lifts/arrow nudges, a looping accent animation | Original code. No card carousel or dark/red palette; hero uses masked line-rise + a hand-drawn underline instead |
 | baothiento.com | Minimalism | Warm off-white ground, small tracked uppercase nav, generous whitespace, quiet metadata | No pond hero, no card grid; work shown as a numbered editorial index with a cursor-following cover |
-| Owner palette | Colour | Live since 2026-10-22: “Halfway — brighter” — background `#F7F8F7`, surfaces `#FDFDFD`, accent/headings `#17459F`, ink `#21395E`, secondary `#566783`, soft accent `#DDE7FA`, lines `#DBDEE0`. Previously cream `#F3EEE3` / cobalt `#2343B0` / navy `#16213F` (kept in History). | — |
+| Owner palette | Colour | Live since 2026-10-22: “Blue tint + ripples” — background `#F3F8FE`, surfaces `#FBFDFF`, lines `#D7DEE8` (otherwise as “Halfway — brighter”: accent/headings `#17459F`, ink `#21395E`, secondary `#566783`, soft accent `#DDE7FA`, lines `#DBDEE0` before the tint). Previously cream `#F3EEE3` / cobalt `#2343B0` / navy `#16213F` (kept in History). | — |
 | Owner type | Type | Playfair Display with italic contrast | Instrument Sans chosen as body face (owner to confirm) |
 
 No official source repository found for either reference; all code is original.
@@ -98,3 +98,9 @@ Not yet: owner handover (owner performs the routine actions), Git repository, Ve
 - “Halfway cream–blue”: each colour blended 50/50 in OKLab (background `#F0F1F0`). “Halfway — brighter”: background/surfaces/lines/soft accent lightened, text unchanged (contrast body 10.9, headings 8.3, secondary 5.4).
 - Owner chose “Halfway — brighter” as the live design; applied colours only (other accepted settings unchanged). CSS fallback colours and favicon updated to match. All three explorations kept in `authoring/presets/`.
 - Lab fix: the saved-explorations list refreshes when the lab regains focus or the list is opened (previously loaded once, so explorations saved elsewhere didn't appear).
+
+## Blue tint + background ripples (live since 2026-10-22)
+- New design setting `variants.ripples` (`off` default / `on`), lab control “Ripples when clicking the background”. `src/components/Ripples.jsx`: on pointerdown on the page background (not links, buttons, form fields, project rows or the carousel) a small circular water ripple plays (owner's reference: top-down water ripples) — a 10px glossy drop pops, then two concentric rings up to 90px wide, each with a light edge and soft accent shade, spread and fade in ~1.3s — on a fixed layer behind the content; max 5 ripples at once; elements removed after animating; disabled under reduced motion. Original code (the idea is reminiscent of the pond on baothiento.com; none of its code used).
+- Lab exploration “Blue tint + ripples”: background `#F7F8F7` → `#F3F8FE`, surfaces `#FBFDFF`, lines `#D7DEE8` (OKLab hue shift, same lightness), ripples on. Contrast unchanged (body 10.9, headings 8.2, secondary 5.4).
+- Checked: background click creates rings, link click doesn't, rings clean up; rings render behind content (frozen mid-animation capture at 375px).
+- Accepted by the owner 2026-10-22 (“Make the blue tint and ripples live and commit”): colours from the exploration plus `variants.ripples: on`; CSS fallbacks and favicon synced. Verified on the live About page after a fresh load: background `#F3F8FE`; background click = 1 drop + 2 rings; link click = none; non-link content (e.g. a skill tag) ripples; all ripple elements removed after fading.

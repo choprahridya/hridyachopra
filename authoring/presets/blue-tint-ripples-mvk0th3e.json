@@ -1,0 +1,41 @@
+{
+  "format": "hc-portfolio-preset",
+  "version": 1,
+  "id": "blue-tint-ripples-mvk0th3e",
+  "name": "Blue tint + ripples",
+  "notes": "Current design with the background, surfaces and lines nudged slightly toward blue (OKLab, same lightness), and click ripples on.",
+  "settings": {
+    "schemaVersion": 2,
+    "colors": {
+      "bg": "#F3F8FE",
+      "surface": "#FBFDFF",
+      "ink": "#21395E",
+      "muted": "#566783",
+      "accent": "#17459F",
+      "accentSoft": "#DDE7FA",
+      "line": "#D7DEE8"
+    },
+    "type": {
+      "heroMinRem": 3.6,
+      "heroMaxRem": 8.25,
+      "bodyPx": 16
+    },
+    "layout": {
+      "maxWidthPx": 1180,
+      "gutterMinPx": 20,
+      "gutterMaxPx": 48,
+      "sectionScale": 1
+    },
+    "media": {
+      "radiusPx": 10,
+      "coverRatio": "16 / 10"
+    },
+    "variants": {
+      "heroLayout": "carousel",
+      "hero": "split",
+      "workPreview": "cursor",
+      "ripples": "on"
+    }
+  },
+  "updatedAt": "2026-10-22T20:56:01.226Z"
+}

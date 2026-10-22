@@ -136,7 +136,7 @@ export const DEFAULT_SETTINGS = {
   type: { heroMinRem: 3.6, heroMaxRem: 8.25, bodyPx: 16 },
   layout: { maxWidthPx: 1180, gutterMinPx: 20, gutterMaxPx: 48, sectionScale: 1 },
   media: { radiusPx: 10, coverRatio: '16 / 10' },
-  variants: { heroLayout: 'type', hero: 'split', workPreview: 'cursor' },
+  variants: { heroLayout: 'type', hero: 'split', workPreview: 'cursor', ripples: 'off' },
 }
 
 const num = (str, unit, fallback) => {
