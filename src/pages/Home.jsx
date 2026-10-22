@@ -19,8 +19,8 @@ export default function Home() {
       {carouselHero ? (
         <section className="hero-c">
           <h1 className="hero-c__name wrap" aria-label={identity.name}>
-            <span className="line"><span>{first}</span></span>{' '}
-            {rest.length > 0 && <span className="line"><span><em>{rest.join(' ')}</em></span></span>}
+            <span className="line"><span><em>{first}</em></span></span>{' '}
+            {rest.length > 0 && <span className="line"><span>{rest.join(' ')}</span></span>}
           </h1>
           <Carousel3D label="Selected projects" autoplay={home.carousel.autoplay} items={carouselItems} variant="hero" />
         </section>

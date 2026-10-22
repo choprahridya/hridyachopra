@@ -21,7 +21,7 @@ export default function Carousel3D({ items, label = 'Selected projects', autopla
   const velocity = useRef(0) // from drag release, items/sec
   const drag = useRef(null)
   const raf = useRef(0)
-  const [paused, setPaused] = useState(false)
+  const [paused, setPaused] = useState(false) // also set once a visitor takes control
   const [hovered, setHovered] = useState(false)
   const [focused, setFocused] = useState(false)
   const [inView, setInView] = useState(true)
@@ -104,6 +104,7 @@ export default function Carousel3D({ items, label = 'Selected projects', autopla
   }, [playing, tick])
 
   const go = (delta) => {
+    setPaused(true) // a visitor who moves it keeps control: no more drifting
     velocity.current = 0
     target.current = Math.round(target.current) + delta
     const next = items[wrap(Math.round(target.current), n)]
@@ -141,6 +142,7 @@ export default function Carousel3D({ items, label = 'Selected projects', autopla
     if (!g || g.id !== e.pointerId) return
     drag.current = null
     if (g.moved) {
+      setPaused(true)
       velocity.current = reduced ? 0 : Math.max(-6, Math.min(6, g.v))
       root.current.dataset.justDragged = '1'
       setTimeout(() => { if (root.current) delete root.current.dataset.justDragged }, 0)
@@ -151,6 +153,7 @@ export default function Carousel3D({ items, label = 'Selected projects', autopla
   if (!n) return null
   const center = wrap(base, n)
   const active = items[center]
+  const minimal = variant === 'hero' // hero: cards only (drag, or arrow keys on the front card)
 
   return (
     <section
@@ -188,21 +191,23 @@ export default function Carousel3D({ items, label = 'Selected projects', autopla
         })}
       </div>
 
-      <div className="c3d__bar">
-        <p className="c3d__caption" aria-hidden="true">
-          <span className="c3d__count">{String(center + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span>
-          {variant !== 'hero' && <span className={`c3d__title ${active.scaffold ? 'is-draft' : ''}`}>{active.title}</span>}
-        </p>
+      {!minimal && <div className="c3d__bar">
+        {(
+          <p className="c3d__caption" aria-hidden="true">
+            <span className="c3d__count">{String(center + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span>
+            <span className={`c3d__title ${active.scaffold ? 'is-draft' : ''}`}>{active.title}</span>
+          </p>
+        )}
         <div className="c3d__controls">
           <button type="button" onClick={() => go(-1)} aria-label="Previous project">←</button>
-          {autoplay && n > 1 && !reduced && (
+          {!minimal && autoplay && n > 1 && !reduced && (
             <button type="button" onClick={() => setPaused((p) => !p)} aria-pressed={paused} aria-label={paused ? 'Play carousel' : 'Pause carousel'}>
               {paused ? 'Play' : 'Pause'}
             </button>
           )}
           <button type="button" onClick={() => go(1)} aria-label="Next project">→</button>
         </div>
-      </div>
+      </div>}
       <p className="sr-only" aria-live="polite">{announce}</p>
     </section>
   )
