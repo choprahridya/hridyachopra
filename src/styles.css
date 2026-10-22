@@ -79,7 +79,7 @@ p { margin: 0; }
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   max-width: none;
 }
-.nav__name { font-family: var(--f-display); font-size: 1.15rem; color: var(--c-ink); }
+.nav__name { font-family: var(--f-display); font-size: 1.5rem; line-height: 1; letter-spacing: 0.01em; color: var(--c-ink); }
 .nav__name em { color: var(--c-accent); }
 .nav nav { display: flex; gap: 28px; }
 .nav nav a { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-muted); transition: color 0.2s; position: relative; }

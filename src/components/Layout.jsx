@@ -9,7 +9,7 @@ export default function Layout() {
       <a className="skip" href="#main">Skip to content</a>
       <header className="nav">
         <Link to="/" className="nav__name" aria-label={`${site.identity.name} — home`}>
-          <em>{first}</em> {rest.length > 0 && rest.join(' ')}
+          <em>{first[0]}</em>{rest.map((w) => w[0]).join('')}
         </Link>
         <nav aria-label="Primary">
           <NavLink to="/work">Work</NavLink>
