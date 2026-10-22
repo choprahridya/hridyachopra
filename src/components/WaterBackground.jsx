@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 
-// Whole-page water surface: soft moving caustic light over a faint blue swell.
+// Water surface: soft moving caustic light over a faint blue swell.
+// Fills the whole page, or with `contained` only its parent section (fading out at the bottom).
 // Drawn on a small canvas (1/6 of the screen) and scaled up smoothly, so it stays cheap.
 // Runs at ~30fps, pauses when the tab is hidden; reduced motion shows a still frame.
 const SCALE = 6
@@ -11,7 +12,7 @@ const hexToRgb = (hex) => {
   return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) || 0)
 }
 
-export default function WaterBackground() {
+export default function WaterBackground({ contained = false }) {
   const canvas = useRef(null)
 
   useEffect(() => {
@@ -21,9 +22,11 @@ export default function WaterBackground() {
     let img, w, h, raf = 0, last = 0
     const start = performance.now()
 
+    const box = () => (contained ? cv.parentElement.getBoundingClientRect() : { width: window.innerWidth, height: window.innerHeight })
     const size = () => {
-      w = Math.max(16, Math.ceil(window.innerWidth / SCALE))
-      h = Math.max(16, Math.ceil(window.innerHeight / SCALE))
+      const b = box()
+      w = Math.max(16, Math.ceil(b.width / SCALE))
+      h = Math.max(16, Math.ceil(b.height / SCALE))
       cv.width = w
       cv.height = h
       img = ctx.createImageData(w, h)
@@ -76,15 +79,18 @@ export default function WaterBackground() {
     run()
     const onResize = () => { size(); if (reduced.matches) draw(8) }
     window.addEventListener('resize', onResize)
+    const ro = contained ? new ResizeObserver(onResize) : null
+    ro?.observe(cv.parentElement)
     document.addEventListener('visibilitychange', run)
     reduced.addEventListener('change', run)
     return () => {
       cancelAnimationFrame(raf)
       window.removeEventListener('resize', onResize)
+      ro?.disconnect()
       document.removeEventListener('visibilitychange', run)
       reduced.removeEventListener('change', run)
     }
-  }, [])
+  }, [contained])
 
-  return <canvas ref={canvas} className="water-bg" aria-hidden="true" />
+  return <canvas ref={canvas} className={`water-bg ${contained ? 'water-bg--contained' : ''}`} aria-hidden="true" />
 }
