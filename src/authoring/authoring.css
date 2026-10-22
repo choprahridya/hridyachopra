@@ -57,7 +57,7 @@
 .pf { display: flex; flex-direction: column; min-height: 0; min-width: 0; flex: 1; background: var(--a-panel); border: 1px solid var(--a-line); border-radius: 10px; overflow: hidden; }
 .pf__bar { display: flex; justify-content: space-between; gap: 10px; padding: 6px 10px; font-size: 12px; color: var(--a-muted); border-bottom: 1px solid var(--a-line); }
 .pf__bar strong { color: var(--a-ink); }
-.pf__stage { position: relative; flex: 1; overflow: hidden; display: flex; justify-content: center; background: #E4E0D8; }
+.pf__stage { position: relative; flex: 1; overflow: hidden; display: flex; justify-content: center; align-items: flex-start; background: #E4E0D8; }
 .pf__stage iframe { border: 0; transform-origin: top center; background: #fff; flex: none; }
 
 /* Lab */

@@ -112,7 +112,7 @@ export const DEFAULT_SETTINGS = {
   type: { heroMinRem: 3.6, heroMaxRem: 8.25, bodyPx: 16 },
   layout: { maxWidthPx: 1180, gutterMinPx: 20, gutterMaxPx: 48, sectionScale: 1 },
   media: { radiusPx: 10, coverRatio: '16 / 10' },
-  variants: { hero: 'split', workPreview: 'cursor' },
+  variants: { heroLayout: 'type', hero: 'split', workPreview: 'cursor' },
 }
 
 const num = (str, unit, fallback) => {
@@ -154,5 +154,6 @@ export function applySettings(s, doc = document) {
   st.setProperty('--radius', `${s.media.radiusPx}px`)
   st.setProperty('--cover-ratio', s.media.coverRatio)
   root.dataset.hero = s.variants.hero
+  root.dataset.heroLayout = s.variants.heroLayout
   root.dataset.preview = s.variants.workPreview
 }

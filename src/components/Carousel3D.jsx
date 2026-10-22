@@ -12,7 +12,7 @@ const EASE_RATE = 9 // how quickly the drawn position catches up (per second)
 
 const wrap = (i, n) => ((i % n) + n) % n
 
-export default function Carousel3D({ items, label = 'Selected projects', autoplay = true }) {
+export default function Carousel3D({ items, label = 'Selected projects', autoplay = true, variant }) {
   const n = items.length
   const root = useRef(null)
   const cards = useRef([])
@@ -155,7 +155,7 @@ export default function Carousel3D({ items, label = 'Selected projects', autopla
   return (
     <section
       ref={root}
-      className="c3d"
+      className={`c3d ${variant === 'hero' ? 'c3d--hero' : ''}`}
       aria-roledescription="carousel"
       aria-label={label}
       onPointerEnter={(e) => e.pointerType === 'mouse' && setHovered(true)}
@@ -191,7 +191,7 @@ export default function Carousel3D({ items, label = 'Selected projects', autopla
       <div className="c3d__bar">
         <p className="c3d__caption" aria-hidden="true">
           <span className="c3d__count">{String(center + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span>
-          <span className={`c3d__title ${active.scaffold ? 'is-draft' : ''}`}>{active.title}</span>
+          {variant !== 'hero' && <span className={`c3d__title ${active.scaffold ? 'is-draft' : ''}`}>{active.title}</span>}
         </p>
         <div className="c3d__controls">
           <button type="button" onClick={() => go(-1)} aria-label="Previous project">←</button>

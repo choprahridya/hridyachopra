@@ -313,3 +313,27 @@ p { margin: 0; }
   .c3d__caption { flex: 1 1 100%; }
   .c3d__title { white-space: normal; }
 }
+
+/* ---------- Home hero variant: name + carousel only ---------- */
+.hero-c {
+  min-height: calc(100svh - 70px); display: flex; flex-direction: column; justify-content: center;
+  padding-block: clamp(16px, 3vh, 40px) clamp(12px, 2vh, 28px); overflow: hidden;
+}
+.hero-c__name {
+  font-family: var(--f-display); font-weight: 400; font-size: var(--hero-size);
+  line-height: 0.95; letter-spacing: -0.035em; color: var(--c-accent); text-align: center;
+  position: relative; z-index: 2;
+}
+.hero-c__name .line { display: inline-block; }
+.hero-c__name .line:nth-of-type(2) > span { animation-delay: 0.27s; }
+.hero-c__name .line:nth-of-type(1) > span { animation-delay: 0.15s; }
+.hero-c .c3d { --w: clamp(260px, min(38vw, 52vh), 560px); padding-block: 0; margin-top: calc(var(--hero-size) * -0.12); opacity: 0; animation: fade 1s 0.55s var(--ease-out) forwards; }
+.hero-c .c3d__stage { height: calc(var(--w) * 0.82); }
+.c3d--hero .c3d__bar { margin-top: 0; }
+@media (max-width: 760px) {
+  .hero-c { min-height: auto; padding-top: 48px; }
+  .hero-c .c3d { --w: 76vw; margin-top: 12px; }
+  .hero-c__name .line { display: block; }
+  .c3d--hero .c3d__bar { flex-wrap: nowrap; }
+  .c3d--hero .c3d__caption { flex: 0 1 auto; }
+}

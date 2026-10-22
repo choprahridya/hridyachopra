@@ -76,3 +76,10 @@ Not yet: owner handover (owner performs the routine actions), Git repository, Ve
 - Content: featured projects' covers, each linking to its case study. Placed directly under the hero. Dashboard → Home & identity: “Show the carousel” and “Move on its own”. Stored as `home.carousel` (defaults filled by `migrateSite`).
 - Checked: desktop 1440 and phone 375 (no overflow, 44px buttons), Next/Previous/arrow keys, drag with momentum and no accidental project open, autoplay rate, dashboard toggle in preview, build excludes authoring code. Reduced-motion path reviewed in code; OS setting not emulated.
 - If the owner confirms they hold rights to the Framer code (e.g. they authored it), it could be adapted directly instead; the current version needs no Framer runtime.
+
+## Home hero variant: name + carousel (added 2026-10-22)
+- New design setting `variants.heroLayout`: `type` (accepted: eyebrow, name, statement, intro) or `carousel` (only the name on one line + the project carousel, no supporting text; carousel shows counter + Previous/Pause/Next, no project title). Falls back to `type` if the carousel is switched off or no projects are featured.
+- Lab control: Layout variants → “Home first screen”. Saved as exploration **“Name + carousel hero”** (`authoring/presets/name-carousel-hero-*.json`).
+- **Accepted by the owner 2026-10-22** (“change the current to the carousel on the landing page”): `variants.heroLayout` is now `carousel` in `src/content/settings.json`. Previous design (typographic hero) kept as a history snapshot and reachable by switching “Home first screen” back in the lab. With this layout the home intro text and statement are no longer shown on Home (still stored and editable).
+- Lab/dashboard previews now use real device screens (phone 390×844, tablet 768×1024, desktop 1440×900) scaled to fit, so full-height layouts preview truthfully. Lab/dashboard fill defaults for settings added after the file was saved.
+- Checked at 1440×900 (name + carousel fit in the first screen) and 375×812 (no sideways scroll; controls on one row).

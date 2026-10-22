@@ -6,13 +6,25 @@ import Contact from '../components/Contact'
 import Carousel3D from '../components/Carousel3D'
 
 export default function Home() {
-  const { site } = useContent()
+  const { site, settings } = useContent()
   const { identity, home, about, meta } = site
   usePageMeta(meta.home.title, meta.home.description)
   const [first, ...rest] = identity.name.split(' ')
   const featured = featuredProjects(site)
+  const showCarousel = home.carousel?.enabled && featured.length > 0
+  const carouselHero = showCarousel && settings.variants.heroLayout === 'carousel'
+  const carouselItems = featured.map((p) => ({ key: p.id, href: `/work/${p.slug}`, title: p.title, media: p.cover, scaffold: p.scaffold }))
   return (
     <>
+      {carouselHero ? (
+        <section className="hero-c">
+          <h1 className="hero-c__name wrap" aria-label={identity.name}>
+            <span className="line"><span>{first}</span></span>{' '}
+            {rest.length > 0 && <span className="line"><span><em>{rest.join(' ')}</em></span></span>}
+          </h1>
+          <Carousel3D label="Selected projects" autoplay={home.carousel.autoplay} items={carouselItems} variant="hero" />
+        </section>
+      ) : (<>
       <section className="hero wrap">
         <p className="eyebrow hero__eyebrow"><span className="dot" aria-hidden="true" />{identity.discipline}</p>
         <h1 className="hero__name" aria-label={identity.name}>
@@ -31,13 +43,8 @@ export default function Home() {
         </div>
       </section>
 
-      {home.carousel?.enabled && featured.length > 0 && (
-        <Carousel3D
-          label="Selected projects"
-          autoplay={home.carousel.autoplay}
-          items={featured.map((p) => ({ key: p.id, href: `/work/${p.slug}`, title: p.title, media: p.cover, scaffold: p.scaffold }))}
-        />
-      )}
+      {showCarousel && <Carousel3D label="Selected projects" autoplay={home.carousel.autoplay} items={carouselItems} />}
+      </>)}
 
       {featured.length > 0 && (
         <section id="selected" className="wrap section">

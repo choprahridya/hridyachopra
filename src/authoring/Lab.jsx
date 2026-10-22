@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { api, downloadJson, readFileAsText, local, getIn, setIn } from './api'
 import PreviewFrame, { DEVICES } from './PreviewFrame'
 import { SETTINGS, SCOPE_LABEL, validateSettings, importPreset, presetFile, formatValue, contrast } from './settingsSchema'
+import { migrateSettings } from '../content/schema'
 import './authoring.css'
 
 const WORKING_KEY = 'hc-lab-working'
@@ -29,11 +30,12 @@ export default function Lab() {
   const load = useCallback(async () => {
     const [st, pr] = await Promise.all([api.state(), api.presets()])
     if (!st.ok) return setStatus({ kind: 'error', msg: st.data.message || 'Couldn’t load the portfolio.' })
-    setLoaded({ site: st.data.site, settings: st.data.settings, settingsRevision: st.data.settingsRevision })
+    const current = migrateSettings(st.data.settings) // fills settings added since the file was saved
+    setLoaded({ site: st.data.site, settings: current, settingsRevision: st.data.settingsRevision })
     setPresets(pr.ok ? pr.data.items : [])
     const saved = local.get(WORKING_KEY)
-    setWorking((w) => w || (saved?.settings ? saved : { id: null, name: '', notes: '', settings: st.data.settings }))
-    if (saved?.settings && JSON.stringify(saved.settings) !== JSON.stringify(st.data.settings)) {
+    setWorking((w) => w || (saved?.settings ? { ...saved, settings: migrateSettings(saved.settings) } : { id: null, name: '', notes: '', settings: current }))
+    if (saved?.settings && JSON.stringify(migrateSettings(saved.settings)) !== JSON.stringify(current)) {
       setStatus({ kind: 'info', msg: 'Reopened the exploration you were working on in this browser.' })
     }
   }, [])

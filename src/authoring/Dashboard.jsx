@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api, downloadJson, readFileAsText, local, setIn, getIn, diffPaths } from './api'
-import { migrateSite, validateSite, findPlaceholders, emptyMedia } from '../content/schema'
+import { migrateSite, migrateSettings, validateSite, findPlaceholders, emptyMedia } from '../content/schema'
 import PreviewFrame, { DEVICES } from './PreviewFrame'
 import useUndoable from './useUndoable'
 import { TextField, Check, MoveButtons, MediaField, move } from './fields'
@@ -97,7 +97,7 @@ export default function Dashboard() {
       const loadedSite = migrateSite(r.data.site)
       setSaved(loadedSite)
       setRevision(r.data.siteRevision)
-      setSettings(r.data.settings)
+      setSettings(migrateSettings(r.data.settings))
       draft.reset(loadedSite)
       const stored = local.get(DRAFT_KEY)
       if (stored?.site && JSON.stringify(stored.site) !== JSON.stringify(loadedSite)) setRecovery(stored)

@@ -25,7 +25,9 @@ export const SETTINGS = [
   { id: 'media.coverRatio', group: 'Media', label: 'Work cover shape', type: 'select', scope: 'all', target: 'Covers in the work list',
     options: [['16 / 10', '16:10'], ['4 / 3', '4:3'], ['3 / 2', '3:2'], ['1 / 1', 'Square']] },
 
-  { id: 'variants.hero', group: 'Layout variants', label: 'Hero arrangement', type: 'select', scope: 'desktop', target: 'Home hero (phones always stack)',
+  { id: 'variants.heroLayout', group: 'Layout variants', label: 'Home first screen', type: 'select', scope: 'all', target: 'Carousel version needs the carousel switched on in the dashboard',
+    options: [['type', 'Name, statement & introduction'], ['carousel', 'Name & project carousel only']] },
+  { id: 'variants.hero', group: 'Layout variants', label: 'Hero arrangement', type: 'select', scope: 'desktop', target: 'Name, statement & introduction version (phones always stack)',
     options: [['split', 'Statement on the right'], ['stacked', 'Everything left-aligned']] },
   { id: 'variants.workPreview', group: 'Layout variants', label: 'Work list covers', type: 'select', scope: 'desktop', target: 'Home and Work project list',
     options: [['cursor', 'Appear beside the cursor'], ['inline', 'Always shown under each title']] },

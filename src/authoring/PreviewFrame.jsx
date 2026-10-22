@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 
 export const DEVICES = {
-  phone: { label: 'Phone', w: 390 },
-  tablet: { label: 'Tablet', w: 768 },
-  desktop: { label: 'Desktop', w: 1440 },
+  phone: { label: 'Phone', w: 390, h: 844 },
+  tablet: { label: 'Tablet', w: 768, h: 1024 },
+  desktop: { label: 'Desktop', w: 1440, h: 900 },
 }
 
-// Renders the real portfolio in an iframe at a true viewport width, fed with draft
-// content/settings over postMessage. Scaled down visually when the space is narrower.
+// Renders the real portfolio in an iframe at a true device screen size (width and height),
+// fed with draft content/settings over postMessage. Scaled down to fit when space is smaller.
 export default function PreviewFrame({ path, site, settings, device = 'desktop', label = 'Preview', onRoute }) {
   const stage = useRef(null)
   const frame = useRef(null)
@@ -44,20 +44,20 @@ export default function PreviewFrame({ path, site, settings, device = 'desktop',
   useEffect(() => { if (ready.current) post({ type: 'portfolio:draft', site, settings }) }, [site, settings])
   useEffect(() => { if (ready.current) post({ type: 'portfolio:navigate', path }) }, [path])
 
-  const width = DEVICES[device].w
-  const scale = box.w ? Math.min(1, box.w / width) : 1
+  const { w: width, h: height } = DEVICES[device]
+  const scale = box.w && box.h ? Math.min(1, box.w / width, box.h / height) : 1
   return (
     <div className="pf">
       <div className="pf__bar">
         <strong>{label}</strong>
-        <span>{DEVICES[device].label} · {width}px{scale < 0.999 ? ` · shown at ${Math.round(scale * 100)}%` : ''}</span>
+        <span>{DEVICES[device].label} · {width}×{height}{scale < 0.999 ? ` · shown at ${Math.round(scale * 100)}%` : ''}</span>
       </div>
       <div className="pf__stage" ref={stage}>
         <iframe
           ref={frame}
           title={`${label} — ${DEVICES[device].label}`}
           src={src}
-          style={{ width, height: box.h ? box.h / scale : '100%', transform: `scale(${scale})` }}
+          style={{ width, height, transform: `scale(${scale})` }}
         />
       </div>
     </div>

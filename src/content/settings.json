@@ -25,6 +25,7 @@
     "coverRatio": "16 / 10"
   },
   "variants": {
+    "heroLayout": "carousel",
     "hero": "split",
     "workPreview": "cursor"
   }
