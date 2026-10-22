@@ -1,12 +1,12 @@
 /* Fallback values; accepted settings are applied from content/settings.json */
 :root {
-  --c-bg: #F3EEE3;
-  --c-surface: #FAF8F3;
-  --c-ink: #16213F;
-  --c-muted: #5B6378;
-  --c-accent: #2343B0;
-  --c-accentSoft: #DCE3F5;
-  --c-line: #D9D2C2;
+  --c-bg: #F7F8F7;
+  --c-surface: #FDFDFD;
+  --c-ink: #21395E;
+  --c-muted: #566783;
+  --c-accent: #17459F;
+  --c-accentSoft: #DDE7FA;
+  --c-line: #DBDEE0;
   --f-display: 'Playfair Display', Georgia, serif;
   --f-body: 'Instrument Sans', system-ui, sans-serif;
   --hero-size: clamp(3.6rem, 8.4vw, 8.25rem);

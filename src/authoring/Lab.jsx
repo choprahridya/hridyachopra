@@ -41,6 +41,17 @@ export default function Lab() {
   }, [])
   useEffect(() => { load() }, [load])
 
+  // Explorations can be saved from elsewhere (another tab, a file): refresh the list
+  // whenever the lab regains focus or the list is opened.
+  const refreshPresets = useCallback(async () => {
+    const r = await api.presets()
+    if (r.ok) setPresets(r.data.items)
+  }, [])
+  useEffect(() => {
+    window.addEventListener('focus', refreshPresets)
+    return () => window.removeEventListener('focus', refreshPresets)
+  }, [refreshPresets])
+
   useEffect(() => { if (working) local.set(WORKING_KEY, working) }, [working])
 
   const baseline = loaded?.settings
@@ -216,7 +227,7 @@ export default function Lab() {
             <p className="au-hint">“Use this design” changes the portfolio’s design on this computer. Publishing is a separate step.</p>
           </div>
 
-          <details className="lab__manage">
+          <details className="lab__manage" onToggle={(e) => { if (e.currentTarget.open) refreshPresets() }}>
             <summary>Saved explorations ({presets.length}) · import & export</summary>
             <ul className="lab__presets">
               {presets.map((p) => (

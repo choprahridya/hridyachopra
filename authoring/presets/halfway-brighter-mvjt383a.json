@@ -1,0 +1,40 @@
+{
+  "format": "hc-portfolio-preset",
+  "version": 1,
+  "id": "halfway-brighter-mvjt383a",
+  "name": "Halfway — brighter",
+  "notes": "Halfway cream–blue with background, surfaces, borders and soft accent lightened (OKLab lightness), same tint and text colours.",
+  "settings": {
+    "schemaVersion": 2,
+    "colors": {
+      "bg": "#F7F8F7",
+      "surface": "#FDFDFD",
+      "ink": "#21395E",
+      "muted": "#566783",
+      "accent": "#17459F",
+      "accentSoft": "#DDE7FA",
+      "line": "#DBDEE0"
+    },
+    "type": {
+      "heroMinRem": 3.6,
+      "heroMaxRem": 8.25,
+      "bodyPx": 16
+    },
+    "layout": {
+      "maxWidthPx": 1180,
+      "gutterMinPx": 20,
+      "gutterMaxPx": 48,
+      "sectionScale": 1
+    },
+    "media": {
+      "radiusPx": 10,
+      "coverRatio": "16 / 10"
+    },
+    "variants": {
+      "heroLayout": "carousel",
+      "hero": "split",
+      "workPreview": "cursor"
+    }
+  },
+  "updatedAt": "2026-10-22T17:19:39.190Z"
+}

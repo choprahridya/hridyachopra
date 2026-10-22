@@ -25,7 +25,7 @@ npm run build      # static output in dist/ (Vercel: Vite preset, output dist)
 | --- | --- | --- | --- |
 | pramitranjan-portfolio.vercel.app | Motion | Scroll reveals (fade + small rise, ease-out), hover lifts/arrow nudges, a looping accent animation | Original code. No card carousel or dark/red palette; hero uses masked line-rise + a hand-drawn underline instead |
 | baothiento.com | Minimalism | Warm off-white ground, small tracked uppercase nav, generous whitespace, quiet metadata | No pond hero, no card grid; work shown as a numbered editorial index with a cursor-following cover |
-| Owner palette | Colour | Cobalt blue `#2343B0` (accent/headings), cream `#F3EEE3` (ground), pale white `#FAF8F3` (surfaces), navy ink `#16213F` | — |
+| Owner palette | Colour | Live since 2026-10-22: “Halfway — brighter” — background `#F7F8F7`, surfaces `#FDFDFD`, accent/headings `#17459F`, ink `#21395E`, secondary `#566783`, soft accent `#DDE7FA`, lines `#DBDEE0`. Previously cream `#F3EEE3` / cobalt `#2343B0` / navy `#16213F` (kept in History). | — |
 | Owner type | Type | Playfair Display with italic contrast | Instrument Sans chosen as body face (owner to confirm) |
 
 No official source repository found for either reference; all code is original.
@@ -92,3 +92,9 @@ Not yet: owner handover (owner performs the routine actions), Git repository, Ve
 - Dashboard About tab rebuilt for these fields (paragraphs, timeline entries with reorder/hide/remove, comma lists, closing text); Contact tab has Phone. Fixed comma-list fields dropping a typed comma (also project Tags).
 - Checked: desktop 1440 layout metrics, phone 375 full scroll (no overflow), dashboard edit → preview → undo.
 - Spacing matched to the reference screenshot (2026-10-22), measured as fractions of content width and verified in the browser at 1440 and 1000 wide: content 84.7% of the window (side margins 7.65vw), right column starts at 31%, portrait 20% wide at 3:4 and top-aligned with “About Me”, 2px mid-blue rule (accent mixed 45% into the background) with ~2% text inset, timeline line on the same axis, headings 3.3% of content width, section gaps ≈ 2× heading size. The left column has a 230px minimum and tags shrink slightly between 861–1180px so nothing overflows; phones stack as before.
+
+## Colour change (2026-10-22)
+- Sampled the owner's earlier-site screenshots (background `#EDF3FC`, headings `#07468E`, body `#2C527E`) and saved as lab exploration “Screenshot blues” (secondary text darkened to `#516A8E` for 4.5:1 contrast).
+- “Halfway cream–blue”: each colour blended 50/50 in OKLab (background `#F0F1F0`). “Halfway — brighter”: background/surfaces/lines/soft accent lightened, text unchanged (contrast body 10.9, headings 8.3, secondary 5.4).
+- Owner chose “Halfway — brighter” as the live design; applied colours only (other accepted settings unchanged). CSS fallback colours and favicon updated to match. All three explorations kept in `authoring/presets/`.
+- Lab fix: the saved-explorations list refreshes when the lab regains focus or the list is opened (previously loaded once, so explorations saved elsewhere didn't appear).

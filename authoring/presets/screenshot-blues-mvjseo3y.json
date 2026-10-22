@@ -1,0 +1,40 @@
+{
+  "format": "hc-portfolio-preset",
+  "version": 1,
+  "id": "screenshot-blues-mvjseo3y",
+  "name": "Screenshot blues",
+  "notes": "Colours sampled from the earlier site screenshots: background #EDF3FC, headings #07468E, body #2C527E, rule/soft blues. Secondary text darkened from the sampled #7D93B3 (too low contrast) to #516A8E.",
+  "settings": {
+    "schemaVersion": 2,
+    "colors": {
+      "bg": "#EDF3FC",
+      "surface": "#F7FAFE",
+      "ink": "#2C527E",
+      "muted": "#516A8E",
+      "accent": "#07468E",
+      "accentSoft": "#D6E3F7",
+      "line": "#CFDCF0"
+    },
+    "type": {
+      "heroMinRem": 3.6,
+      "heroMaxRem": 8.25,
+      "bodyPx": 16
+    },
+    "layout": {
+      "maxWidthPx": 1180,
+      "gutterMinPx": 20,
+      "gutterMaxPx": 48,
+      "sectionScale": 1
+    },
+    "media": {
+      "radiusPx": 10,
+      "coverRatio": "16 / 10"
+    },
+    "variants": {
+      "heroLayout": "carousel",
+      "hero": "split",
+      "workPreview": "cursor"
+    }
+  },
+  "updatedAt": "2026-10-22T17:00:39.816Z"
+}

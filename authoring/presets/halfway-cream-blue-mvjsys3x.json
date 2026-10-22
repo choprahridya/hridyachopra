@@ -1,0 +1,40 @@
+{
+  "format": "hc-portfolio-preset",
+  "version": 1,
+  "id": "halfway-cream-blue-mvjsys3x",
+  "name": "Halfway cream–blue",
+  "notes": "Each colour blended 50/50 (OKLab) between the current cream palette and Screenshot blues. Background #F0F1F0.",
+  "settings": {
+    "schemaVersion": 2,
+    "colors": {
+      "bg": "#F0F1F0",
+      "surface": "#F9F9F9",
+      "ink": "#21395E",
+      "muted": "#566783",
+      "accent": "#17459F",
+      "accentSoft": "#D9E3F6",
+      "line": "#D4D7D9"
+    },
+    "type": {
+      "heroMinRem": 3.6,
+      "heroMaxRem": 8.25,
+      "bodyPx": 16
+    },
+    "layout": {
+      "maxWidthPx": 1180,
+      "gutterMinPx": 20,
+      "gutterMaxPx": 48,
+      "sectionScale": 1
+    },
+    "media": {
+      "radiusPx": 10,
+      "coverRatio": "16 / 10"
+    },
+    "variants": {
+      "heroLayout": "carousel",
+      "hero": "split",
+      "workPreview": "cursor"
+    }
+  },
+  "updatedAt": "2026-10-22T17:16:11.854Z"
+}

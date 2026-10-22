@@ -1,13 +1,13 @@
 {
   "schemaVersion": 2,
   "colors": {
-    "bg": "#F3EEE3",
-    "surface": "#FAF8F3",
-    "ink": "#16213F",
-    "muted": "#5B6378",
-    "accent": "#2343B0",
-    "accentSoft": "#DCE3F5",
-    "line": "#D9D2C2"
+    "bg": "#F7F8F7",
+    "surface": "#FDFDFD",
+    "ink": "#21395E",
+    "muted": "#566783",
+    "accent": "#17459F",
+    "accentSoft": "#DDE7FA",
+    "line": "#DBDEE0"
   },
   "type": {
     "heroMinRem": 3.6,
