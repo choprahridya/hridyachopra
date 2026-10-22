@@ -62,7 +62,7 @@ export default function Home() {
         </Reveal>
         <Reveal className="teaser__body" delay={120}>
           <p className="eyebrow">About</p>
-          <Copy value={about.intro} className="lede" />
+          <Copy value={about.paragraphs[0]} className="lede" />
           <Link to="/about" className="textlink">More about me <span aria-hidden="true">→</span></Link>
         </Reveal>
       </section>

@@ -32,9 +32,9 @@ No official source repository found for either reference; all code is original.
 
 ## Content gaps (private)
 - Real projects (titles, summaries, role, team, media) — two scaffold slots exist.
-- Intro line, About intro/bio, education, experience, tools.
-- Portrait.
-- Public links: email, LinkedIn, résumé (contact section shows a draft slot until provided; no fake links).
+- Home intro line (not shown with the carousel hero).
+- Portrait (upload the original photo; not cropped from a screenshot).
+- LinkedIn URL and résumé (email is set). Phone deliberately left empty: not in the owner's list of public links — ask before adding.
 
 ## Checks run
 Stage 1 (2026-10-21): Home and project-01 at 1440×900 and 375×812; no horizontal overflow at 375.
@@ -84,3 +84,10 @@ Not yet: owner handover (owner performs the routine actions), Git repository, Ve
 - Lab/dashboard previews now use real device screens (phone 390×844, tablet 768×1024, desktop 1440×900) scaled to fit, so full-height layouts preview truthfully. Lab/dashboard fill defaults for settings added after the file was saved.
 - Checked at 1440×900 (name + carousel fit in the first screen) and 375×812 (no sideways scroll; controls on one row).
 - 2026-10-22 (owner requests): hero carousel has no visible controls (no Pause, no 01/02 counter, no arrows) — drag, or Tab to the front card and use ←/→. Name moved to the top of the first screen with the carousel filling the space below; the name’s reveal mask now leaves room for the y/p descenders. Accessibility trade-off: with no Pause button, autoplay stops for good once a visitor drags or uses an arrow, and still pauses on hover/focus/off-screen; reduced-motion visitors see no movement. If stricter compliance is wanted, switch “Move on its own” off in the dashboard. The band variant (unused) keeps its counter, title and Pause.
+
+## About page format (2026-10-22)
+- Owner supplied screenshots of their earlier site (hridyachopra.vercel.app) and asked for the About page in that format. Layout reproduced in this site's design tokens: left column portrait + contact lines (Phone/Email/LinkedIn/Résumé, each only if filled) + Skills/Tools pills; right column “About Me” paragraphs with a side rule, Education and Experience timelines; closing “Want to connect?” with the email. On phones: portrait/contact → About/Education/Experience → Skills/Tools.
+- Content transcribed from the screenshots (owner's own text): three About paragraphs, SCAD + HXLS, Ixigo + Social Panga internships, skills, tools, email, closing line.
+- Content schema v3: `about` = heading, paragraphs[], portrait, education[], experience[], skills[], tools[], extra[], connect{heading,text}; `contact.phone` added. `migrateSite` converts v2 (backup: `authoring/history/site-v2-before-about-v3.json`, local only). Home About teaser now uses the first paragraph.
+- Dashboard About tab rebuilt for these fields (paragraphs, timeline entries with reorder/hide/remove, comma lists, closing text); Contact tab has Phone. Fixed comma-list fields dropping a typed comma (also project Tags).
+- Checked: desktop 1440 layout metrics, phone 375 full scroll (no overflow), dashboard edit → preview → undo.

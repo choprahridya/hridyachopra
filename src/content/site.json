@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "identity": {
     "name": "Hridya Chopra",
     "discipline": "UX Designer",
@@ -37,47 +37,19 @@
     }
   },
   "about": {
-    "intro": {
-      "text": "[Introduce your practice, the work you enjoy making and what you want to explore next.]",
-      "scaffold": true
-    },
-    "bio": {
-      "text": "[A short paragraph in your own words — how you came to UX, what you care about when you design, what you're studying.]",
-      "scaffold": true
-    },
-    "sections": [
+    "heading": "About Me",
+    "paragraphs": [
       {
-        "id": "education",
-        "title": "Education",
-        "items": [
-          {
-            "text": "[School · Programme · Years]",
-            "scaffold": true
-          }
-        ],
-        "hidden": false
+        "text": "I got into design because I like solving problems that actually matter to people, not just making something look good, but making it work better for whoever has to use it.",
+        "scaffold": false
       },
       {
-        "id": "experience",
-        "title": "Experience",
-        "items": [
-          {
-            "text": "[Role · Organisation · Years]",
-            "scaffold": true
-          }
-        ],
-        "hidden": false
+        "text": "I care about the kind of design that creates change you can actually measure, not just a polished mockup, something that shows up in how people’s day-to-day actually improves.",
+        "scaffold": false
       },
       {
-        "id": "tools",
-        "title": "Tools & methods",
-        "items": [
-          {
-            "text": "[e.g. the research methods and tools you actually use]",
-            "scaffold": true
-          }
-        ],
-        "hidden": false
+        "text": "What keeps me curious is the process itself: research, prototyping, testing, repeat, and figuring out what makes an experience feel obvious in hindsight.",
+        "scaffold": false
       }
     ],
     "portrait": {
@@ -87,10 +59,68 @@
       "fit": "cover",
       "ratio": "4 / 5",
       "label": "Portrait · 4:5"
+    },
+    "education": [
+      {
+        "id": "edu-1",
+        "years": "2025 – 2029",
+        "title": "SCAD (Savannah College of Art and Design)",
+        "detail": "BFA UX Design · 3.77 GPA (Dean’s List)",
+        "hidden": false
+      },
+      {
+        "id": "edu-2",
+        "years": "2019 – 2025",
+        "title": "HXLS (Heritage Xperiential Learning School)",
+        "detail": "PCM (CBSE) · Grade 12: 88%, Grade 10: 86%",
+        "hidden": false
+      }
+    ],
+    "experience": [
+      {
+        "id": "exp-1",
+        "dates": "June – Aug 2026",
+        "role": "UX Design Intern",
+        "org": "Ixigo",
+        "description": "Designed wireframes & high-fidelity interfaces for airport cab booking experiences, including Live Activity notifications, ensuring consistency with Ixigo’s design system.",
+        "hidden": false
+      },
+      {
+        "id": "exp-2",
+        "dates": "Apr – Jun 2025",
+        "role": "Social Media Intern",
+        "org": "Social Panga",
+        "description": "Designed user-focused social media assets aligned with brand guidelines, improving engagement consistency across clients.",
+        "hidden": false
+      }
+    ],
+    "skills": [
+      "UX Research",
+      "Information Architecture",
+      "Wire Framing",
+      "Prototyping",
+      "Testing",
+      "Design Systems",
+      "AI-Assisted Design"
+    ],
+    "tools": [
+      "Figma",
+      "Claude",
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "Canva",
+      "Rhino",
+      "KeyShot"
+    ],
+    "extra": [],
+    "connect": {
+      "heading": "Want to connect?",
+      "text": "Always happy to talk design, opportunities, or anything in between."
     }
   },
   "contact": {
-    "email": "",
+    "phone": "",
+    "email": "choprahridya@gmail.com",
     "linkedin": "",
     "resume": ""
   },

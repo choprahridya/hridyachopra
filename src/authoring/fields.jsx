@@ -21,6 +21,24 @@ export function TextField({ label, value, onChange, multiline, rows = 3, hint, p
   )
 }
 
+// Comma-separated list. Keeps the text as typed (so a trailing comma survives)
+// and only re-syncs when the list changes from elsewhere (undo, import).
+const parseList = (v) => v.split(',').map((t) => t.trim()).filter(Boolean)
+export function ListField({ label, list, onChange, hint }) {
+  const [raw, setRaw] = useState(list.join(', '))
+  useEffect(() => {
+    if (JSON.stringify(parseList(raw)) !== JSON.stringify(list)) setRaw(list.join(', '))
+  }, [list])
+  const id = useId()
+  return (
+    <div className="au-field">
+      <label htmlFor={id}>{label}</label>
+      <input id={id} value={raw} onChange={(e) => { setRaw(e.target.value); onChange(parseList(e.target.value)) }} />
+      {hint && <small>{hint}</small>}
+    </div>
+  )
+}
+
 export function Check({ label, checked, onChange }) {
   return (
     <label className="check"><input type="checkbox" checked={!!checked} onChange={(e) => onChange(e.target.checked)} /> {label}</label>

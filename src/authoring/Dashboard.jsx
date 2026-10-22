@@ -4,7 +4,7 @@ import { api, downloadJson, readFileAsText, local, setIn, getIn, diffPaths } fro
 import { migrateSite, migrateSettings, validateSite, findPlaceholders, emptyMedia } from '../content/schema'
 import PreviewFrame, { DEVICES } from './PreviewFrame'
 import useUndoable from './useUndoable'
-import { TextField, Check, MoveButtons, MediaField, move } from './fields'
+import { TextField, ListField, Check, MoveButtons, MediaField, move } from './fields'
 import './authoring.css'
 
 const DRAFT_KEY = 'hc-dashboard-draft'
@@ -62,9 +62,11 @@ function describePath(site, path) {
     }
     return [p?.title || 'Projects', ...rest].join(' › ')
   }
-  if (parts[0] === 'about' && parts[1] === 'sections' && parts[2] != null) {
-    return ['About', site.about.sections[Number(parts[2])]?.title || 'Section', ...parts.slice(3)].join(' › ')
+  if (parts[0] === 'about' && ['education', 'experience'].includes(parts[1]) && parts[2] != null) {
+    const e = site.about[parts[1]][Number(parts[2])]
+    return ['About', parts[1] === 'education' ? 'Education' : 'Experience', e?.title || e?.role || 'Entry', ...parts.slice(3)].join(' › ')
   }
+  if (parts[0] === 'about' && parts[1] === 'paragraphs') return `About › Paragraph ${Number(parts[2]) + 1}`
   return parts.join(' › ')
 }
 
@@ -399,7 +401,7 @@ function ProjectsEditor({ site, saved, update, set, index, setIndex }) {
         </label>
         <Check label="Hide from the public site (kept here, not shown on Home or Work)" checked={p.hidden} onChange={(v) => update(at('hidden'), v)} />
         <TextField label="Summary" multiline rows={2} value={p.summary} onChange={(v) => update(at('summary'), v)} />
-        <TextField label="Tags (comma-separated)" value={p.tags.join(', ')} onChange={(v) => update(at('tags'), v.split(',').map((t) => t.trim()).filter(Boolean))} />
+        <ListField label="Tags (comma-separated)" list={p.tags} onChange={(v) => update(at('tags'), v)} />
         <div className="card">
           <strong>Project details</strong>
           <TextField label="My role" value={p.meta.role} onChange={(v) => update(at('meta.role'), v)} />
@@ -443,42 +445,62 @@ function ProjectsEditor({ site, saved, update, set, index, setIndex }) {
   )
 }
 
-function AboutEditor({ site, update }) {
-  const { about } = site
-  const secs = about.sections
+// Editable list of timeline entries (Education / Experience).
+function EntryList({ path, list, fields, prefix, blank, noun, update }) {
+  const newId = () => { let n = list.length + 1; while (list.some((x) => x.id === `${prefix}-${n}`)) n++; return `${prefix}-${n}` }
   return (
     <>
-      <h2>About</h2>
-      <TextField label="Introduction" multiline value={about.intro} onChange={(v) => update('about.intro', v)} hint="Also shown in the About teaser on Home." />
-      <TextField label="Bio" multiline rows={6} value={about.bio} onChange={(v) => update('about.bio', v)} />
-      <MediaField label="Portrait" value={about.portrait} onChange={(v) => update('about.portrait', v)} />
-
-      <h2>Sections</h2>
-      {secs.map((s, i) => (
-        <div className="card" key={s.id}>
+      {list.map((e, i) => (
+        <div className="card" key={e.id}>
           <div className="card__head">
-            <strong>{s.title} {s.hidden && <span className="au-tag is-off">Hidden</span>}</strong>
-            <MoveButtons index={i} length={secs.length} label={s.title} onMove={(a, b) => update('about.sections', move(secs, a, b))} />
-            <button className="mini is-quiet" onClick={() => { if (window.confirm(`Remove “${s.title}”?`)) update('about.sections', secs.filter((_, j) => j !== i)) }}>Remove</button>
+            <strong>{(typeof e[fields[1][0]] === 'string' && e[fields[1][0]]) || `New ${noun}`} {e.hidden && <span className="au-tag is-off">Hidden</span>}</strong>
+            <MoveButtons index={i} length={list.length} label={noun} onMove={(a, b) => update(path, move(list, a, b))} />
+            <button className="mini is-quiet" onClick={() => { if (window.confirm(`Remove this ${noun}?`)) update(path, list.filter((_, j) => j !== i)) }}>Remove</button>
           </div>
-          <TextField label="Heading" value={s.title} onChange={(v) => update(`about.sections.${i}.title`, v)} />
-          {s.items.map((it, j) => (
-            <div key={j} className="au-row" style={{ alignItems: 'flex-end' }}>
-              <div style={{ flex: 1 }}><TextField label={`Line ${j + 1}`} value={it} onChange={(v) => update(`about.sections.${i}.items.${j}`, v)} /></div>
-              <button className="mini is-quiet" onClick={() => update(`about.sections.${i}.items`, s.items.filter((_, k) => k !== j))} aria-label={`Remove line ${j + 1}`}>Remove</button>
-            </div>
+          {fields.map(([k, label, multiline]) => (
+            <TextField key={k} label={label} multiline={multiline} rows={3} value={e[k]} onChange={(v) => update(`${path}.${i}.${k}`, v)} />
           ))}
-          <div className="au-row"><button className="mini" onClick={() => update(`about.sections.${i}.items`, [...s.items, { text: '', scaffold: false }])}>Add a line</button></div>
-          <Check label="Hide this section" checked={s.hidden} onChange={(v) => update(`about.sections.${i}.hidden`, v)} />
+          <Check label={`Hide this ${noun}`} checked={e.hidden} onChange={(v) => update(`${path}.${i}.hidden`, v)} />
         </div>
       ))}
-      <div className="au-row">
-        <button onClick={() => {
-          const ids = new Set(secs.map((s) => s.id)); let id = 'section'; let n = 2
-          while (ids.has(id)) id = `section-${n++}`
-          update('about.sections', [...secs, { id, title: 'New section', hidden: false, items: [{ text: '[A line about this.]', scaffold: true }] }])
-        }}>Add section</button>
-      </div>
+      <div className="au-row"><button onClick={() => update(path, [...list, { id: newId(), ...blank, hidden: false }])}>Add {noun}</button></div>
+    </>
+  )
+}
+
+function AboutEditor({ site, update }) {
+  const { about } = site
+  return (
+    <>
+      <h2>About Me</h2>
+      <TextField label="Heading" value={about.heading} onChange={(v) => update('about.heading', v)} />
+      {about.paragraphs.map((para, i) => (
+        <div key={i} className="au-row" style={{ alignItems: 'flex-end' }}>
+          <div style={{ flex: 1 }}><TextField label={`Paragraph ${i + 1}${i === 0 ? ' (also shown on Home)' : ''}`} multiline rows={3} value={para} onChange={(v) => update(`about.paragraphs.${i}`, v)} /></div>
+          <MoveButtons index={i} length={about.paragraphs.length} label={`paragraph ${i + 1}`} onMove={(a, b) => update('about.paragraphs', move(about.paragraphs, a, b))} />
+          {about.paragraphs.length > 1 && <button className="mini is-quiet" onClick={() => update('about.paragraphs', about.paragraphs.filter((_, j) => j !== i))}>Remove</button>}
+        </div>
+      ))}
+      <div className="au-row"><button className="mini" onClick={() => update('about.paragraphs', [...about.paragraphs, { text: '', scaffold: false }])}>Add paragraph</button></div>
+      <MediaField label="Portrait" value={about.portrait} onChange={(v) => update('about.portrait', v)} />
+
+      <h2>Education</h2>
+      <EntryList update={update} path="about.education" list={about.education} prefix="edu" noun="school"
+        fields={[['years', 'Years (e.g. 2025 – 2029)'], ['title', 'School'], ['detail', 'Programme & details']]}
+        blank={{ years: '', title: '', detail: '' }} />
+
+      <h2>Experience</h2>
+      <EntryList update={update} path="about.experience" list={about.experience} prefix="exp" noun="role"
+        fields={[['dates', 'Dates (e.g. Jun – Aug 2026)'], ['role', 'Role'], ['org', 'Organisation'], ['description', 'What you did', true]]}
+        blank={{ dates: '', role: '', org: '', description: '' }} />
+
+      <h2>Skills & tools</h2>
+      <ListField label="Skills (comma-separated)" list={about.skills} onChange={(v) => update('about.skills', v)} />
+      <ListField label="Tools (comma-separated)" list={about.tools} onChange={(v) => update('about.tools', v)} />
+
+      <h2>Closing</h2>
+      <TextField label="Heading" value={about.connect.heading} onChange={(v) => update('about.connect.heading', v)} />
+      <TextField label="Line under it" multiline rows={2} value={about.connect.text} onChange={(v) => update('about.connect.text', v)} hint="Your email (from the Contact tab) is shown underneath." />
     </>
   )
 }
@@ -489,8 +511,9 @@ function ContactEditor({ site, update }) {
   return (
     <>
       <h2>Contact links</h2>
-      <p className="au-hint">Only filled-in links appear on the site, at the end of Home and About.</p>
+      <p className="au-hint">Only filled-in details appear on the site: on About (left column and closing) and at the end of Home.</p>
       <TextField label="Email" type="email" value={c.email} placeholder="name@example.com" onChange={(v) => update('contact.email', v.trim())} />
+      <TextField label="Phone (optional — shown on About if filled)" type="tel" value={c.phone || ''} placeholder="+1 …" onChange={(v) => update('contact.phone', v)} />
       <TextField label="LinkedIn profile" value={c.linkedin} placeholder="https://www.linkedin.com/in/…" onChange={(v) => update('contact.linkedin', v.trim())} />
       <TextField label="Résumé link" value={c.resume} placeholder="https://… or upload a PDF below" onChange={(v) => update('contact.resume', v.trim())} />
       <MediaField label="Or upload a résumé PDF" accept="application/pdf" value={resumeMedia} onChange={(m) => update('contact.resume', m.src)} />

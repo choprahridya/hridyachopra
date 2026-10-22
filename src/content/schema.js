@@ -1,7 +1,7 @@
 // Content + settings schema: migration, defaults and validation.
 // Shared by the public renderer, the authoring tools and the local API.
 
-export const SITE_VERSION = 2
+export const SITE_VERSION = 3
 export const SETTINGS_VERSION = 2
 
 const clone = (v) => JSON.parse(JSON.stringify(v))
@@ -39,6 +39,29 @@ export function migrateSite(input) {
         if (sec.media && !('src' in sec.media)) sec.media = { ...emptyMedia(sec.media.ratio, sec.media.label) }
       }
     }
+  }
+  if (v < 3) {
+    // About becomes structured: paragraphs, education/experience timelines, skills, tools.
+    const a = s.about || {}
+    const asText = (x) => (x && typeof x === 'object' ? x : { text: x || '', scaffold: isPlaceholder(x) })
+    const paragraphs = [a.intro, a.bio].filter(Boolean).map(asText)
+    const take = (id) => (a.sections || []).find((x) => x.id === id)
+    const lines = (sec) => (sec?.items || []).map(asText).filter((it) => it.text)
+    const entry = (it, i, kind) => (kind === 'education'
+      ? { id: `edu-${i + 1}`, years: '', title: it.text, detail: '', hidden: false }
+      : { id: `exp-${i + 1}`, dates: '', role: it.text, org: '', description: '', hidden: false })
+    s.about = {
+      heading: 'About Me',
+      paragraphs: paragraphs.length ? paragraphs : [{ text: '[Introduce your practice.]', scaffold: true }],
+      portrait: a.portrait,
+      education: lines(take('education')).map((it, i) => entry(it, i, 'education')),
+      experience: lines(take('experience')).map((it, i) => entry(it, i, 'experience')),
+      skills: [],
+      tools: lines(take('tools')).map((it) => it.text),
+      extra: (a.sections || []).filter((x) => !['education', 'experience', 'tools'].includes(x.id)),
+      connect: { heading: 'Want to connect?', text: '' },
+    }
+    s.contact = { phone: '', ...(s.contact || {}) }
   }
   // Optional fields added after v2 shipped get safe defaults.
   s.home = s.home || {}
@@ -78,6 +101,7 @@ export function validateSite(s) {
   if (c.email && !EMAIL.test(c.email)) err('contact.email', 'Email address looks incomplete.')
   if (c.linkedin && !/^https?:\/\//.test(c.linkedin)) err('contact.linkedin', 'LinkedIn link should start with https://')
   if (c.resume && !URLISH.test(c.resume)) err('contact.resume', 'Résumé should be a https:// link or an uploaded file.')
+  if (c.phone && !/^\+?[\d\s().-]{7,}$/.test(c.phone)) err('contact.phone', 'Phone number looks incomplete.')
   return errors
 }
 
