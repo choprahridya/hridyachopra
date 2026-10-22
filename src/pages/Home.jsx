@@ -3,6 +3,7 @@ import { useContent, featuredProjects } from '../content'
 import ProjectIndex from '../components/ProjectIndex'
 import { Reveal, Copy, MediaSlot, usePageMeta } from '../components/bits'
 import Contact from '../components/Contact'
+import Carousel3D from '../components/Carousel3D'
 
 export default function Home() {
   const { site } = useContent()
@@ -29,6 +30,14 @@ export default function Home() {
           {featured.length > 0 && <a href="#selected" className="textlink">Selected work <span aria-hidden="true">↓</span></a>}
         </div>
       </section>
+
+      {home.carousel?.enabled && featured.length > 0 && (
+        <Carousel3D
+          label="Selected projects"
+          autoplay={home.carousel.autoplay}
+          items={featured.map((p) => ({ key: p.id, href: `/work/${p.slug}`, title: p.title, media: p.cover, scaffold: p.scaffold }))}
+        />
+      )}
 
       {featured.length > 0 && (
         <section id="selected" className="wrap section">

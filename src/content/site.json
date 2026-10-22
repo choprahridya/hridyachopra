@@ -30,7 +30,11 @@
     "featured": [
       "project-01",
       "project-02"
-    ]
+    ],
+    "carousel": {
+      "enabled": true,
+      "autoplay": true
+    }
   },
   "about": {
     "intro": {

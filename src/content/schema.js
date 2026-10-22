@@ -40,6 +40,9 @@ export function migrateSite(input) {
       }
     }
   }
+  // Optional fields added after v2 shipped get safe defaults.
+  s.home = s.home || {}
+  s.home.carousel = { enabled: true, autoplay: true, ...(s.home.carousel || {}) }
   s.schemaVersion = SITE_VERSION
   return s
 }
