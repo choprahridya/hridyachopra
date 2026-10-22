@@ -1,0 +1,42 @@
+{
+  "format": "hc-portfolio-preset",
+  "version": 1,
+  "id": "water-background-mvk1nla3",
+  "name": "Water background",
+  "notes": "Current live design with the whole page background as a slowly moving water surface (caustic light + faint blue swell). Ripples still on.",
+  "settings": {
+    "schemaVersion": 2,
+    "colors": {
+      "bg": "#F3F8FE",
+      "surface": "#FBFDFF",
+      "ink": "#21395E",
+      "muted": "#566783",
+      "accent": "#17459F",
+      "accentSoft": "#DDE7FA",
+      "line": "#D7DEE8"
+    },
+    "type": {
+      "heroMinRem": 3.6,
+      "heroMaxRem": 8.25,
+      "bodyPx": 16
+    },
+    "layout": {
+      "maxWidthPx": 1180,
+      "gutterMinPx": 20,
+      "gutterMaxPx": 48,
+      "sectionScale": 1
+    },
+    "media": {
+      "radiusPx": 10,
+      "coverRatio": "16 / 10"
+    },
+    "variants": {
+      "heroLayout": "carousel",
+      "hero": "split",
+      "workPreview": "cursor",
+      "ripples": "on",
+      "background": "water"
+    }
+  },
+  "updatedAt": "2026-10-22T21:19:26.331Z"
+}

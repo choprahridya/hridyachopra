@@ -1,12 +1,14 @@
 import { NavLink, Link, Outlet } from 'react-router-dom'
 import { useContent } from '../content'
 import Ripples from './Ripples'
+import WaterBackground from './WaterBackground'
 
 export default function Layout() {
   const { site, settings } = useContent()
   const [first, ...rest] = site.identity.name.split(' ')
   return (
     <>
+      {settings.variants.background === 'water' && <WaterBackground />}
       {settings.variants.ripples === 'on' && <Ripples />}
       <a className="skip" href="#main">Skip to content</a>
       <header className="nav">
