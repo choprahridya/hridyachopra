@@ -21,7 +21,7 @@ export default function About() {
     contact.phone && { label: 'Phone', text: contact.phone, href: `tel:${contact.phone.replace(/[^\d+]/g, '')}` },
     contact.email && { label: 'Email', text: contact.email, href: `mailto:${contact.email}` },
     contact.linkedin && { label: 'LinkedIn', text: linkedinHandle(contact.linkedin), href: contact.linkedin, external: true },
-    contact.resume && { label: 'Résumé', text: 'Download', href: contact.resume, download: true },
+    contact.resume && { label: 'Resume', text: 'Download', href: contact.resume, download: true },
   ].filter(Boolean)
   const tagGroups = [['Skills', about.skills], ['Tools', about.tools]].filter(([, list]) => list.length)
 
@@ -36,7 +36,7 @@ export default function About() {
                 <strong>{c.label}:</strong>{' '}
                 <a href={c.href} target={c.external ? '_blank' : undefined} rel={c.external ? 'noreferrer' : undefined} download={c.download || undefined}>{c.text}</a>
               </p>
-            )) : <p className="is-draft" data-scaffold>[Email · LinkedIn · Résumé]</p>}
+            )) : <p className="is-draft" data-scaffold>[Email · LinkedIn · Resume]</p>}
           </Reveal>
           {tagGroups.map(([label, list]) => (
             <Reveal key={label} className="ab__tags">

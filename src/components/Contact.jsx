@@ -8,7 +8,7 @@ export default function Contact() {
   const links = [
     email && { label: 'Email', href: `mailto:${email}` },
     linkedin && { label: 'LinkedIn', href: linkedin },
-    resume && { label: 'Résumé', href: resume, download: true },
+    resume && { label: 'Resume', href: resume, download: true },
   ].filter(Boolean)
 
   return (
@@ -24,7 +24,7 @@ export default function Contact() {
             </a>
           ))
         ) : (
-          <p className="is-draft" data-scaffold>[Email · LinkedIn · Résumé]</p>
+          <p className="is-draft" data-scaffold>[Email · LinkedIn · Resume]</p>
         )}
         <Link to="/work" className="textlink">Work <span aria-hidden="true">→</span></Link>
         <Link to="/about" className="textlink">About <span aria-hidden="true">→</span></Link>
