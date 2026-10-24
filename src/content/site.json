@@ -30,8 +30,7 @@
     "featured": [
       "xchange",
       "franklins",
-      "cogniva",
-      "ixigo"
+      "cogniva"
     ],
     "carousel": {
       "enabled": true,
@@ -226,7 +225,15 @@
           "body": "Xchange continues to evolve as both a social initiative and a digital product. The next phase focuses on expanding the community, improving the exchange experience, and working toward our goal of exchanging one million books by 2028.\n\nOur goal is to Xchange a Million Books by 2028.",
           "hidden": false
         }
-      ]
+      ],
+      "cardHover": {
+        "src": "/media/xchange-hover.webp",
+        "alt": "",
+        "caption": "",
+        "fit": "cover",
+        "ratio": "16 / 10",
+        "label": "Card hover image"
+      }
     },
     {
       "id": "franklins",
@@ -335,7 +342,15 @@
           "body": "This redesign demonstrates how thoughtful UX and visual design can transform a restaurant's digital presence. Future iterations could introduce online ordering, loyalty features, and accessibility improvements while maintaining Franklin's warm and welcoming identity.",
           "hidden": false
         }
-      ]
+      ],
+      "cardHover": {
+        "src": "/media/franklins-menu.webp",
+        "alt": "",
+        "caption": "",
+        "fit": "cover",
+        "ratio": "16 / 10",
+        "label": "Card hover image"
+      }
     },
     {
       "id": "cogniva",
@@ -426,7 +441,15 @@
           "body": "While Cogniva is currently a concept, the recognition from the SCAD StartUp Competition validated both the problem and the proposed solution. Future work includes developing a functional prototype, refining the physical interaction experience, and testing Life Link, Bridge Mode, and Circle Connect with nursing home residents to evaluate usability and real-world impact.",
           "hidden": false
         }
-      ]
+      ],
+      "cardHover": {
+        "src": "/media/cogniva-hover.webp",
+        "alt": "",
+        "caption": "",
+        "fit": "cover",
+        "ratio": "16 / 10",
+        "label": "Card hover image"
+      }
     },
     {
       "id": "ixigo",

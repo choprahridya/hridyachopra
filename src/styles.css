@@ -405,11 +405,33 @@ p { margin: 0; }
 .pcard__tags { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--c-muted); text-align: right; }
 .pcard__title.is-draft, .pcard__sum.is-draft { color: var(--c-muted); }
 .pcard__title.is-draft { color: var(--c-accent); opacity: 0.8; }
+/* Hover / focus reveal (from the owner's earlier site): lift 4px, accent border, soft shadow,
+   second image fades in (0.5s), gradient overlay with tags, summary and CTA (0.3s). */
+.pcard { transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.pcard__media { position: relative; }
+.pcard__hoverImg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1); border-radius: inherit; }
+.pcard__overlay {
+  position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.35) 55%, rgba(0, 0, 0, 0) 100%);
+  opacity: 0; transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1); border-radius: inherit; color: #fff;
+}
+.pcard__chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.pcard__chips span {
+  padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+  color: #fff; background: rgba(255, 255, 255, 0.15); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+}
+.pcard__overlaySum { font-size: 13px; line-height: 1.6; color: rgba(255, 255, 255, 0.9); margin-bottom: 8px; }
+.pcard__overlayCta { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: #fff; }
+.pcard__overlayCta span { display: inline-block; transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1); }
+.pcard:focus-visible { transform: translateY(-4px); border-color: var(--c-accent); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08); }
+.pcard:focus-visible .pcard__hoverImg, .pcard:focus-visible .pcard__overlay { opacity: 1; }
 @media (hover: hover) {
-  .pcard:hover { border-color: var(--c-accent); transform: translateY(-2px); }
-  .pcard:hover .pcard__media .slot, .pcard:hover .pcard__media .media__frame { transform: scale(1.03); }
+  .pcard:hover { transform: translateY(-4px); border-color: var(--c-accent); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08); }
+  .pcard:hover .pcard__hoverImg, .pcard:hover .pcard__overlay { opacity: 1; }
+  .pcard:hover .pcard__overlayCta span { transform: translateX(2px); }
   .pcard:hover .pcard__view span { transform: translateX(4px); }
 }
+
 
 /* Case-study section headline, paragraphs and image pairs */
 .case__secTitle { margin-top: 8px; }

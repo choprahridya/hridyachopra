@@ -410,6 +410,7 @@ function ProjectsEditor({ site, saved, update, set, index, setIndex }) {
           <TextField label="Context" value={p.meta.context} onChange={(v) => update(at('meta.context'), v)} hint="Leave any of these empty to hide it." />
         </div>
         <MediaField label="Cover image" value={p.cover} onChange={(v) => update(at('cover'), v)} />
+        <MediaField label="Card hover image (optional — fades in when the card is hovered)" value={p.cardHover || emptyMedia('16 / 10', 'Card hover image')} onChange={(v) => update(at('cardHover'), v)} />
 
         <h2>Sections</h2>
         <p className="au-hint">Reorder, hide or add sections. Hidden sections keep their text.</p>

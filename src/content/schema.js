@@ -115,7 +115,7 @@ export function findPlaceholders(s) {
     if (typeof v === 'object') {
       if ('text' in v && 'scaffold' in v) { if (v.scaffold || isPlaceholder(v.text)) out.push({ path, text: v.text }); return }
       if ('src' in v && 'ratio' in v) { if (!v.src) out.push({ path, text: `[${v.label || 'Image'}]`, media: true }); return }
-      for (const [k, x] of Object.entries(v)) if (k !== 'redirectFrom') walk(x, path ? `${path}.${k}` : k)
+      for (const [k, x] of Object.entries(v)) if (k !== 'redirectFrom' && k !== 'cardHover') walk(x, path ? `${path}.${k}` : k)
     }
   }
   walk({ identity: s.identity, home: s.home, about: s.about }, '')
