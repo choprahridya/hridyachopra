@@ -28,8 +28,10 @@
       "scaffold": true
     },
     "featured": [
-      "project-01",
-      "project-02"
+      "xchange",
+      "franklins",
+      "cogniva",
+      "ixigo"
     ],
     "carousel": {
       "enabled": true,
@@ -53,7 +55,7 @@
       }
     ],
     "portrait": {
-      "src": "",
+      "src": "/media/portrait.jpg",
       "alt": "Portrait of Hridya Chopra",
       "caption": "",
       "fit": "cover",
@@ -121,159 +123,369 @@
   "contact": {
     "phone": "",
     "email": "choprahridya@gmail.com",
-    "linkedin": "",
-    "resume": ""
+    "linkedin": "https://www.linkedin.com/in/hridyachopra",
+    "resume": "/media/hridya-chopra-resume.pdf"
   },
   "projects": [
     {
-      "id": "project-01",
-      "slug": "project-01",
+      "id": "xchange",
+      "slug": "xchange",
       "format": "ux-case-study",
-      "scaffold": true,
-      "title": "[Project title 01]",
-      "summary": "[One sentence about what this project is and why it matters.]",
+      "scaffold": false,
+      "hidden": false,
+      "redirectFrom": [],
+      "title": "Xchange",
+      "summary": "A community-driven app designed to make local exchanges feel simple, fast, and trustworthy.",
       "tags": [
-        "[Discipline]",
-        "[Year]"
+        "Product",
+        "UI/UX",
+        "2022"
       ],
       "meta": {
-        "role": "[Your individual contribution]",
-        "timeline": "[Duration · Year]",
-        "team": "[Collaborators and their roles]",
-        "context": "[Course, internship or self-initiated]"
+        "role": "Co-Founder · led design end to end",
+        "timeline": "Since May 2022",
+        "team": "",
+        "context": "Community book exchange initiative and mobile app"
+      },
+      "cover": {
+        "src": "/media/xchange-xchange-books.webp",
+        "alt": "Five phone screens of the Xchange app: notifications, My Books, the home feed of books by genre, a book detail page, and a chat between readers.",
+        "caption": "",
+        "fit": "cover",
+        "ratio": "2000 / 1013",
+        "label": "Project cover"
       },
       "sections": [
         {
           "id": "overview",
           "label": "Overview",
-          "body": "[What the project is, who it was for and what you set out to change.]",
+          "title": "",
+          "body": "Xchange is a community-driven book exchange platform that makes reading more affordable and sustainable. By enabling people to exchange books instead of buying new ones, it reduces costs, minimizes waste, and extends the life of every book.",
           "hidden": false
         },
         {
-          "id": "context",
-          "label": "Context",
-          "body": "[The situation and constraints you started from.]",
+          "id": "problem",
+          "label": "Problem",
+          "title": "A constant demand families struggle to meet",
+          "body": "Children quickly outgrow books, creating a constant demand that many families struggle to afford. As books sit unused on shelves or are discarded, thousands of reusable books go to waste while others still lack access to reading materials. This cycle is also environmentally unsustainable, with roughly one tree used to produce every 62.5 books.",
+          "hidden": false,
+          "gallery": [
+            {
+              "src": "/media/xchange-xhca-1.webp",
+              "alt": "Research board: two personas (a parent and a Grade 9 reader) with their struggles and needs, ideation options, research figures, a WhatsApp message from a resident, and a handwritten survey for the Xchange app.",
+              "caption": "",
+              "fit": "cover",
+              "ratio": "2000 / 1420",
+              "label": "Image"
+            }
+          ]
+        },
+        {
+          "id": "solution",
+          "label": "Solution",
+          "title": "A community-first exchange platform",
+          "body": "Xchange connects nearby readers, allowing them to exchange books instead of purchasing new ones. Users list books they've finished, discover titles available within their community, and arrange swaps, keeping books in circulation instead of letting them collect dust.",
           "hidden": false
         },
         {
-          "id": "contribution",
-          "label": "My contribution",
-          "body": "[Describe your individual contribution, separate from the team's.]",
+          "id": "role",
+          "label": "My role",
+          "title": "Co-Founder, leading design end to end",
+          "body": "I co-founded Xchange and led the end-to-end visual design and user experience, from early concept through the mobile app prototype in Figma.",
           "hidden": false
         },
         {
-          "id": "decisions",
-          "label": "Key decisions",
-          "body": "[Explain one decision and the evidence behind it.]",
-          "media": {
-            "src": "",
-            "alt": "",
-            "caption": "",
-            "fit": "cover",
-            "ratio": "4 / 3",
-            "label": "Decision artefact · 4:3"
-          },
-          "hidden": false
+          "id": "result",
+          "label": "Result",
+          "title": "Real impact, measurable growth",
+          "body": "Since launching in May 2022, Xchange has facilitated the exchange of over 25,000 books through community drives and its growing network. The initiative has donated 2,000+ books, helped families save nearly $25,000, preserved approximately 400 trees, and secured funding to support app development. It has also been recognized by Youth Ki Awaaz, Plaksha University, and Youth Ideathon 2023.",
+          "hidden": false,
+          "gallery": [
+            {
+              "src": "/media/xchange-frame-3.webp",
+              "alt": "Xchange style guide (Inter typography, a navy primary colour #0F2961 with orange accent, and icon set) next to the app site map from splash screen to chat.",
+              "caption": "",
+              "fit": "cover",
+              "ratio": "2000 / 1420",
+              "label": "Image"
+            },
+            {
+              "src": "/media/xchange-frame-4.webp",
+              "alt": "Sixteen Xchange UI screens, including splash, onboarding, sign up and sign in, home, notifications, profile, search, book overview, chat, favourites and My Books.",
+              "caption": "",
+              "fit": "cover",
+              "ratio": "2000 / 1420",
+              "label": "Image"
+            }
+          ]
         },
         {
-          "id": "evidence",
-          "label": "Evidence & iteration",
-          "body": "[What you tested or observed, and what changed because of it.]",
-          "media": {
-            "src": "",
-            "alt": "",
-            "caption": "",
-            "fit": "cover",
-            "ratio": "16 / 9",
-            "label": "Iteration comparison · 16:9"
-          },
-          "hidden": false
-        },
-        {
-          "id": "reflection",
-          "label": "Reflection",
-          "body": "[What you'd do differently, and what you learned.]",
+          "id": "conclusion",
+          "label": "Conclusion",
+          "title": "Recognition and what comes next",
+          "body": "Xchange continues to evolve as both a social initiative and a digital product. The next phase focuses on expanding the community, improving the exchange experience, and working toward our goal of exchanging one million books by 2028.\n\nOur goal is to Xchange a Million Books by 2028.",
           "hidden": false
         }
-      ],
-      "cover": {
-        "src": "",
-        "alt": "",
-        "caption": "",
-        "fit": "cover",
-        "ratio": "16 / 9",
-        "label": "Project cover · 16:9"
-      },
-      "hidden": false,
-      "redirectFrom": []
+      ]
     },
     {
-      "id": "project-02",
-      "slug": "project-02",
+      "id": "franklins",
+      "slug": "franklins-website-redesign",
       "format": "ux-case-study",
-      "scaffold": true,
-      "title": "[Project title 02]",
-      "summary": "[One sentence about what this project is and why it matters.]",
+      "scaffold": false,
+      "hidden": false,
+      "redirectFrom": [],
+      "title": "Website Redesign: Franklin's",
+      "summary": "A digital experience designed to reflect the calm, inviting atmosphere of a neighborhood coffee shop.",
       "tags": [
-        "[Discipline]",
-        "[Year]"
+        "Website redesign",
+        "UI/UX",
+        "2026"
       ],
       "meta": {
-        "role": "[Your individual contribution]",
-        "timeline": "[Duration · Year]",
-        "team": "[Collaborators and their roles]",
-        "context": "[Course, internship or self-initiated]"
+        "role": "UX Designer · led the menu page redesign",
+        "timeline": "2026",
+        "team": "Collaborated with teammates on the remaining pages",
+        "context": ""
+      },
+      "cover": {
+        "src": "/media/franklins-cover-new.webp",
+        "alt": "Redesigned Franklin's home page: the Franklin's logo, navigation with an Order Online button, the headline 'Welcome to Franklin's: specialty coffee, brunch staples, and a cozy Savannah vibe', and a photo of the café front.",
+        "caption": "",
+        "fit": "cover",
+        "ratio": "2000 / 1322",
+        "label": "Project cover"
       },
       "sections": [
         {
           "id": "overview",
           "label": "Overview",
-          "body": "[What the project is, who it was for and what you set out to change.]",
+          "title": "",
+          "body": "A full UX and visual redesign of Franklin's restaurant website, improving navigation, menu hierarchy, and the mobile experience while preserving the restaurant's warm, welcoming identity.",
           "hidden": false
         },
         {
-          "id": "context",
-          "label": "Context",
-          "body": "[The situation and constraints you started from.]",
+          "id": "problem",
+          "label": "Problem",
+          "title": "A website that didn't reflect the experience",
+          "body": "Franklin's is a beloved local restaurant with a warm, welcoming atmosphere, but its website felt cluttered and difficult to navigate. Customers struggled to find the menu, make reservations, and learn about the restaurant, while the mobile experience lacked usability and visual consistency.",
+          "hidden": false,
+          "gallery": [
+            {
+              "src": "/media/franklins-franklins-1.webp",
+              "alt": "Business Model Canvas for Franklin's (partners, activities, value proposition, customer relationships and segments, costs and revenue) with an evidence key E1–E9 from the team's research.",
+              "caption": "",
+              "fit": "cover",
+              "ratio": "1920 / 1080",
+              "label": "Image"
+            },
+            {
+              "src": "/media/franklins-journey-map.webp",
+              "alt": "Customer journey map across six stages (Discover, Pre-Visit, Arrival, Ordering, Experience, Post-Visit), each with goals, actions, touch points, thoughts, pain points and opportunities.",
+              "caption": "",
+              "fit": "cover",
+              "ratio": "1920 / 1080",
+              "label": "Image"
+            }
+          ]
+        },
+        {
+          "id": "solution",
+          "label": "Solution",
+          "title": "Clarity and warmth in every interaction",
+          "body": "The redesign simplified the experience into three primary actions: view the menu, make a reservation, and explore the restaurant's story. A warmer visual language, improved typography, and a mobile-first layout created a more intuitive experience, while a streamlined reservation flow reduced friction.",
           "hidden": false
         },
         {
-          "id": "contribution",
-          "label": "My contribution",
-          "body": "[Describe your individual contribution, separate from the team's.]",
+          "id": "role",
+          "label": "My role",
+          "title": "UX Designer",
+          "body": "Led the redesign of the menu page, improving navigation, content hierarchy, and mobile usability, while collaborating on the design and refinement of the remaining website pages to create a cohesive user experience.",
+          "hidden": false,
+          "gallery": [
+            {
+              "src": "/media/franklins-menu.webp",
+              "alt": "Redesigned Franklin's menu page: a Brunch section in two columns listing dishes with descriptions and prices.",
+              "caption": "",
+              "fit": "cover",
+              "ratio": "1440 / 1024",
+              "label": "Image"
+            },
+            {
+              "src": "/media/franklins-menu-mobile.webp",
+              "alt": "Franklin's online ordering menu: search, category tabs from Brunch Favourites to Coffee Shop, and dish cards with photos, prices, ratings and an add button.",
+              "caption": "",
+              "fit": "cover",
+              "ratio": "1440 / 1024",
+              "label": "Image"
+            }
+          ]
+        },
+        {
+          "id": "result",
+          "label": "Result",
+          "title": "A simpler, more intuitive user experience",
+          "body": "The redesigned experience makes it easier for users to browse the menu, book a table, and explore the restaurant with fewer steps and clearer navigation. The mobile-first approach improves accessibility and creates a more seamless experience across devices.",
           "hidden": false
         },
         {
-          "id": "decisions",
-          "label": "Key decisions",
-          "body": "[Explain one decision and the evidence behind it.]",
-          "media": {
-            "src": "",
-            "alt": "",
-            "caption": "",
-            "fit": "cover",
-            "ratio": "4 / 3",
-            "label": "Decision artefact · 4:3"
-          },
-          "hidden": false
-        },
-        {
-          "id": "reflection",
-          "label": "Reflection",
-          "body": "[What you'd do differently, and what you learned.]",
+          "id": "conclusion",
+          "label": "Conclusion",
+          "title": "Building on the experience",
+          "body": "This redesign demonstrates how thoughtful UX and visual design can transform a restaurant's digital presence. Future iterations could introduce online ordering, loyalty features, and accessibility improvements while maintaining Franklin's warm and welcoming identity.",
           "hidden": false
         }
+      ]
+    },
+    {
+      "id": "cogniva",
+      "slug": "cogniva",
+      "format": "ux-case-study",
+      "scaffold": false,
+      "hidden": false,
+      "redirectFrom": [],
+      "title": "Cogniva",
+      "summary": "A socially assistive robot designed to foster meaningful connection in nursing homes.",
+      "tags": [
+        "Product",
+        "UI/UX",
+        "2026"
       ],
+      "meta": {
+        "role": "UX Designer",
+        "timeline": "2026",
+        "team": "Team of 4",
+        "context": "SCAD StartUp Competition · 3rd place"
+      },
       "cover": {
-        "src": "",
-        "alt": "",
+        "src": "/media/cogniva-cover.webp",
+        "alt": "Cogniva logo: a friendly robot face beside the name Cogniva and the tagline \"Care meets Companionship\".",
+        "caption": "",
+        "fit": "cover",
+        "ratio": "455 / 306",
+        "label": "Project cover"
+      },
+      "sections": [
+        {
+          "id": "overview",
+          "label": "Overview",
+          "title": "",
+          "body": "Cogniva is a socially assistive companion system designed to reduce emotional isolation among nursing home residents through meaningful peer interaction, shared experiences, and daily engagement.",
+          "hidden": false
+        },
+        {
+          "id": "problem",
+          "label": "Problem",
+          "title": "Isolation is a silent crisis in care homes",
+          "body": "Limited social interaction contributes to emotional isolation, negatively affecting residents' mental and emotional well-being. At the same time, nursing homes continue to face staffing shortages, making it difficult to provide consistent social engagement at scale.\n\n1 in 4 older adults experience social isolation. 1 in 3 report feelings of loneliness. 3 in 4 nursing homes report staffing shortages.",
+          "hidden": false
+        },
+        {
+          "id": "solution",
+          "label": "Solution",
+          "title": "A companion system built for connection",
+          "body": "Cogniva is a socially assistive companion system designed to foster meaningful connections in nursing homes through three core experiences. Life Link enables residents to preserve and share personal stories, strengthening connections across generations and with fellow residents. Bridge Mode encourages one-on-one conversations and guided social activities between residents. Circle Connect brings together small groups with shared interests, creating opportunities for regular social interaction without replacing human care.",
+          "hidden": false
+        },
+        {
+          "id": "role",
+          "label": "My role",
+          "title": "UX Designer (Team of 4)",
+          "body": "Conducted user research, contributed to concept development, designed user flows and interfaces, created high-fidelity prototypes in Figma, and collaborated with teammates to define Cogniva's core interaction experiences for the SCAD StartUp Competition.",
+          "hidden": false,
+          "gallery": [
+            {
+              "src": "/media/cogniva-robot-1.webp",
+              "alt": "The Cogniva robot with a smiling screen face; its chest display shows Now Playing: Glenn Miller – Moonlight Serenade with a Pause button.",
+              "caption": "",
+              "fit": "cover",
+              "ratio": "1518 / 2000",
+              "label": "Image"
+            },
+            {
+              "src": "/media/cogniva-robot-2.webp",
+              "alt": "The Cogniva robot; its chest display reads \"Connection found! You and George both love dancing to 1950s Jazz. Would you like to share a dance with him?\" with YES! and Maybe Later buttons.",
+              "caption": "",
+              "fit": "cover",
+              "ratio": "1518 / 2000",
+              "label": "Image"
+            }
+          ]
+        },
+        {
+          "id": "result",
+          "label": "Result",
+          "title": "Recognized for its potential",
+          "body": "Cogniva was awarded 3rd place at the SCAD StartUp Competition, where our four-member team received a $2,000 scholarship in recognition of the concept's innovation and potential to address emotional isolation in elder care.",
+          "hidden": false
+        },
+        {
+          "id": "conclusion",
+          "label": "Conclusion",
+          "title": "From concept to future impact",
+          "body": "While Cogniva is currently a concept, the recognition from the SCAD StartUp Competition validated both the problem and the proposed solution. Future work includes developing a functional prototype, refining the physical interaction experience, and testing Life Link, Bridge Mode, and Circle Connect with nursing home residents to evaluate usability and real-world impact.",
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "id": "ixigo",
+      "slug": "ixigo",
+      "format": "ux-case-study",
+      "scaffold": false,
+      "hidden": false,
+      "redirectFrom": [],
+      "title": "ixigo",
+      "summary": "Wireframes and high-fidelity interfaces for ixigo’s airport cab booking flow, including Live Activity notifications.",
+      "tags": [
+        "Product",
+        "UI/UX",
+        "2026"
+      ],
+      "meta": {
+        "role": "UX Design Intern",
+        "timeline": "June – Aug 2026",
+        "team": "",
+        "context": "Internship at ixigo"
+      },
+      "cover": {
+        "src": "/media/ixigo-cover.webp",
+        "alt": "ixigo logo (a white aeroplane and the word ixigo on an orange square) centred on a pale peach background.",
         "caption": "",
         "fit": "cover",
         "ratio": "16 / 9",
-        "label": "Project cover · 16:9"
+        "label": "Project cover"
       },
-      "hidden": false,
-      "redirectFrom": []
+      "sections": [
+        {
+          "id": "overview",
+          "label": "Overview",
+          "title": "",
+          "body": "Designed wireframes and high-fidelity interfaces for ixigo’s airport cab booking flow, including Live Activity notifications, built within ixigo’s existing design system.",
+          "hidden": false
+        },
+        {
+          "id": "scope",
+          "label": "Scope",
+          "title": "Airport cab booking, wireframe to high fidelity",
+          "body": "The work covered the airport cab booking flow within the ixigo app, from early wireframes through high-fidelity screens ready for handoff.",
+          "hidden": false
+        },
+        {
+          "id": "live-activity",
+          "label": "Live Activity",
+          "title": "Real-time status without opening the app",
+          "body": "Live Activity notifications were designed to give riders visibility into their cab booking status directly from the lock screen, without needing to open the app.",
+          "hidden": false
+        },
+        {
+          "id": "design-system",
+          "label": "Design System",
+          "title": "Built within ixigo’s design system",
+          "body": "Screens were designed to follow ixigo’s existing design system, keeping the new flow visually and interactionally consistent with the rest of the product.",
+          "hidden": false
+        }
+      ]
     }
   ]
 }

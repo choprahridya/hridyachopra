@@ -8,3 +8,6 @@ dist
 
 # Dashboard/lab automatic save snapshots: local recovery only (Git commits are the durable history)
 authoring/history/
+
+# Original full-size media (web-optimised copies live in public/media)
+authoring/media-src/

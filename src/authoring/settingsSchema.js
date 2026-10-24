@@ -33,8 +33,6 @@ export const SETTINGS = [
     options: [['plain', 'Plain colour'], ['waterHero', 'Moving water in the landing hero only'], ['water', 'Moving water on every page']] },
   { id: 'variants.ripples', group: 'Layout variants', label: 'Ripples when clicking the background', type: 'select', scope: 'all', target: 'Every page (not on links, buttons or the carousel)',
     options: [['off', 'Off'], ['on', 'On']] },
-  { id: 'variants.workPreview', group: 'Layout variants', label: 'Work list covers', type: 'select', scope: 'desktop', target: 'Home and Work project list',
-    options: [['cursor', 'Appear beside the cursor'], ['inline', 'Always shown under each title']] },
 ]
 
 export const SCOPE_LABEL = { all: 'All sizes', phone: 'Phone', desktop: 'Desktop' }

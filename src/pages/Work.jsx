@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useContent, publicProjects } from '../content'
-import ProjectIndex from '../components/ProjectIndex'
+import ProjectGrid from '../components/ProjectGrid'
 import { Reveal, usePageMeta } from '../components/bits'
 
 export default function Work() {
@@ -13,7 +13,7 @@ export default function Work() {
         <Reveal as="p" className="lede" delay={100}>UX projects and case studies.</Reveal>
       </section>
       <section className="wrap section section--tight">
-        <ProjectIndex projects={publicProjects(site)} />
+        <ProjectGrid projects={publicProjects(site)} />
         <Reveal className="onward">
           <Link to="/about" className="textlink">About me <span aria-hidden="true">→</span></Link>
         </Reveal>

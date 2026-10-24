@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 
-// Small circular water ripples (a drop, then concentric rings) where the visitor clicks or taps the page background.
+// Light ripples that spread from where the visitor clicks or taps the page background and dissolve into it.
 // Drawn on a fixed layer behind the content; never triggered by links, controls or the carousel.
-const IGNORE = 'a, button, input, textarea, select, label, summary, [role="button"], .c3d__stage, .index__row'
+const IGNORE = 'a, button, input, textarea, select, label, summary, [role="button"], .c3d__stage, .pcard'
 const RINGS = 2
 const MAX_ACTIVE = 5
 
@@ -15,7 +15,7 @@ export default function Ripples() {
       if (reduced.matches || e.button > 0 || !layer.current) return
       if (e.target.closest?.(IGNORE)) return
       const host = layer.current
-      while (host.childElementCount >= MAX_ACTIVE * (RINGS + 1)) host.firstElementChild.remove()
+      while (host.childElementCount >= MAX_ACTIVE * RINGS) host.firstElementChild.remove()
       const add = (cls, delay) => {
         const el = document.createElement('span')
         el.className = cls
@@ -25,8 +25,7 @@ export default function Ripples() {
         el.addEventListener('animationend', () => el.remove())
         host.appendChild(el)
       }
-      add('ripple-drop', 0)
-      for (let i = 0; i < RINGS; i++) add('ripple', 40 + i * 180)
+      for (let i = 0; i < RINGS; i++) add('ripple', i * 260)
     }
     window.addEventListener('pointerdown', onDown)
     return () => window.removeEventListener('pointerdown', onDown)

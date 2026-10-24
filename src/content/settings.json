@@ -28,7 +28,7 @@
     "heroLayout": "carousel",
     "hero": "split",
     "workPreview": "cursor",
-    "ripples": "off",
+    "ripples": "on",
     "background": "waterHero"
   }
 }

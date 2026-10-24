@@ -8,7 +8,7 @@ export default function Contact() {
   const links = [
     email && { label: 'Email', href: `mailto:${email}` },
     linkedin && { label: 'LinkedIn', href: linkedin },
-    resume && { label: 'Résumé', href: resume },
+    resume && { label: 'Résumé', href: resume, download: true },
   ].filter(Boolean)
 
   return (
@@ -19,8 +19,8 @@ export default function Contact() {
       <Reveal className="closing__links" delay={120}>
         {links.length ? (
           links.map((l) => (
-            <a key={l.label} href={l.href} className="textlink" target={l.href.startsWith('mailto:') ? undefined : '_blank'} rel="noreferrer">
-              {l.label} <span aria-hidden="true">↗</span>
+            <a key={l.label} href={l.href} className="textlink" download={l.download || undefined} target={l.download || l.href.startsWith('mailto:') ? undefined : '_blank'} rel="noreferrer">
+              {l.label} <span aria-hidden="true">{l.download ? '↓' : '↗'}</span>
             </a>
           ))
         ) : (

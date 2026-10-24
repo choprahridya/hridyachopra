@@ -422,12 +422,20 @@ function ProjectsEditor({ site, saved, update, set, index, setIndex }) {
                 <MoveButtons index={si} length={p.sections.length} label={sec.label} onMove={(a, b) => update(at('sections'), move(p.sections, a, b))} />
                 <button className="mini is-quiet" onClick={() => { if (window.confirm(`Remove the “${sec.label}” section?`)) update(at('sections'), p.sections.filter((_, i) => i !== si)) }}>Remove</button>
               </div>
-              <TextField label="Heading" value={sec.label} onChange={(v) => update(sp('label'), v)} />
-              <TextField label="Text" multiline rows={4} value={sec.body} onChange={(v) => update(sp('body'), v)} />
+              <TextField label="Label" value={sec.label} onChange={(v) => update(sp('label'), v)} hint="Short name, e.g. Problem. Used in the side menu." />
+              <TextField label="Headline (optional)" value={sec.title || ''} onChange={(v) => update(sp('title'), v)} />
+              <TextField label="Text" multiline rows={5} value={sec.body} onChange={(v) => update(sp('body'), v)} hint="Leave a blank line between paragraphs." />
               {sec.media
                 ? <><MediaField label="Section image" value={sec.media} onChange={(v) => update(sp('media'), v)} />
                     <button className="mini is-quiet" style={{ marginTop: 6 }} onClick={() => update(at('sections'), p.sections.map((x, i) => (i === si ? (({ media, ...rest }) => rest)(x) : x)))}>Remove image slot</button></>
                 : <div className="au-row"><button className="mini" onClick={() => update(sp('media'), emptyMedia('16 / 9', `${sec.label} image`))}>Add an image</button></div>}
+              {(sec.gallery || []).map((m, gi) => (
+                <div key={gi}>
+                  <MediaField label={`Side-by-side image ${gi + 1}`} value={m} onChange={(v) => update(sp(`gallery.${gi}`), v)} />
+                  <button className="mini is-quiet" style={{ marginTop: 6 }} onClick={() => update(sp('gallery'), sec.gallery.filter((_, k) => k !== gi))}>Remove this image</button>
+                </div>
+              ))}
+              <div className="au-row"><button className="mini" onClick={() => update(sp('gallery'), [...(sec.gallery || []), emptyMedia('4 / 3', 'Image')])}>Add a side-by-side image</button></div>
               <Check label="Hide this section" checked={sec.hidden} onChange={(v) => update(sp('hidden'), v)} />
             </div>
           )

@@ -4,6 +4,12 @@ import { useContent, projectBySlug, nextProject, redirectFor } from '../content'
 import { Reveal, Copy, MediaSlot, usePageMeta } from '../components/bits'
 import NotFound from './NotFound'
 
+// Wide images (landscape boards, screen sets) read better full-width than side by side.
+const isWide = (m) => {
+  const [w, h] = String(m.ratio || '').split('/').map(Number)
+  return w / h > 1.25
+}
+
 const META = [
   ['role', 'Role'],
   ['timeline', 'Timeline'],
@@ -72,10 +78,22 @@ export default function Project() {
         <div className="case__sections">
           {sections.map((s) => (
             <section key={s.id} id={s.id} className="case__section">
-              <Reveal as="h2" className="h3">{s.label}</Reveal>
-              <Reveal delay={80}><Copy value={s.body} className="case__text" /></Reveal>
+              {s.title ? (
+                <Reveal>
+                  <p className="eyebrow">{s.label}</p>
+                  <h2 className="h3 case__secTitle">{s.title}</h2>
+                </Reveal>
+              ) : <Reveal as="h2" className="h3">{s.label}</Reveal>}
+              <Reveal delay={80} className="case__text">
+                {String(s.body || '').split(/\n\s*\n/).map((para, i) => <Copy key={i} value={para.trim()} />)}
+              </Reveal>
               {s.media && (
                 <Reveal delay={120}><MediaSlot media={s.media} /></Reveal>
+              )}
+              {s.gallery?.length > 0 && (
+                <Reveal delay={120} className={`case__gallery ${s.gallery.length === 1 || s.gallery.every(isWide) ? 'is-single' : ''}`}>
+                  {s.gallery.map((m, i) => <MediaSlot key={i} media={m} />)}
+                </Reveal>
               )}
             </section>
           ))}

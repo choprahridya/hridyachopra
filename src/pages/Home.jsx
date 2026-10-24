@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useContent, featuredProjects } from '../content'
-import ProjectIndex from '../components/ProjectIndex'
+import ProjectGrid from '../components/ProjectGrid'
 import { Reveal, Copy, MediaSlot, usePageMeta } from '../components/bits'
 import Contact from '../components/Contact'
 import Carousel3D from '../components/Carousel3D'
@@ -56,7 +56,7 @@ export default function Home() {
             <h2 className="h2">Selected <em>work</em></h2>
             <Link to="/work" className="textlink">View all work <span aria-hidden="true">→</span></Link>
           </Reveal>
-          <ProjectIndex projects={featured} />
+          <ProjectGrid projects={featured} />
         </section>
       )}
 
