@@ -324,7 +324,7 @@ function HomeEditor({ site, update, set }) {
       <TextField label="Introduction" multiline value={home.intro} onChange={(v) => update('home.intro', v)} />
 
       <h2>3D carousel on Home</h2>
-      <p className="au-hint">Shows the covers of your selected projects (below) under the hero. Each card opens its project.</p>
+      <p className="au-hint">Shows the covers of all projects on your Work page, in the same order. Each card opens its project.</p>
       <Check label="Show the carousel" checked={home.carousel?.enabled} onChange={(v) => update('home.carousel.enabled', v)} />
       <Check label="Move on its own (visitors can pause it)" checked={home.carousel?.autoplay} onChange={(v) => update('home.carousel.autoplay', v)} />
 

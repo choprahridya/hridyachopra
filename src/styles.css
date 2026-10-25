@@ -9,7 +9,7 @@
   --c-line: #D7DEE8;
   --f-display: 'Playfair Display', Georgia, serif;
   --f-body: 'Instrument Sans', system-ui, sans-serif;
-  --hero-size: clamp(3.6rem, 8.4vw, 8.25rem);
+  --hero-size: clamp(3.1rem, 8.4vw, 7rem);
   --max-w: 1180px;
   --gutter: clamp(20px, 4vw, 48px);
   --body-size: 16px;
@@ -276,10 +276,9 @@ p { margin: 0; }
 }
 .hero-c__name {
   font-family: var(--f-display); font-weight: 400; font-size: var(--hero-size);
-  line-height: 0.95; letter-spacing: -0.035em; color: var(--c-accent); text-align: center;
+  line-height: 0.95; letter-spacing: -0.035em; color: var(--c-ink); text-align: center;
   position: relative; z-index: 2;
 }
-.hero-c__last { color: var(--c-ink); }
 .hero-c__name .line { display: inline-block; padding-bottom: 0.22em; margin-bottom: -0.14em; } /* room for the y descender inside the reveal mask */
 .hero-c__name .line:nth-of-type(2) > span { animation-delay: 0.27s; }
 .hero-c__name .line:nth-of-type(1) > span { animation-delay: 0.15s; }
@@ -443,7 +442,7 @@ p { margin: 0; }
 
 /* Header name: monogram on Home, full lowercase name elsewhere */
 .nav__name--full { font-size: 1.3rem; letter-spacing: 0; }
-.nav__name--full em { color: var(--c-ink); }
+.nav__name em { color: var(--c-ink); } /* name and monogram: one colour, all italic */
 
 .nav { gap: 20px; }
 @media (max-width: 480px) {

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useContent, featuredProjects } from '../content'
+import { useContent, featuredProjects, publicProjects } from '../content'
 import ProjectGrid from '../components/ProjectGrid'
 import { Reveal, Copy, MediaSlot, usePageMeta } from '../components/bits'
 import Contact from '../components/Contact'
@@ -12,10 +12,11 @@ export default function Home() {
   usePageMeta(meta.home.title, meta.home.description)
   const [first, ...rest] = identity.name.split(' ')
   const featured = featuredProjects(site)
-  const showCarousel = home.carousel?.enabled && featured.length > 0
+  const carouselProjects = publicProjects(site) // every project shown on Work (Selected work stays curated)
+  const showCarousel = home.carousel?.enabled && carouselProjects.length > 0
   const carouselHero = showCarousel && settings.variants.heroLayout === 'carousel'
   const heroWater = settings.variants.background === 'waterHero' && <WaterBackground contained />
-  const carouselItems = featured.map((p) => ({ key: p.id, href: `/work/${p.slug}`, title: p.title, media: p.cover, scaffold: p.scaffold }))
+  const carouselItems = carouselProjects.map((p) => ({ key: p.id, href: `/work/${p.slug}`, title: p.title, media: p.cover, scaffold: p.scaffold }))
   return (
     <>
       {carouselHero ? (
@@ -23,7 +24,7 @@ export default function Home() {
           {heroWater}
           <h1 className="hero-c__name wrap" aria-label={identity.name}>
             <span className="line"><span><em>{first}</em></span></span>{' '}
-            {rest.length > 0 && <span className="line hero-c__last"><span>{rest.join(' ')}</span></span>}
+            {rest.length > 0 && <span className="line"><span><em>{rest.join(' ')}</em></span></span>}
           </h1>
           <Carousel3D label="Selected projects" autoplay={home.carousel.autoplay} items={carouselItems} variant="hero" />
         </section>

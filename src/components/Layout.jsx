@@ -17,7 +17,7 @@ export default function Layout() {
       <header className="nav">
         <Link to="/" className={`nav__name ${onHome ? '' : 'nav__name--full'}`} aria-label={`${site.identity.name} — home`}>
           {onHome
-            ? <><em>{first[0]}</em>{rest.map((w) => w[0]).join('')}</>
+            ? <em>{[first, ...rest].map((w) => w[0]).join('')}</em>
             : <em>{[first, ...rest].join('').toLowerCase()}</em>}
         </Link>
         <nav aria-label="Primary">

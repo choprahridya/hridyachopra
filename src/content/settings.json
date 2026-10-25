@@ -10,8 +10,8 @@
     "line": "#D7DEE8"
   },
   "type": {
-    "heroMinRem": 3.6,
-    "heroMaxRem": 8.25,
+    "heroMinRem": 3.1,
+    "heroMaxRem": 7,
     "bodyPx": 16
   },
   "layout": {
