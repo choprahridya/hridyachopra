@@ -4,7 +4,8 @@ Private working notes. Not part of the public site.
 
 ## Current stage
 **Stage 3: authoring tools built (2026-10-21).** Direction accepted 2026-10-21. Public pages complete with placeholders.
-Next: owner handover (owner performs edits/saves/lab accept themselves), GitHub remote + Vercel deployment when authorised.
+**Live: https://hridyachopra.vercel.app (deployed 2026-10-25).**
+Next: optional GitHub remote for automatic deploys; sitemap/canonical/social image now that the URL is known.
 
 ## Run locally
 ```
@@ -142,3 +143,10 @@ Not yet: owner handover (owner performs the routine actions), Git repository, Ve
 - 2026-10-24 (owner request): landing hero name is now one colour (ink `#21395E`) and fully italic, and smaller — hero size setting 3.1–7rem (was 3.6–8.25rem): 112px at 1440 (was ~121px), ~50px at 375. Header “HC” monogram unchanged.
 - 2026-10-24 (owner request): the Home carousel now shows every visible project (Work order: Xchange, Franklin's, Cogniva, ixigo); “Selected work” stays curated to three via `home.featured`.
 - 2026-10-24 (owner: “make hridya and chopra both same font”): the Home “HC” monogram now matches — both letters italic, ink colour (hero name was already identical for both words).
+
+## Deployment
+- 2026-10-25 (owner: “push this website to vercel”, “Replace hridyachopra.vercel.app”): deployed with the Vercel CLI to the existing Vercel project `hridyachopra` (account choprahridya-2919), replacing the owner's earlier Next.js site at https://hridyachopra.vercel.app.
+- That project's dashboard settings are still Next.js; `vercel.json` overrides them (framework vite, `npm install`, `npm run build`, output `dist`, SPA rewrite). Keep those overrides.
+- Folder linked via `.vercel/` (gitignored); `vercel link` also wrote `.env.local` (gitignored, Vercel OIDC token — never commit).
+- Publishing routine (no Git remote yet): commit, then `npx vercel@latest deploy --prod`. If the Vercel project is connected to the old site's GitHub repo, a push there would redeploy the old site — disconnect it in Vercel → Settings → Git, or connect this repo instead.
+- Checked live: /, /work, /about, /work/xchange (direct link), /work/ixigo, résumé PDF (200, application/pdf); /lab and /dashboard show the 404 page; no console errors.
