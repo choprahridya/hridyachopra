@@ -143,7 +143,7 @@ p { margin: 0; }
 
 /* ---------- Closing ---------- */
 .closing { text-align: center; display: grid; gap: 32px; justify-items: center; }
-.closing__title { font-family: var(--f-display); font-size: clamp(3.2rem, 9vw, 7.5rem); line-height: 1; letter-spacing: -0.03em; color: var(--c-accent); }
+.closing__title { font-family: var(--f-display); font-size: clamp(2.5rem, 5.6vw, 4.75rem); line-height: 1; letter-spacing: -0.03em; color: var(--c-accent); }
 .closing__title em { font-style: italic; }
 .closing__links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; align-items: center; }
 
