@@ -152,3 +152,4 @@ Not yet: owner handover (owner performs the routine actions), Git repository, Ve
 - Checked live: /, /work, /about, /work/xchange (direct link), /work/ixigo, résumé PDF (200, application/pdf); /lab and /dashboard show the 404 page; no console errors.
 - 2026-10-26 (owner request): Home About teaser portrait is now a circle (`media--circle`, 1:1, crop at 50% 28% to keep the face), 200–300px wide (was a 380px-wide rectangle); 200px on phones. Work page: removed the “About me →” link under the grid.
 - 2026-10-26 (owner request): closing “Let’s talk.” heading smaller — clamp(2.5rem, 5.6vw, 4.75rem): 76px at 1440 (was 120px), 40px on phones (was ~51px).
+- 2026-10-26 (owner request): removed the “Next project” link at the bottom of case studies (with its `nextProject` helper and styles); case studies now end at their last section, then the footer.

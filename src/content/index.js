@@ -12,13 +12,6 @@ export const projectBySlug = (site, slug) => site.projects.find((p) => p.slug ==
 export const redirectFor = (site, slug) => site.projects.find((p) => (p.redirectFrom || []).includes(slug))
 export const publicProjects = visible
 
-export const nextProject = (site, slug) => {
-  const list = visible(site)
-  const i = list.findIndex((p) => p.slug === slug)
-  if (i < 0 || list.length < 2) return null
-  return list[(i + 1) % list.length]
-}
-
 export const featuredProjects = (site) =>
   site.home.featured.map((id) => site.projects.find((p) => p.id === id)).filter((p) => p && !p.hidden)
 

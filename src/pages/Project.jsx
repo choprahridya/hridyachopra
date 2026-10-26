@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { useContent, projectBySlug, nextProject, redirectFor } from '../content'
+import { useContent, projectBySlug, redirectFor } from '../content'
 import { Reveal, Copy, MediaSlot, usePageMeta } from '../components/bits'
 import NotFound from './NotFound'
 
@@ -23,7 +23,6 @@ export default function Project() {
   const found = projectBySlug(site, slug)
   const p = found && (!found.hidden || preview) ? found : null
   const moved = !found && redirectFor(site, slug)
-  const next = p && nextProject(site, slug)
   const sections = p ? p.sections.filter((s) => !s.hidden) : []
   const [current, setCurrent] = useState(null)
   usePageMeta(p ? `${p.title} — ${site.identity.name}` : `Not found — ${site.identity.name}`, p?.summary)
@@ -99,15 +98,6 @@ export default function Project() {
           ))}
         </div>
       </div>
-
-      {next && (
-        <Reveal className="wrap next">
-          <Link to={`/work/${next.slug}`} className="next__link">
-            <span className="eyebrow">Next project</span>
-            <span className={`next__title ${next.scaffold ? 'is-draft' : ''}`}>{next.title} <span aria-hidden="true">→</span></span>
-          </Link>
-        </Reveal>
-      )}
     </article>
   )
 }
