@@ -150,3 +150,4 @@ Not yet: owner handover (owner performs the routine actions), Git repository, Ve
 - Folder linked via `.vercel/` (gitignored); `vercel link` also wrote `.env.local` (gitignored, Vercel OIDC token — never commit).
 - Publishing routine (no Git remote yet): commit, then `npx vercel@latest deploy --prod`. If the Vercel project is connected to the old site's GitHub repo, a push there would redeploy the old site — disconnect it in Vercel → Settings → Git, or connect this repo instead.
 - Checked live: /, /work, /about, /work/xchange (direct link), /work/ixigo, résumé PDF (200, application/pdf); /lab and /dashboard show the 404 page; no console errors.
+- 2026-10-26 (owner request): Home About teaser portrait is now a circle (`media--circle`, 1:1, crop at 50% 28% to keep the face), 200–300px wide (was a 380px-wide rectangle); 200px on phones. Work page: removed the “About me →” link under the grid.

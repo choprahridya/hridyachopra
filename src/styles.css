@@ -120,7 +120,6 @@ p { margin: 0; }
 .section--tight { padding-top: 24px; }
 .section__head { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; margin-bottom: clamp(24px, 4vw, 40px); }
 .page-head { padding-top: clamp(56px, 10vw, 120px); padding-bottom: 32px; display: grid; gap: 24px; }
-.onward { margin-top: 48px; }
 
 /* ---------- Media slot ---------- */
 .slot {
@@ -135,8 +134,11 @@ p { margin: 0; }
 .slot figcaption { position: relative; margin: 14px; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-muted); background: var(--c-surface); padding: 4px 8px; border-radius: 4px; }
 
 /* ---------- About teaser ---------- */
-.teaser { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
-.teaser__media { max-width: 380px; }
+.teaser { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.teaser__media { width: clamp(200px, 22vw, 300px); }
+/* Round portrait frame (Home about teaser); crop favours the face, which sits in the upper half */
+.media--circle .media__frame { border-radius: 50%; }
+.media--circle img { object-position: 50% 28%; }
 .teaser__body { display: grid; gap: 24px; justify-items: start; }
 
 /* ---------- Closing ---------- */
@@ -189,7 +191,8 @@ p { margin: 0; }
   .hero__name .line:nth-child(2) { padding-left: 0.5em; }
   .hero__statement { text-align: left; margin-left: 0; }
   .teaser, .about-head { grid-template-columns: 1fr; }
-  .teaser__media, .about-head__media { max-width: 260px; }
+  .teaser__media { width: 200px; }
+  .about-head__media { max-width: 260px; }
   .row { grid-template-columns: 1fr; gap: 10px; }
   .case__meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .case__body { grid-template-columns: 1fr; }

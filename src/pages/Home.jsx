@@ -63,7 +63,7 @@ export default function Home() {
 
       <section className="wrap section teaser">
         <Reveal className="teaser__media">
-          <MediaSlot media={about.portrait} />
+          <MediaSlot media={about.portrait} ratio="1 / 1" className="media--circle" />
         </Reveal>
         <Reveal className="teaser__body" delay={120}>
           <p className="eyebrow">About</p>

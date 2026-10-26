@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { useContent, publicProjects } from '../content'
 import ProjectGrid from '../components/ProjectGrid'
 import { Reveal, usePageMeta } from '../components/bits'
@@ -14,9 +13,6 @@ export default function Work() {
       </section>
       <section className="wrap section section--tight">
         <ProjectGrid projects={publicProjects(site)} />
-        <Reveal className="onward">
-          <Link to="/about" className="textlink">About me <span aria-hidden="true">→</span></Link>
-        </Reveal>
       </section>
     </>
   )
