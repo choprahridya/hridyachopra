@@ -142,7 +142,7 @@ p { margin: 0; }
 .teaser__body { display: grid; gap: 24px; justify-items: start; }
 
 /* ---------- Closing ---------- */
-.closing { text-align: center; display: grid; gap: 32px; justify-items: center; }
+.closing { text-align: center; display: grid; gap: 32px; justify-items: center; padding-block: clamp(56px, 7vw, 96px) clamp(24px, 3vw, 40px); }
 .closing__title { font-family: var(--f-display); font-size: clamp(2.5rem, 5.6vw, 4.75rem); line-height: 1; letter-spacing: -0.03em; color: var(--c-accent); }
 .closing__title em { font-style: italic; }
 .closing__links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; align-items: center; }
@@ -177,7 +177,7 @@ p { margin: 0; }
 .case__text { font-size: 1.1rem; max-width: 62ch; }
 
 /* ---------- Footer ---------- */
-.footer { position: relative; isolation: isolate; overflow: hidden; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; padding: clamp(72px, 9vw, 128px) var(--gutter) 32px; border-top: 1px solid var(--c-line); font-size: 0.8rem; color: var(--c-muted); }
+.footer { position: relative; isolation: isolate; overflow: hidden; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; padding: clamp(56px, 6vw, 80px) var(--gutter) 28px; border-top: 1px solid var(--c-line); font-size: 0.8rem; color: var(--c-muted); }
 .footer nav { display: flex; gap: 20px; }
 .footer a:hover { color: var(--c-accent); }
 
