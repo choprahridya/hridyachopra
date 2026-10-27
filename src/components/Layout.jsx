@@ -30,6 +30,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <footer className="footer">
+        {settings.variants.background === 'waterHero' && <WaterBackground contained />}
         <span>© {new Date().getFullYear()} {site.identity.name}</span>
         <nav aria-label="Footer">
           <Link to="/">Home</Link>

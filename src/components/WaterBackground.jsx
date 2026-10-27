@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 // Water surface: soft moving caustic light over a faint blue swell.
-// Fills the whole page, or with `contained` only its parent section (fading out at the bottom).
+// Fills the whole page, or with `contained` only its parent section (the Home hero and the footer; edges fade via CSS masks).
 // Drawn on a small canvas (1/6 of the screen) and scaled up smoothly, so it stays cheap.
 // Runs at ~30fps, pauses when the tab is hidden; reduced motion shows a still frame.
 const SCALE = 6

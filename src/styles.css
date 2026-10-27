@@ -177,7 +177,7 @@ p { margin: 0; }
 .case__text { font-size: 1.1rem; max-width: 62ch; }
 
 /* ---------- Footer ---------- */
-.footer { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding: 28px var(--gutter); border-top: 1px solid var(--c-line); font-size: 0.8rem; color: var(--c-muted); }
+.footer { position: relative; isolation: isolate; overflow: hidden; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; padding: clamp(72px, 9vw, 128px) var(--gutter) 32px; border-top: 1px solid var(--c-line); font-size: 0.8rem; color: var(--c-muted); }
 .footer nav { display: flex; gap: 20px; }
 .footer a:hover { color: var(--c-accent); }
 
@@ -380,6 +380,12 @@ p { margin: 0; }
   position: absolute; z-index: -1; transform: scale(1.03);
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%);
+}
+/* Footer water fades in from the top instead (no top rule needed then) */
+.footer:has(.water-bg) { border-top: 0; }
+.footer .water-bg--contained {
+  -webkit-mask-image: linear-gradient(to top, #000 0%, #000 45%, transparent 100%);
+  mask-image: linear-gradient(to top, #000 0%, #000 45%, transparent 100%);
 }
 
 /* ---------- Project cards (Home selected work + Work) ---------- */
