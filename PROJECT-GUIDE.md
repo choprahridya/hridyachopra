@@ -154,3 +154,4 @@ Not yet: owner handover (owner performs the routine actions), Git repository, Ve
 - 2026-10-26 (owner request): closing “Let’s talk.” heading smaller — clamp(2.5rem, 5.6vw, 4.75rem): 76px at 1440 (was 120px), 40px on phones (was ~51px).
 - 2026-10-26 (owner request): removed the “Next project” link at the bottom of case studies (with its `nextProject` helper and styles); case studies now end at their last section, then the footer.
 - 2026-10-27 (owner request): footer now has the same water effect as the Home hero (contained canvas, shown when background = waterHero), fading in from the top; footer made taller to show it (top padding 72–128px, links aligned to the bottom) and its top rule dropped while water shows.
+- 2026-10-27 (owner request): footer top line restored above the water.
