@@ -33,6 +33,8 @@ export const SETTINGS = [
     options: [['plain', 'Plain colour'], ['waterHero', 'Moving water in the landing hero only'], ['water', 'Moving water on every page']] },
   { id: 'variants.ripples', group: 'Layout variants', label: 'Ripples when clicking the background', type: 'select', scope: 'all', target: 'Every page (not on links, buttons or the carousel)',
     options: [['off', 'Off'], ['on', 'On']] },
+  { id: 'variants.intro', group: 'Layout variants', label: 'Opening animation', type: 'select', scope: 'all', target: 'Plays once per visit (each time it is switched on here); skipped with reduced motion',
+    options: [['off', 'Off'], ['heart', 'Heart beats twice, then bursts open']] },
 ]
 
 export const SCOPE_LABEL = { all: 'All sizes', phone: 'Phone', desktop: 'Desktop' }

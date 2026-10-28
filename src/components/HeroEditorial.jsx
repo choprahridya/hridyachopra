@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import Flower from './Flower'
+import HeartCanvas from './HeartCanvas'
 
 // Landing hero, "editorial" version: a black panel lit with midnight blue, the owner's name as the
 // headline (both words Playfair italic), the statement beneath, call-to-action buttons, a row of facts
-// and a large blue bloom on the right. Layout idea from an owner-supplied product landing reference;
+// and the point-cloud heart on the right ("Hridya" means heart), softly beating. Layout idea from an owner-supplied product landing reference;
 // content is the owner's own and the colours derive from this site's blues.
 export default function HeroEditorial({ identity, about, projectCount }) {
   const [first, ...rest] = identity.name.split(' ')
@@ -18,18 +18,10 @@ export default function HeroEditorial({ identity, about, projectCount }) {
     exp && { big: exp.org, small: exp.role },
   ].filter(Boolean)
 
-  // Pointer position over the panel (-1..1) drives the bloom's depth layers (see .flower__layer).
-  const tilt = (e) => {
-    if (e.pointerType !== 'mouse') return
-    const r = e.currentTarget.getBoundingClientRect()
-    e.currentTarget.style.setProperty('--mx', (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3))
-    e.currentTarget.style.setProperty('--my', (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(3))
-  }
-
   return (
     <section className="hero-e" aria-label="Introduction">
-      <div className="hero-e__panel" onPointerMove={tilt} onPointerLeave={(e) => { e.currentTarget.style.setProperty('--mx', 0); e.currentTarget.style.setProperty('--my', 0) }}>
-        <Flower className="hero-e__flower" />
+      <div className="hero-e__panel">
+        <HeartCanvas mode="idle" className="hero-e__heart" />
         <div className="hero-e__copy">
           <p className="hero-e__meta">{identity.discipline}{edu && <><br />{edu.title.split(' (')[0]}</>}</p>
           <h1 className="hero-e__title" aria-label={identity.name}>
