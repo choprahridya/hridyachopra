@@ -25,10 +25,11 @@
     "coverRatio": "16 / 10"
   },
   "variants": {
-    "heroLayout": "carousel",
+    "heroLayout": "editorial",
     "hero": "split",
     "workPreview": "cursor",
     "ripples": "on",
-    "background": "waterHero"
+    "background": "waterHero",
+    "intro": "heart"
   }
 }

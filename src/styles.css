@@ -502,12 +502,6 @@ p { margin: 0; }
 .hero-e__facts > div:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
 .hero-e__facts dt { font-family: var(--f-body); font-size: clamp(1.1rem, 1.6vw, 1.4rem); letter-spacing: -0.01em; color: var(--e-ink); }
 .hero-e__facts dd { margin: 4px 0 0; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--e-muted); }
-/* Point-cloud heart on the right, softly beating (HeartCanvas idle) */
-.hero-e__heart {
-  position: absolute; z-index: 1; right: 2%; top: 4%; width: min(52%, 640px); height: 92%;
-  filter: drop-shadow(0 0 18px rgba(64, 120, 255, 0.45)); opacity: 0; animation: fade 1.4s 0.2s var(--ease-out) forwards; pointer-events: none;
-}
-
 /* ---------- Opening animation (HeartIntro) ---------- */
 .intro { position: fixed; inset: 0; z-index: 100; cursor: pointer; }
 .intro.is-open { pointer-events: none; }
@@ -523,8 +517,6 @@ p { margin: 0; }
 html[data-intro="playing"] main *, html[data-intro="playing"] main *::before { animation-play-state: paused !important; }
 @media (max-width: 860px) {
   .hero-e__panel { min-height: auto; padding: 28px 22px 32px; align-items: start; }
-  .hero-e__panel { padding-bottom: min(92vw, 380px); }
-  .hero-e__heart { width: 100%; height: min(92vw, 380px); right: 0; top: auto; bottom: 0; transform: none; }
   .hero-e__serif { padding-left: 0.35em; }
   .hero-e__facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .hero-e__facts > div { padding-right: 10px; margin-right: 10px; }
