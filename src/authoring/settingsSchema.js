@@ -26,7 +26,7 @@ export const SETTINGS = [
     options: [['16 / 10', '16:10'], ['4 / 3', '4:3'], ['3 / 2', '3:2'], ['1 / 1', 'Square']] },
 
   { id: 'variants.heroLayout', group: 'Layout variants', label: 'Home first screen', type: 'select', scope: 'all', target: 'Carousel version needs the carousel switched on in the dashboard',
-    options: [['type', 'Name, statement & introduction'], ['carousel', 'Name & project carousel only']] },
+    options: [['type', 'Name, statement & introduction'], ['carousel', 'Name & project carousel only'], ['editorial', 'Dark editorial panel (statement, facts, project visual)']] },
   { id: 'variants.hero', group: 'Layout variants', label: 'Hero arrangement', type: 'select', scope: 'desktop', target: 'Name, statement & introduction version (phones always stack)',
     options: [['split', 'Statement on the right'], ['stacked', 'Everything left-aligned']] },
   { id: 'variants.background', group: 'Layout variants', label: 'Page background', type: 'select', scope: 'all', target: 'Behind all content (hero-only fades out at the bottom of the landing hero)',

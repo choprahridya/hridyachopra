@@ -5,6 +5,7 @@ import { Reveal, Copy, MediaSlot, usePageMeta } from '../components/bits'
 import Contact from '../components/Contact'
 import Carousel3D from '../components/Carousel3D'
 import WaterBackground from '../components/WaterBackground'
+import HeroEditorial from '../components/HeroEditorial'
 
 export default function Home() {
   const { site, settings } = useContent()
@@ -19,7 +20,9 @@ export default function Home() {
   const carouselItems = carouselProjects.map((p) => ({ key: p.id, href: `/work/${p.slug}`, title: p.title, media: p.cover, scaffold: p.scaffold }))
   return (
     <>
-      {carouselHero ? (
+      {settings.variants.heroLayout === 'editorial' ? (
+        <HeroEditorial identity={identity} about={about} projects={carouselProjects} />
+      ) : carouselHero ? (
         <section className="hero-c">
           {heroWater}
           <h1 className="hero-c__name wrap" aria-label={identity.name}>
