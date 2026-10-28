@@ -16,12 +16,13 @@ export default function Home() {
   const carouselProjects = publicProjects(site) // every project shown on Work (Selected work stays curated)
   const showCarousel = home.carousel?.enabled && carouselProjects.length > 0
   const carouselHero = showCarousel && settings.variants.heroLayout === 'carousel'
+  const editorialHero = settings.variants.heroLayout === 'editorial' // owner asked for no work on the landing page with this version (for now)
   const heroWater = settings.variants.background === 'waterHero' && <WaterBackground contained />
   const carouselItems = carouselProjects.map((p) => ({ key: p.id, href: `/work/${p.slug}`, title: p.title, media: p.cover, scaffold: p.scaffold }))
   return (
     <>
-      {settings.variants.heroLayout === 'editorial' ? (
-        <HeroEditorial identity={identity} about={about} projects={carouselProjects} />
+      {editorialHero ? (
+        <HeroEditorial identity={identity} about={about} projectCount={carouselProjects.length} />
       ) : carouselHero ? (
         <section className="hero-c">
           {heroWater}
@@ -54,7 +55,7 @@ export default function Home() {
       {showCarousel && <Carousel3D label="Selected projects" autoplay={home.carousel.autoplay} items={carouselItems} />}
       </>)}
 
-      {featured.length > 0 && (
+      {featured.length > 0 && !editorialHero && (
         <section id="selected" className="wrap section">
           <Reveal className="section__head">
             <h2 className="h2">Selected <em>work</em></h2>
