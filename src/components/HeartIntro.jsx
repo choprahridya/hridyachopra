@@ -54,7 +54,7 @@ export default function HeartIntro({ onDone }) {
     <div className={`intro ${burst ? 'is-open' : ''}`} onClick={() => setSkip(true)} aria-hidden="true">
       <div ref={bg} className="intro__bg" />
       {!skip && <HeartCanvas mode="intro" fit={0.74} onBurst={() => setBurst(true)} onDone={onDone} className="intro__heart" />}
-      <p className="intro__word"><span lang="hi">हृदय</span> · hridya · heart</p>
+      <p className="intro__word">hridya · heart</p>
     </div>
   )
 }

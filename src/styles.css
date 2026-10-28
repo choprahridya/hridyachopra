@@ -518,7 +518,6 @@ p { margin: 0; }
   font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: #8E9DBD;
   opacity: 0; animation: fade 0.8s 0.35s var(--ease-out) forwards; transition: opacity 0.3s;
 }
-.intro__word span { font-size: 1rem; letter-spacing: 0.04em; text-transform: none; color: #C9D8FA; }
 .intro.is-open .intro__word { opacity: 0 !important; animation: none; }
 /* Page entrance animations wait for the reveal */
 html[data-intro="playing"] main *, html[data-intro="playing"] main *::before { animation-play-state: paused !important; }
