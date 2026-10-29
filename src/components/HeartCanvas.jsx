@@ -4,7 +4,7 @@ import { getHeart, W, H, CX, CY } from './heartModel'
 // Draws the point-cloud heart. mode "intro": points gather, the heart beats twice (lub-dub ×2), then
 // bursts outward — onBurst fires at the burst, onDone when the points are gone. mode "idle": a soft
 // lub-dub every 1.7s. Points with more depth shift further with the pointer, so it reads as 3D.
-// Still frame with reduced motion; idle pauses off-screen and in hidden tabs.
+// Idle: still frame with reduced motion, pauses off-screen and in hidden tabs. Intro always plays.
 export const INTRO = {
   assemble: 0.38,
   beats: [[0.46, 0.11], [0.62, 0.07], [1.0, 0.12], [1.16, 0.075]],
@@ -117,7 +117,6 @@ export default function HeartCanvas({ mode = 'idle', fit = 0.92, onBurst, onDone
     }
 
     size()
-    if (mode === 'intro' && reduced) { cb.current.onBurst?.(); cb.current.onDone?.(); return }
     run()
     const ro = new ResizeObserver(() => { size(); if (!raf) draw(0.9) })
     ro.observe(cv)

@@ -4,7 +4,7 @@ import HeartCanvas, { INTRO } from './HeartCanvas'
 // Opening animation (design setting variants.intro = 'heart'): on a black/midnight screen the heart
 // gathers, beats twice, then bursts; a circle opens from its centre to reveal the page while the points
 // fly out over it. ~2.1s. Click or any key skips to the burst. Page animations wait until the reveal
-// (html[data-intro="playing"]). Parent decides when to show it (once per visit; never with reduced motion).
+// (html[data-intro="playing"]). Parent decides when to show it (once per visit).
 export default function HeartIntro({ onDone }) {
   const bg = useRef(null)
   const [burst, setBurst] = useState(false)

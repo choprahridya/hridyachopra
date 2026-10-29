@@ -170,3 +170,4 @@ Not yet: owner handover (owner performs the routine actions), Git repository, Ve
   - Whole site dark blue via settings.json colours: bg #0A1230, surface #111B3F, ink #E2EAFA, muted #93A3C6, accent #9DB8FF, accentSoft #1B2A5A, line #24335F (styles.css first-paint fallbacks match). Footer #070B1A with faint water (opacity .32); “Let’s talk.” italic word in a pale-blue gradient.
   - Heart intro plays on every page load in local dev (once per visit when deployed).
   - Committed and deployed on the owner's request (“Commit and deploy”).
+- 2026-10-29 (owner: “it should load even when reduced motion is turned on, it is just an intro animation”): heart intro now plays regardless of prefers-reduced-motion (still skippable by click/key; ~2s). Committed and deployed on request.

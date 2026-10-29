@@ -6,16 +6,16 @@ import WaterBackground from './WaterBackground'
 import HeartIntro from './HeartIntro'
 
 const INTRO_KEY = 'hc-intro-seen'
-const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const seen = () => { try { return sessionStorage.getItem(INTRO_KEY) === '1' } catch { return false } }
 
 export default function Layout() {
   const { site, settings, preview } = useContent()
   const wantIntro = settings.variants.intro === 'heart'
   // Once per visit on the deployed site; on every page load in local development; in the lab preview,
-  // every time the option is switched on.
-  const [intro, setIntro] = useState(() => wantIntro && !reducedMotion() && (preview || import.meta.env.DEV || !seen()))
-  useEffect(() => { if (preview) setIntro(wantIntro && !reducedMotion()) }, [preview, wantIntro])
+  // every time the option is switched on. Plays with reduced motion too (owner's call: it is a short,
+  // skippable intro); click or any key skips it.
+  const [intro, setIntro] = useState(() => wantIntro && (preview || import.meta.env.DEV || !seen()))
+  useEffect(() => { if (preview) setIntro(wantIntro) }, [preview, wantIntro])
   const endIntro = () => { setIntro(false); try { sessionStorage.setItem(INTRO_KEY, '1') } catch { /* private mode */ } }
   const [first, ...rest] = site.identity.name.split(' ')
   const onHome = useLocation().pathname === '/'
