@@ -12,12 +12,27 @@ const seen = () => { try { return sessionStorage.getItem(INTRO_KEY) === '1' } ca
 export default function Layout() {
   const { site, settings, preview } = useContent()
   const wantIntro = settings.variants.intro === 'heart'
-  // Once per visit on the public site; in the lab preview, every time the option is switched on.
-  const [intro, setIntro] = useState(() => wantIntro && !reducedMotion() && (preview || !seen()))
+  // Once per visit on the deployed site; on every page load in local development; in the lab preview,
+  // every time the option is switched on.
+  const [intro, setIntro] = useState(() => wantIntro && !reducedMotion() && (preview || import.meta.env.DEV || !seen()))
   useEffect(() => { if (preview) setIntro(wantIntro && !reducedMotion()) }, [preview, wantIntro])
   const endIntro = () => { setIntro(false); try { sessionStorage.setItem(INTRO_KEY, '1') } catch { /* private mode */ } }
   const [first, ...rest] = site.identity.name.split(' ')
   const onHome = useLocation().pathname === '/'
+  // Light nav while it sits over the dark editorial hero; normal once the hero has scrolled past.
+  const darkHero = onHome && settings.variants.heroLayout === 'editorial'
+  const [overHero, setOverHero] = useState(true)
+  useEffect(() => {
+    if (!darkHero) return
+    const check = () => {
+      const hero = document.querySelector('.hero-e')
+      setOverHero(!!hero && hero.getBoundingClientRect().bottom > window.innerHeight * 0.18 + 140)
+    }
+    check()
+    window.addEventListener('scroll', check, { passive: true })
+    window.addEventListener('resize', check)
+    return () => { window.removeEventListener('scroll', check); window.removeEventListener('resize', check) }
+  }, [darkHero])
   const { resume } = site.contact
   const resumeName = `${site.identity.name.replace(/\s+/g, '-')}-Resume.pdf`
   return (
@@ -26,7 +41,7 @@ export default function Layout() {
       {settings.variants.ripples === 'on' && <Ripples />}
       {intro && <HeartIntro onDone={endIntro} />}
       <a className="skip" href="#main">Skip to content</a>
-      <header className="nav">
+      <header className={`nav ${darkHero && overHero ? 'nav--dark' : ''}`}>
         <Link to="/" className={`nav__name ${onHome ? '' : 'nav__name--full'}`} aria-label={`${site.identity.name} — home`}>
           {onHome
             ? <em>{[first, ...rest].map((w) => w[0]).join('')}</em>

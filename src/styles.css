@@ -1,12 +1,12 @@
 /* Fallback values; accepted settings are applied from content/settings.json */
 :root {
-  --c-bg: #F3F8FE;
-  --c-surface: #FBFDFF;
-  --c-ink: #21395E;
-  --c-muted: #566783;
-  --c-accent: #17459F;
-  --c-accentSoft: #DDE7FA;
-  --c-line: #D7DEE8;
+  --c-bg: #0A1230;
+  --c-surface: #111B3F;
+  --c-ink: #E2EAFA;
+  --c-muted: #93A3C6;
+  --c-accent: #9DB8FF;
+  --c-accentSoft: #1B2A5A;
+  --c-line: #24335F;
   --f-display: 'Playfair Display', Georgia, serif;
   --f-body: 'Instrument Sans', system-ui, sans-serif;
   --hero-size: clamp(3.1rem, 8.4vw, 7rem);
@@ -455,53 +455,44 @@ p { margin: 0; }
   .nav nav a { letter-spacing: 0.1em; font-size: 0.72rem; }
 }
 
-/* ---------- Home hero variant: dark editorial panel (HeroEditorial) ----------
-   Layout idea from an owner-supplied product landing reference: statement in three voices,
-   pill + round buttons, a row of facts, a lit visual on the right. Colours derive from the site's blues. */
+/* ---------- Home hero variant: dark editorial (HeroEditorial) ----------
+   Full-bleed black lit with midnight blue. It runs up under the sticky nav (which turns light while over
+   it, .nav--dark) and fades into the page background at the bottom, so it flows into the rest of the site.
+   Type and links are the site's own: Playfair italic name, Instrument Sans text, .textlink. */
 .hero-e {
-  --e-bg: #040509; --e-mid: #0E1C45; --e-ink: #EAF1FF; --e-muted: #8E9DBD; --e-line: rgba(234, 241, 255, 0.14);
-  --e-blue: #2F5FD8; --e-glow: rgba(38, 76, 178, 0.6);
-  padding: clamp(8px, 1.5vw, 20px) var(--gutter) clamp(24px, 4vw, 48px);
-}
-.hero-e__panel {
-  position: relative; isolation: isolate; overflow: hidden;
-  display: grid; align-items: center;
-  min-height: min(calc(100svh - 110px), 860px); padding: clamp(32px, 5vw, 72px);
-  border-radius: clamp(18px, 2vw, 28px); color: var(--e-ink);
-  /* Black, lit with midnight blue (strongest behind the visual) */
+  --e-bg: #040509; --e-mid: #0E1C45; --e-ink: #EAF1FF; --e-muted: #8E9DBD;
+  --nav-h: 62px;
+  position: relative; margin-top: calc(-1 * var(--nav-h));
+  min-height: 100svh; display: flex; align-items: center;
+  padding: calc(var(--nav-h) + clamp(40px, 8vh, 96px)) 0 clamp(160px, 26vh, 280px);
+  color: var(--e-ink);
+  /* Black at the top, easing into the site's dark blue background */
   background:
-    radial-gradient(55% 75% at 76% 48%, rgba(23, 50, 128, 0.55), transparent 72%),
-    radial-gradient(45% 55% at 0% 100%, rgba(14, 28, 69, 0.7), transparent 72%),
-    linear-gradient(165deg, var(--e-mid) -10%, var(--e-bg) 45%);
+    radial-gradient(55% 45% at 80% 28%, rgba(23, 50, 128, 0.5), transparent 72%),
+    linear-gradient(180deg, #070B1A 0%, var(--e-bg) 26%, color-mix(in srgb, var(--c-bg) 55%, var(--e-bg)) 62%, var(--c-bg) 100%);
 }
-.hero-e__copy { position: relative; z-index: 2; display: grid; gap: clamp(20px, 2.6vw, 32px); max-width: 640px; }
-.hero-e__meta { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.7; color: var(--e-muted); }
-.hero-e__title { display: grid; line-height: 0.98; font-weight: 400; margin: 0; }
-.hero-e__title .line { padding-bottom: 0.14em; margin-bottom: -0.08em; }
+.hero-e__inner { width: 100%; display: grid; gap: clamp(18px, 2.4vw, 28px); justify-items: start; }
+.hero-e__meta { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--e-muted); }
+.hero-e__title { display: grid; line-height: 0.98; font-weight: 400; margin: 0; font-family: var(--f-display); font-style: italic; font-size: var(--hero-size); letter-spacing: -0.03em; }
+.hero-e__title .line { padding-bottom: 0.16em; margin-bottom: -0.1em; }
 .hero-e__title .line:nth-child(1) > span { animation-delay: 0.1s; }
 .hero-e__title .line:nth-child(2) > span { animation-delay: 0.22s; }
-.hero-e__script {
-  font-family: var(--f-display); font-style: italic; font-size: clamp(3.6rem, 8.2vw, 7.6rem); letter-spacing: -0.03em; padding-right: 0.1em;
-  background: linear-gradient(100deg, #F3F8FE 10%, #A9C3FF 60%, #6F98F5); -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-.hero-e__serif { font-family: var(--f-display); font-style: italic; font-size: clamp(3.6rem, 8.2vw, 7.6rem); letter-spacing: -0.03em; color: #C9D8FA; padding-left: 0.5em; }
-.hero-e__statement { font-family: var(--f-body); font-size: clamp(1.15rem, 1.8vw, 1.6rem); letter-spacing: -0.01em; color: var(--e-ink); opacity: 0; animation: fade 0.9s 0.42s var(--ease-out) forwards; }
-.hero-e__actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; opacity: 0; animation: fade 0.9s 0.5s var(--ease-out) forwards; }
-.hero-e__pill {
-  display: inline-flex; align-items: center; padding: 14px 28px; border-radius: 999px; background: var(--e-blue); color: #fff;
-  font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; box-shadow: 0 10px 30px -8px var(--e-glow);
-  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
-}
-.hero-e__pill:hover { transform: translateY(-2px); box-shadow: 0 14px 36px -8px var(--e-glow); }
-.hero-e__round { display: inline-flex; align-items: center; gap: 12px; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1.4; color: var(--e-muted); }
-.hero-e__roundIcon { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--e-line); border-radius: 50%; color: var(--e-ink); font-size: 1rem; transition: background 0.2s, color 0.2s; }
-.hero-e__round:hover { color: var(--e-ink); }
-.hero-e__round:hover .hero-e__roundIcon { background: var(--e-ink); color: var(--e-bg); }
-.hero-e__facts { display: flex; flex-wrap: wrap; margin: 0; padding-top: clamp(4px, 1vw, 12px); opacity: 0; animation: fade 0.9s 0.65s var(--ease-out) forwards; }
-.hero-e__facts > div { padding-inline: 0 clamp(16px, 2vw, 28px); margin-right: clamp(16px, 2vw, 28px); border-right: 1px solid var(--e-line); }
-.hero-e__facts > div:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
-.hero-e__facts dt { font-family: var(--f-body); font-size: clamp(1.1rem, 1.6vw, 1.4rem); letter-spacing: -0.01em; color: var(--e-ink); }
-.hero-e__facts dd { margin: 4px 0 0; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--e-muted); }
+.hero-e__first { padding-right: 0.08em; background: linear-gradient(100deg, #F3F8FE 10%, #A9C3FF 60%, #7FA2F5); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-e__last { color: #C9D8FA; }
+.hero-e__statement { font-family: var(--f-display); font-size: clamp(1.4rem, 2.6vw, 2.2rem); line-height: 1.2; color: var(--e-ink); opacity: 0; animation: fade 0.9s 0.42s var(--ease-out) forwards; }
+.hero-e__note { max-width: 52ch; font-size: 0.95rem; line-height: 1.6; color: var(--e-muted); opacity: 0; animation: fade 0.9s 0.52s var(--ease-out) forwards; }
+.hero-e__links { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 6px; opacity: 0; animation: fade 0.9s 0.62s var(--ease-out) forwards; }
+.hero-e .textlink { color: #C9D8FA; }
+.hero-e .textlink:hover { color: #fff; }
+
+/* Nav while it sits over the dark hero */
+.nav { transition: background-color 0.35s, backdrop-filter 0.35s; }
+.nav--dark { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.nav--dark .nav__name em { color: #EAF1FF; }
+.nav--dark nav a { color: #9DB0D3; }
+.nav--dark nav a:hover, .nav--dark nav a.active { color: #fff; }
+.nav--dark nav a.active::before { background: #fff; }
+
 /* ---------- Opening animation (HeartIntro) ---------- */
 .intro { position: fixed; inset: 0; z-index: 100; cursor: pointer; }
 .intro.is-open { pointer-events: none; }
@@ -516,12 +507,19 @@ p { margin: 0; }
 /* Page entrance animations wait for the reveal */
 html[data-intro="playing"] main *, html[data-intro="playing"] main *::before { animation-play-state: paused !important; }
 @media (max-width: 860px) {
-  .hero-e__panel { min-height: auto; padding: 28px 22px 32px; align-items: start; }
-  .hero-e__serif { padding-left: 0.35em; }
-  .hero-e__facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .hero-e__facts > div { padding-right: 10px; margin-right: 10px; }
-  .hero-e__facts dd { font-size: 0.58rem; letter-spacing: 0.1em; }
+  .hero-e { --nav-h: 56px; min-height: auto; align-items: flex-start; padding-top: calc(var(--nav-h) + 56px); padding-bottom: 88px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .intro__word { animation: none; opacity: 1; }
 }
+
+/* ---------- Whole site in dark blue (owner: "make the whole theme the dark blue") ----------
+   Colours come from settings.json; the hero eases from black into --c-bg, the footer sits a step darker. */
+:root { --dk-0: #070B1A; }
+.closing { background: none; }
+.closing__title em { background: linear-gradient(100deg, #F3F8FE 10%, #A9C3FF 60%, #7FA2F5); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: 0.06em; }
+.footer { background: var(--dk-0); }
+.footer a { color: var(--c-muted); }
+.footer a:hover { color: #fff; }
+/* Water shimmer kept faint on the dark footer */
+.footer .water-bg--contained { opacity: 0.32; }

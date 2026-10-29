@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <>
       {editorialHero ? (
-        <HeroEditorial identity={identity} about={about} projectCount={carouselProjects.length} />
+        <HeroEditorial identity={identity} about={about} />
       ) : carouselHero ? (
         <section className="hero-c">
           {heroWater}

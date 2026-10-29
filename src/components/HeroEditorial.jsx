@@ -1,46 +1,33 @@
 import { Link } from 'react-router-dom'
 
-// Landing hero, "editorial" version: a black panel lit with midnight blue, the owner's name as the
-// headline (both words Playfair italic), the statement beneath, call-to-action buttons and a row of facts.
-// No visual: the heart lives in the opening animation (HeartIntro) only. Layout idea from an owner-supplied product landing reference;
-// content is the owner's own and the colours derive from this site's blues.
-export default function HeroEditorial({ identity, about, projectCount }) {
+// Landing hero, "editorial" version: full-bleed black lit with midnight blue, running under the nav and
+// fading into the page background at the bottom so it flows into the rest of the site. The owner's name
+// as the headline (both words Playfair italic), the statement, one quiet line of credentials and the
+// site's own text links. The heart lives in the opening animation (HeartIntro) only.
+export default function HeroEditorial({ identity, about }) {
   const [first, ...rest] = identity.name.split(' ')
   const statement = `${identity.statement.lead} ${identity.statement.emphasis || ''}`.trim()
 
   const edu = about.education.find((e) => !e.hidden)
   const exp = about.experience.find((e) => !e.hidden)
-  const degree = edu?.detail.split(' · ')[0].split(' ') || []
-  const facts = [
-    projectCount > 0 && { big: String(projectCount), small: 'Case studies' },
-    edu && { big: degree[0], small: `${degree.slice(1).join(' ')} · ${edu.title.split(' (')[0]}` },
-    exp && { big: exp.org, small: exp.role },
+  const note = [
+    edu && `${edu.detail.split(' · ')[0]}, ${edu.title.split(' (')[0]}`,
+    exp && `${exp.role}, ${exp.org} (${exp.dates})`,
   ].filter(Boolean)
 
   return (
     <section className="hero-e" aria-label="Introduction">
-      <div className="hero-e__panel">
-        <div className="hero-e__copy">
-          <p className="hero-e__meta">{identity.discipline}{edu && <><br />{edu.title.split(' (')[0]}</>}</p>
-          <h1 className="hero-e__title" aria-label={identity.name}>
-            <span className="line"><span className="hero-e__script">{first}</span></span>
-            {rest.length > 0 && <span className="line"><span className="hero-e__serif">{rest.join(' ')}</span></span>}
-          </h1>
-          <p className="hero-e__statement">{statement}</p>
-          <div className="hero-e__actions">
-            <Link to="/work" className="hero-e__pill">View my work</Link>
-            <Link to="/about" className="hero-e__round">
-              <span className="hero-e__roundIcon" aria-hidden="true">→</span>
-              <span>About<br />me</span>
-            </Link>
-          </div>
-          {facts.length > 0 && (
-            <dl className="hero-e__facts">
-              {facts.map((f) => (
-                <div key={f.small}><dt>{f.big}</dt><dd>{f.small}</dd></div>
-              ))}
-            </dl>
-          )}
+      <div className="hero-e__inner wrap">
+        <p className="hero-e__meta">{identity.discipline}</p>
+        <h1 className="hero-e__title" aria-label={identity.name}>
+          <span className="line"><span className="hero-e__first">{first}</span></span>
+          {rest.length > 0 && <span className="line"><span className="hero-e__last">{rest.join(' ')}</span></span>}
+        </h1>
+        <p className="hero-e__statement">{statement}</p>
+        {note.length > 0 && <p className="hero-e__note">{note.join(' · ')}</p>}
+        <div className="hero-e__links">
+          <a href="#selected" className="textlink">Selected work <span aria-hidden="true">↓</span></a>
+          <Link to="/about" className="textlink">About me <span aria-hidden="true">→</span></Link>
         </div>
       </div>
     </section>
