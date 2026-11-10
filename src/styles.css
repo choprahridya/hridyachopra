@@ -1,12 +1,12 @@
 /* Fallback values; accepted settings are applied from content/settings.json */
 :root {
-  --c-bg: #0A1230;
-  --c-surface: #111B3F;
-  --c-ink: #E2EAFA;
-  --c-muted: #93A3C6;
-  --c-accent: #9DB8FF;
-  --c-accentSoft: #1B2A5A;
-  --c-line: #24335F;
+  --c-bg: #13285A;
+  --c-surface: #1B3469;
+  --c-ink: #EEF3FB;
+  --c-muted: #A9BADB;
+  --c-accent: #C6D6F5;
+  --c-accentSoft: #23407A;
+  --c-line: #2E4A82;
   --f-display: 'Playfair Display', Georgia, serif;
   --f-body: 'Instrument Sans', system-ui, sans-serif;
   --hero-size: clamp(3.1rem, 8.4vw, 7rem);
@@ -460,29 +460,37 @@ p { margin: 0; }
    it, .nav--dark) and fades into the page background at the bottom, so it flows into the rest of the site.
    Type and links are the site's own: Playfair italic name, Instrument Sans text, .textlink. */
 .hero-e {
-  --e-bg: #040509; --e-mid: #0E1C45; --e-ink: #EAF1FF; --e-muted: #8E9DBD;
+  --e-ink: #F4F7FC; --e-muted: #C9D6F0;
   --nav-h: 62px;
-  position: relative; margin-top: calc(-1 * var(--nav-h));
+  position: relative; isolation: isolate; overflow: hidden; margin-top: calc(-1 * var(--nav-h));
   min-height: 100svh; display: flex; align-items: center;
-  padding: calc(var(--nav-h) + clamp(40px, 8vh, 96px)) 0 clamp(160px, 26vh, 280px);
-  color: var(--e-ink);
-  /* Black at the top, easing into the site's dark blue background */
-  background:
-    radial-gradient(55% 45% at 80% 28%, rgba(23, 50, 128, 0.5), transparent 72%),
-    linear-gradient(180deg, #070B1A 0%, var(--e-bg) 26%, color-mix(in srgb, var(--c-bg) 55%, var(--e-bg)) 62%, var(--c-bg) 100%);
+  padding: calc(var(--nav-h) + clamp(40px, 8vh, 96px)) 0 clamp(96px, 14vh, 160px);
+  color: var(--e-ink); background: #2E4F8F;
 }
+/* Cyanotype print layers (Cyanotype.jsx) */
+.cyano__paper { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
+.cyano__bloom { position: absolute; z-index: -1; right: 3%; bottom: 0; height: 100%; aspect-ratio: 1000 / 1616; pointer-events: none; -webkit-mask-image: radial-gradient(75% 62% at 50% 58%, #000 62%, transparent 100%); mask-image: radial-gradient(75% 62% at 50% 58%, #000 62%, transparent 100%); }
+.cyano__edge { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: clamp(22px, 2.6vw, 40px); }
+/* "Developing", then a gentle sway from the stems' base */
+.cyano__print {
+  display: block; width: 100%; height: 100%; object-fit: contain; object-position: bottom center;
+  transform-origin: 50% 100%; will-change: transform, opacity;
+  opacity: 0; animation: develop 2.4s 0.15s ease-out forwards, sway 8s 2.6s ease-in-out infinite;
+}
+@keyframes develop { from { opacity: 0; } 40% { opacity: 0.4; } to { opacity: 1; } }
+@keyframes sway { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-0.9deg); } 75% { transform: rotate(0.9deg); } }
 .hero-e__inner { width: 100%; display: grid; gap: clamp(18px, 2.4vw, 28px); justify-items: start; }
 .hero-e__meta { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--e-muted); }
 .hero-e__title { display: grid; line-height: 0.98; font-weight: 400; margin: 0; font-family: var(--f-display); font-style: italic; font-size: var(--hero-size); letter-spacing: -0.03em; }
-.hero-e__title .line { padding-bottom: 0.16em; margin-bottom: -0.1em; }
+.hero-e__title .line { padding-bottom: 0.28em; margin-bottom: -0.22em; } /* room for the y descender inside the reveal mask */
 .hero-e__title .line:nth-child(1) > span { animation-delay: 0.1s; }
 .hero-e__title .line:nth-child(2) > span { animation-delay: 0.22s; }
-.hero-e__first { padding-right: 0.08em; background: linear-gradient(100deg, #F3F8FE 10%, #A9C3FF 60%, #7FA2F5); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.hero-e__last { color: #C9D8FA; }
+.hero-e__first { padding-right: 0.06em; }
+.hero-e__first, .hero-e__last { color: var(--e-ink); }
 .hero-e__statement { font-family: var(--f-display); font-size: clamp(1.4rem, 2.6vw, 2.2rem); line-height: 1.2; color: var(--e-ink); opacity: 0; animation: fade 0.9s 0.42s var(--ease-out) forwards; }
 .hero-e__note { max-width: 52ch; font-size: 0.95rem; line-height: 1.6; color: var(--e-muted); opacity: 0; animation: fade 0.9s 0.52s var(--ease-out) forwards; }
 .hero-e__links { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 6px; opacity: 0; animation: fade 0.9s 0.62s var(--ease-out) forwards; }
-.hero-e .textlink { color: #C9D8FA; }
+.hero-e .textlink { color: var(--e-ink); }
 .hero-e .textlink:hover { color: #fff; }
 
 /* Nav while it sits over the dark hero */
@@ -507,15 +515,16 @@ p { margin: 0; }
 /* Page entrance animations wait for the reveal */
 html[data-intro="playing"] main *, html[data-intro="playing"] main *::before { animation-play-state: paused !important; }
 @media (max-width: 860px) {
-  .hero-e { --nav-h: 56px; min-height: auto; align-items: flex-start; padding-top: calc(var(--nav-h) + 56px); padding-bottom: 88px; }
+  .hero-e { --nav-h: 56px; min-height: auto; align-items: flex-start; padding-top: calc(var(--nav-h) + 56px); padding-bottom: min(118vw, 500px); }
+  .cyano__bloom { right: 2%; height: min(118vw, 500px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .intro__word { animation: none; opacity: 1; }
 }
 
-/* ---------- Whole site in dark blue (owner: "make the whole theme the dark blue") ----------
-   Colours come from settings.json; the hero eases from black into --c-bg, the footer sits a step darker. */
-:root { --dk-0: #070B1A; }
+/* ---------- Whole site in cyanotype blue (owner's sun prints) ----------
+   Colours come from settings.json: deep Prussian blue page, paper-white text; the footer a step darker. */
+:root { --dk-0: #0C1B40; }
 .closing { background: none; }
 .closing__title em { background: linear-gradient(100deg, #F3F8FE 10%, #A9C3FF 60%, #7FA2F5); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: 0.06em; }
 .footer { background: var(--dk-0); }
@@ -523,3 +532,16 @@ html[data-intro="playing"] main *, html[data-intro="playing"] main *::before { a
 .footer a:hover { color: #fff; }
 /* Water shimmer kept faint on the dark footer */
 .footer .water-bg--contained { opacity: 0.32; }
+
+/* Interactive liquid hero background (LiquidHero) */
+.liquid-hero { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; display: block; cursor: none; }
+.hero-e:has(.liquid-hero) { background: #02040B; cursor: none; }
+.hero-e:has(.liquid-hero) a { cursor: pointer; }
+.hero-e__inner { position: relative; z-index: 1; }
+
+/* 3D steel bloom hero (SteelBloom) */
+.hero-e:has(.steel-bloom), .hero-e { background: linear-gradient(180deg, #020309, #060c24 55%, #13285A); }
+.steel-bloom { position: absolute; inset: 0; z-index: -1; opacity: 0; animation: fade 1.2s 0.1s ease-out forwards; }
+.steel-bloom canvas { display: block; width: 100%; height: 100%; }
+.hero-e::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 120px; z-index: -1; pointer-events: none; background: linear-gradient(to bottom, transparent, var(--c-bg)); }
+@media (max-width: 860px) { .hero-e { padding-bottom: min(100vw, 460px); } }
